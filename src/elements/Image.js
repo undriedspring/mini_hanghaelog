@@ -28,7 +28,7 @@ const Image = (props) => {
 Image.defaultProps = {
   shpae: 'circle',
   src: 'https://cdn-icons-png.flaticon.com/512/1864/1864514.png',
-  size: 36,
+  size: 40,
   alt: 'My Image',
   width: false,
   height: false,
