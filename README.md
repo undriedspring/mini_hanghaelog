@@ -16,11 +16,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### `yarn build`
 
 ㅁㅁㅁㅁㅁㅁ
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ㅎ흐흫
 
 ### `yarn eject`
 
