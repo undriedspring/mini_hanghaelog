@@ -11,6 +11,33 @@ const Button = (props) => {
       </React.Fragment>
     )
   }
+<<<<<<< HEAD
+
+  const styles = {
+    margin: margin,
+    padding: padding,
+    width: width,
+    height: height,
+    bg: bg,
+
+    boxShadow: boxShadow,
+    fontFamily: fontFamily,
+    cursor: cursor,
+    borderColor: borderColor,
+    borderRadius: borderRadius,
+    border: border,
+  }
+
+  return (
+    <React.Fragment>
+      <Button1 {...styles} onClick={_onClick}>
+        {text ? text : children}
+      </Button1>
+    </React.Fragment>
+  )
+}
+
+=======
 
   const styles = {
     margin: margin,
@@ -35,6 +62,7 @@ const Button = (props) => {
   )
 }
 
+>>>>>>> 34017993b410538aced0dcc8a521aea450cc4c17
 Button.defaultProps = {
   children: null,
   is_float: false,
@@ -47,12 +75,22 @@ Button.defaultProps = {
   bg: false,
   boxShadow: false,
   cursor: 'pointer',
+<<<<<<< HEAD
+
   fontFamily: false,
   borderColor: false,
   borderRadius: false,
   border: false,
 }
 
+=======
+  fontFamily: false,
+  borderColor: false,
+  borderRadius: false,
+  border: false,
+}
+
+>>>>>>> 34017993b410538aced0dcc8a521aea450cc4c17
 const Button1 = styled.button`
   margin: ${(props) => props.margin};
   width: ${(props) => props.width};
