@@ -1,11 +1,12 @@
 import React from 'react'
 import Post from './Post'
+import Login from '../pages/Login'
 
 function App() {
   return (
     <>
       <div>
-        <Post></Post>
+        <Login></Login>
       </div>
     </>
   )
