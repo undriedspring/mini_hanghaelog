@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 const Grid = (props) => {
   const {
@@ -40,7 +40,7 @@ const Grid = (props) => {
 
     cursor,
     _onClick,
-  } = props;
+  } = props
 
   const styles = {
     is_flex: is_flex,
@@ -77,14 +77,16 @@ const Grid = (props) => {
     left: left,
 
     cursor: cursor,
-  };
+  }
 
   return (
     <React.Fragment>
-      <Gridbox onClick={_onClick} {...styles}>{children}</Gridbox>
+      <Gridbox onClick={_onClick} {...styles}>
+        {children}
+      </Gridbox>
     </React.Fragment>
-  );
-};
+  )
+}
 
 Grid.defaultProps = {
   childrun: null,
@@ -99,8 +101,8 @@ Grid.defaultProps = {
 
   maxWidth: false,
   minWidth: false,
-  width: "100%",
-  height: "",
+  width: '100%',
+  height: '',
 
   padding: false,
   margin: false,
@@ -122,58 +124,45 @@ Grid.defaultProps = {
   bottom: false,
   left: false,
 
-  cursor: "default",
+  cursor: 'default',
   _onClick: () => {},
-};
+}
 
 const Gridbox = styled.div`
-  ${(props) =>
-    props.is_flex
-      ? `display: flex; align-items: center; justify-content: space-between;`
-      : ""}
-  ${(props) =>
-    props.is_grid
-      ? `display: grid; align-items: center; justify-content: space-between;`
-      : ""}
-	${(props) => (props.gridGap ? `gap: ${props.gridGap}` : "")}
-	${(props) => (props.coloumnGap ? `column-gap: ${props.coloumnGap}` : "")}
-	${(props) => (props.rowGap ? `row-gap: ${props.Gap}` : "")}
-	${(props) =>
-    props.gridTemplateColumns
-      ? `grid-template-columns: ${props.gridTemplateColumns}`
-      : ""}
-	${(props) =>
-    props.gridTemplateRows
-      ? `grid-template-rows: ${props.gridTemplateRows}`
-      : ""}
+  ${(props) => (props.is_flex ? `display: flex; align-items: center; justify-content: space-between;` : '')}
+  ${(props) => (props.is_grid ? `display: grid; align-items: center; justify-content: space-between;` : '')}
+	${(props) => (props.gridGap ? `gap: ${props.gridGap}` : '')}
+	${(props) => (props.coloumnGap ? `column-gap: ${props.coloumnGap}` : '')}
+	${(props) => (props.rowGap ? `row-gap: ${props.Gap}` : '')}
+	${(props) => (props.gridTemplateColumns ? `grid-template-columns: ${props.gridTemplateColumns}` : '')}
+	${(props) => (props.gridTemplateRows ? `grid-template-rows: ${props.gridTemplateRows}` : '')}
 
-  ${(props) => (props.minWidth ? `min-width: ${props.minWidth};` : "")}
-  ${(props) => (props.maxWidth ? `max-width: ${props.maxWidth};` : "")}
+  ${(props) => (props.minWidth ? `min-width: ${props.minWidth};` : '')}
+  ${(props) => (props.maxWidth ? `max-width: ${props.maxWidth};` : '')}
 	width: ${(props) => props.width};
   height: ${(props) => props.height};
 
-  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
+  ${(props) => (props.padding ? `padding: ${props.padding};` : '')}
+  ${(props) => (props.margin ? `margin: ${props.margin};` : '')}
 
-	${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
+	${(props) => (props.bg ? `background-color: ${props.bg};` : '')}
 	opacity: ${(props) => props.opacity};
 
-  ${(props) => (props.border ? `border: ${props.border};` : "")}
-  ${(props) => (props.borderTop ? `border-top: ${props.borderTop};` : "")}
-	${(props) => (props.borderRight ? `border-right: ${props.borderRight};` : "")}
-	${(props) =>
-    props.borderBottom ? `border-bottom: ${props.borderBottom};` : ""}
-	${(props) => (props.borderLeft ? `border-left: ${props.borderLeft};` : "")}
+  ${(props) => (props.border ? `border: ${props.border};` : '')}
+  ${(props) => (props.borderTop ? `border-top: ${props.borderTop};` : '')}
+	${(props) => (props.borderRight ? `border-right: ${props.borderRight};` : '')}
+	${(props) => (props.borderBottom ? `border-bottom: ${props.borderBottom};` : '')}
+	${(props) => (props.borderLeft ? `border-left: ${props.borderLeft};` : '')}
 
-	${(props) => (props.position ? `position: ${props.position};` : "")}
-	${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "")}
+	${(props) => (props.position ? `position: ${props.position};` : '')}
+	${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : '')}
 
-	${(props) => (props.top ? `top: ${props.top};` : "")}
-	${(props) => (props.right ? `right: ${props.right};` : "")}
-	${(props) => (props.bottom ? `bottom: ${props.bottom};` : "")}
-	${(props) => (props.left ? `left: ${props.left};` : "")}
+	${(props) => (props.top ? `top: ${props.top};` : '')}
+	${(props) => (props.right ? `right: ${props.right};` : '')}
+	${(props) => (props.bottom ? `bottom: ${props.bottom};` : '')}
+	${(props) => (props.left ? `left: ${props.left};` : '')}
 
 	cursor: ${(props) => props.cursor};
-`;
+`
 
-export default Grid;
+export default Grid

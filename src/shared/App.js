@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react'
 import Post from './Post'
 
@@ -13,5 +12,3 @@ function App() {
 }
 
 export default App
-=======
->>>>>>> zubetcha
