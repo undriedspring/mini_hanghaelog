@@ -1,71 +1,69 @@
-import styled from 'styled-components';
-import React from "react";
+import React from 'react'
+import styled from 'styled-components'
 
 const Image = (props) => {
-    const {shape, src, size} = props;
+  const { shape, src, size, alt, width, height } = props
+  const styles = {
+    src: src,
+    size: size,
+  }
 
-    const styles = {
-        src: src,
-        size: size,
-    }
-
-    if(shape === "circle"){
-        return (
-            <ImageCircle {...styles}></ImageCircle>
-        )
-    }
-
-    if(shape === "rectangle"){
-        return (
-            <AspectOutter>
-                <AspectInner {...styles}></AspectInner>
-            </AspectOutter>
-        )
-    }
-
+  if (shape === 'circle') {
+    return <ImageCircle {...styles}></ImageCircle>
+  }
+  if (shape === 'rectangle') {
     return (
-        <React.Fragment>
-            <ImageDefault {...styles}></ImageDefault>
-        </React.Fragment>
+      <SqureOutter>
+        <SqureInner {...styles}></SqureInner>
+      </SqureOutter>
     )
+  }
+  return (
+    <>
+      <ImageDefault {...styles}></ImageDefault>
+    </>
+  )
 }
 
 Image.defaultProps = {
-  shape: "circle",
-  src: "https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg",
+  shpae: 'circle',
+  src: 'https://cdn-icons-png.flaticon.com/512/1864/1864514.png',
   size: 36,
-};
+  alt: 'My Image',
+  width: 300,
+  height: 200,
+}
 
 const ImageDefault = styled.div`
   --size: ${(props) => props.size}px;
   width: var(--size);
   height: var(--size);
-  background-image: url("${(props) => props.src}");
+  background-image: url('${(props) => props.src}');
   background-size: cover;
-`;
-
-const AspectOutter = styled.div`
-    width: 100%;
-    min-width: 250px;
-`;
-
-const AspectInner = styled.div`
-    position: relative;
-    padding-top: 75%;
-    overflow: hidden;
-    background-image: url("${(props) => props.src}");
-    background-size: cover;
-`;
+  background-position: center;
+`
 
 const ImageCircle = styled.div`
-    --size: ${(props) => props.size}px;
-    width: var(--size);
-    height: var(--size);
-    border-radius: var(--size);
+  --size: ${(props) => props.size}px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: var(--size);
+  background-image: url('${(props) => props.src}');
+  background-size: cover;
+  background-position: center;
+  margin: 5px;
+`
 
-    background-image: url("${(props) => props.src}");
-    background-size: cover;
-    margin: 4px;
-`;
+const SqureOutter = styled.div`
+  width: 100%;
+`
+const SqureInner = styled.div`
+  position: relative;
+  overflow: hidden;
+  background-image: url('${(props) => props.src}');
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+`
 
-export default Image;
+export default Image
