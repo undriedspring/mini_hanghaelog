@@ -30,8 +30,8 @@ Image.defaultProps = {
   src: 'https://cdn-icons-png.flaticon.com/512/1864/1864514.png',
   size: 36,
   alt: 'My Image',
-  width: 300,
-  height: 200,
+  width: false,
+  height: false,
 }
 
 const ImageDefault = styled.div`
