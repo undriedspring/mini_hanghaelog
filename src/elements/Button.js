@@ -4,9 +4,6 @@ import styled from "styled-components"
 const Button = (props) => {
   const { display, align, is_float, text, _onClick, margin, width, height, padding, children, bg, boxShadow, fontFamily, cursor, borderColor, borderRadius, border } = props
 
-const Button =(props) => {
-    const {is_float, text, _onClick, margin, width, height, padding, children, bg, boxShadow, fontFamily, cursor, borderColor, borderRadius, border} = props;
-
 
     if (is_float) {
         return (
@@ -60,19 +57,19 @@ Button.defaultProps = {
   is_float: false,
   text: false,
   _onClick: () => {},
-  margin: false,
-  width: false,
-  height: false,
-  padding: false,
-  bg: false,
-  boxShadow: false,
+  margin: 'false',
+  width: 'false',
+  height: 'false',
+  padding: 'false',
+  bg: 'false',
+  boxShadow: 'false',
   cursor: 'pointer',
   display: 'false',
-  fontFamily: false,
-  borderColor: false,
-  borderRadius: false,
-  border: false,
-  aligh: 'false',
+  fontFamily: 'false',
+  borderColor: 'false',
+  borderRadius: 'false',
+  border: 'false',
+  align: 'false',
 }
 
 const Button1 = styled.button`
@@ -87,10 +84,10 @@ const Button1 = styled.button`
     ${(props) => (props.borderColor ? `border-color: ${props.borderColor};` : '')}
     ${(props) => (props.borderRadius ? `border-radius: ${props.borderRadius};` : '')}
     ${(props) => (props.border ? `border: ${props.border};` : '')}
-    ${(props) => (props.display ? `display: ${props.display};` : '')}
+    ${(props) => (props.display ? `display: ${props.display};` : '')} 
     ${(props) => (props.align ? `align-items: ${props.align};` : '')}
 `
-=======
+
     children:null,
     is_float: false,
     text: false,
@@ -124,21 +121,21 @@ const Button1=styled.button`
 
 
 const FloatButton = styled.button`
-  width: 50px;
-  height: 50px;
+  width: 'auto';
+  height: 'auto';
   background-color: #212121;
   color: #ffffff;
   box-sizing: border-box;
-  font-size: 36px;
-  font-weight: 800;
+  font-size: 'auto';
+  font-weight: 'auto';
   position: fixed;
-  bottom: 50px;
-  right: 16px;
+  bottom: 'auto';
+  right: 'auto';
   text-align: center;
   vertical-align: middle;
-  border: none;
-  border-radius: 50px;
-`;
-
+  border: 'none';
+  border-radius: 'auto';
+  cursor: 'pointer';
+`
 
 export default Button;
