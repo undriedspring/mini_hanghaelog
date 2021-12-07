@@ -9,7 +9,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor'
 const PostLists = (props) => {
   return (
     <React.Fragment>
-      <Grid maxWidth="700px" minWidth="500px" margin="auto">
+      <Grid maxWidth="700px" minWidth="500px" margin="135px 0px 0px 0px">
         <Grid is_flex>
           <Grid is_flex width="auto">
             <Image shape="circle" />

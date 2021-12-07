@@ -11,20 +11,12 @@ import QuickMenu from '../components/QuickMenu'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Comments from '../pages/Comments'
-<<<<<<< HEAD
-import PostLists from '../pages/PostLists'
-import Resister from '../pages/Register'
-=======
 import Main from '../pages/Main'
 import PostWrite from '../pages/PostWrite'
->>>>>>> 4b0b7496de18deb407cb1927881b64f66b8a91fd
 
 function App() {
   return (
     <>
-<<<<<<< HEAD
-      <Resister></Resister>
-=======
       <Grid>
         <Header></Header>
         <ConnectedRouter history={history}>
@@ -37,7 +29,6 @@ function App() {
         </ConnectedRouter>
         <QuickMenu></QuickMenu>
       </Grid>
->>>>>>> 4b0b7496de18deb407cb1927881b64f66b8a91fd
     </>
   )
 }
