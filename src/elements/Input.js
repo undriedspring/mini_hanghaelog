@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Input = (props) => {
-  const { multiLine, label, placeholder, type, value, is_submit, _onSubmit, _onChange, width } = props
+  const { multiLine, label, placeholder, type, value, is_submit, _onSubmit, _onChange } = props
 
   if (multiLine) {
     return (
@@ -27,10 +27,9 @@ const Input = (props) => {
                 _onSubmit(e)
               }
             }}
-            enabled="true"
           />
         ) : (
-          <ElInput type={type} placeholder={placeholder} onChange={_onChange} enabled="true" />
+          <ElInput type={type} placeholder={placeholder} onChange={_onChange} />
         )}
       </div>
     </>
@@ -46,6 +45,7 @@ Input.defaultProps = {
   is_submit: false,
   _onSubmit: () => {},
   _onChange: () => {},
+  type: false,
 }
 
 const ElTextarea = styled.textarea`

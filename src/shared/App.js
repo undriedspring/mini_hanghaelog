@@ -1,12 +1,15 @@
 import React from 'react'
-import Post from './Post'
+import { Grid } from '../elements'
+import QuickMenu from '../components/QuickMenu'
+import Comments from '../pages/Comments'
 
 function App() {
   return (
     <>
-      <div>
-        <Post></Post>
-      </div>
+      <Grid>
+        <Comments></Comments>
+        <QuickMenu></QuickMenu>
+      </Grid>
     </>
   )
 }
