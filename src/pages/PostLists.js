@@ -29,8 +29,8 @@ const PostLists = (props) => {
           <Grid>
             <Text size="15px">콩이입니다</Text>
           </Grid>
-          <DeleteIcon></DeleteIcon>
           <BorderColorIcon></BorderColorIcon>
+          <DeleteIcon></DeleteIcon>
         </Grid>
 
         <Grid is_flex>
@@ -45,7 +45,7 @@ const PostLists = (props) => {
               </Grid>
               <Grid is_flex margin="0px 4px">
                 <Text margin="0px" size="14px">
-                  10개
+                  10
                 </Text>
               </Grid>
             </Grid>
@@ -57,7 +57,7 @@ const PostLists = (props) => {
               </Grid>
               <Grid is_flex>
                 <Text margin="0px" size="14px">
-                  10개
+                  10
                 </Text>
               </Grid>
             </Grid>
