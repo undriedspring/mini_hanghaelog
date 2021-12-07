@@ -1,4 +1,6 @@
 import React from 'react'
+import styled from 'styled-components'
+
 import { Grid } from '../elements'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -7,14 +9,26 @@ import PostLists from '../components/PostLists'
 const Main = () => {
   return (
     <React.Fragment>
-      <Grid>
-        <Grid is_flex maxWidth="1000px" minWidth="650px" margin="auto">
+      <Container>
+        <Grid maxWidth="700px" minWidth="500px">
           <PostLists></PostLists>
+          <PostLists></PostLists>
+          <PostLists></PostLists>
+        </Grid>
+        <Grid>
           <Footer></Footer>
         </Grid>
-      </Grid>
+      </Container>
     </React.Fragment>
   )
 }
+
+const Container = styled.div`
+  max-width: 1000px;
+  min-width: 650px;
+  margin: 120px auto 0 auto;
+
+  display: flex;
+`
 
 export default Main
