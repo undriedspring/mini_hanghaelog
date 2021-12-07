@@ -3,30 +3,50 @@ import React from 'react'
 import { Grid, Image, Text } from '../elements'
 
 import FaceIcon from '@mui/icons-material/Face'
-import BookIcon from '@mui/icons-material/Book'
 import GitHubIcon from '@mui/icons-material/GitHub'
 
 const Footer = (props) => {
   const members = [
-    { src: '', nickname: '', blog_url: '', github_url: '' },
-    { src: '', nickname: '', blog_url: '', github_url: '' },
-    { src: '', nickname: '', blog_url: '', github_url: '' },
-    { src: '', nickname: '', blog_url: '', github_url: '' },
-    { src: '', nickname: '', blog_url: '', github_url: '' },
-    { src: '', nickname: '', blog_url: '', github_url: '' },
+    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
+    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
+    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
+    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
+    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
+    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
   ]
   return (
-    <Grid is_flex maxWidth="300px" minWidth="150px" height="500px" bg="lightgrey">
-      <Grid is_flex margin="5px">
-        <Grid is_flex width="auto">
-          <Image shape="circle" size="30"></Image>
-          <Text>zubetcha</Text>
-        </Grid>
-        <Grid is_flex width="auto">
-          <FaceIcon style={{ margin: '0 7px' }} onClikc={() => {}}></FaceIcon>
-          <BookIcon style={{ margin: '0 7px' }} onClikc={() => {}}></BookIcon>
-          <GitHubIcon style={{ margin: '0 0 0 7px' }} onClikc={() => {}}></GitHubIcon>
-        </Grid>
+    <Grid maxWidth="300px" minWidth="150px" height="450px" bg="#eee" padding="20px 0 0 0">
+      <Grid>
+        {members.map((member) => {
+          return (
+            <Grid is_flex>
+              <Grid is_flex margin="5px 15px 5px 10px">
+                <Grid is_flex width="auto">
+                  <Image src={member.src} shape="circle" size="36"></Image>
+                  <Text margin="0">{member.nickname}</Text>
+                </Grid>
+                <Grid is_flex width="auto">
+                  <FaceIcon
+                    style={{ margin: '0 8px', color: '#333', cursor: 'pointer' }}
+                    onClikc={() => {
+                      window.location.href = ``
+                    }}
+                  ></FaceIcon>
+                  <GitHubIcon
+                    style={{ margin: '0 0 0 8px', color: '#333', cursor: 'pointer' }}
+                    onClikc={() => {
+                      window.location.href = ``
+                    }}
+                  ></GitHubIcon>
+                </Grid>
+              </Grid>
+            </Grid>
+          )
+        })}
+      </Grid>
+
+      <Grid margin="20px 0 0 20px" width="auto">
+        <Text size="10px">© 2021 HANGHAELOG FROM TEAM 2</Text>
       </Grid>
     </Grid>
   )
