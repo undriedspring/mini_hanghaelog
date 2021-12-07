@@ -31,9 +31,9 @@ const Header = (props) => {
           <Grid width="auto" margin="0 20px">
             <Logo>HHL</Logo>
           </Grid>
-          <Grid width="auto">
-            <Button text="LOGIN" _onClick={() => {}} bg="#FFF" width="100px" height="40px" border="0.5px solid #333" borderRadius="20px" margin="0 10px"></Button>
-            <Button text="JOIN" _onClick={() => {}} bg="#FFF" width="100px" height="40px" border="0.5px solid #333" borderRadius="20px" margin="0 20px 0 10px"></Button>
+          <Grid is_flex width="auto">
+            <Button text="LOGIN" _onClick={() => {}} bg="#FFF" width="100px" height="40px" border="0.5px solid #333" borderRadius="20px" margin="0 10px" boxShadow=""></Button>
+            <Button text="JOIN" _onClick={() => {}} bg="#FFF" width="100px" height="40px" border="0.5px solid #333" borderRadius="20px" margin="0 20px 0 10px" boxShadow=""></Button>
           </Grid>
         </Grid>
       </Grid>
@@ -43,8 +43,19 @@ const Header = (props) => {
             <Logo>HHL</Logo>
           </Grid>
           <Grid is_flex width="auto">
-            <Button onmouseover="this.style.backgroundColor='red" text="nickname" _onClick={() => {}} bg="#FFF" width="100px" height="40px" border="none" borderRadius="20px" margin="0 10px"></Button>
-            <Button text="LOGOUT" _onClick={() => {}} bg="#FFF" width="100px" height="40px" border="0.5px solid #333" borderRadius="20px" margin="0 20px 0 10px"></Button>
+            <Button
+              onmouseover="this.style.backgroundColor='red"
+              text="nickname"
+              _onClick={() => {}}
+              bg="#FFF"
+              width="100px"
+              height="40px"
+              border="none"
+              borderRadius="20px"
+              margin="0 10px"
+              boxShadow=""
+            ></Button>
+            <Button text="LOGOUT" _onClick={() => {}} bg="#FFF" width="100px" height="40px" border="0.5px solid #333" borderRadius="20px" margin="0 20px 0 10px" boxShadow=""></Button>
           </Grid>
         </Grid>
       </Grid>
