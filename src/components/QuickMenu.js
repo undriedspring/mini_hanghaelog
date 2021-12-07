@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import './QuickMenu.css'
 import { Grid, Button, Image, Input, Text } from '../elements'
 import { history } from '../redux/configureStore'
@@ -10,18 +9,12 @@ import ArrowDropDownCircleSharpIcon from '@mui/icons-material/ArrowDropDownCircl
 const QuickMenu = () => {
   return (
     <React.Fragment>
-      <Grid is_grid position="fixed" left="1050px" bottom="50px">
-        <Grid position="relative"></Grid>
-        <AddCircleIcon
-          _onClick={() => {
-            history.push(`/api/posts/:id/comments`)
-          }}
-          class="AddButton"
-          width="70px"
-          cursor="pointer"
-        ></AddCircleIcon>
+      <Grid position="fixed" right="15%" bottom="5%">
         <div className="Rotate">
-          <ArrowDropDownCircleSharpIcon class="TopToButton" width="70px" cursor="pointer"></ArrowDropDownCircleSharpIcon>
+          <Grid is_grid>
+            <ArrowDropDownCircleSharpIcon class="TopToButton" width="70px" cursor="pointer" />
+            <AddCircleIcon class="AddButton" width="70px" cursor="pointer" />
+          </Grid>
         </div>
       </Grid>
     </React.Fragment>
