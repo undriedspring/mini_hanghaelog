@@ -1,6 +1,5 @@
 import React from 'react'
 import { Grid, Button, Input, Text, Image } from '../elements'
-
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
@@ -10,7 +9,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor'
 const PostLists = (props) => {
   return (
     <React.Fragment>
-      <Grid maxWidth="700px" minWidth="500px" margin="auto">
+      <Grid maxWidth="700px" minWidth="500px" margin="135px 0px 0px 0px">
         <Grid is_flex>
           <Grid is_flex width="auto">
             <Image shape="circle" />
@@ -29,8 +28,8 @@ const PostLists = (props) => {
           <Grid>
             <Text size="15px">콩이입니다</Text>
           </Grid>
-          <DeleteIcon></DeleteIcon>
           <BorderColorIcon></BorderColorIcon>
+          <DeleteIcon></DeleteIcon>
         </Grid>
 
         <Grid is_flex>
@@ -45,7 +44,7 @@ const PostLists = (props) => {
               </Grid>
               <Grid is_flex margin="0px 4px">
                 <Text margin="0px" size="14px">
-                  10개
+                  10
                 </Text>
               </Grid>
             </Grid>
@@ -57,7 +56,7 @@ const PostLists = (props) => {
               </Grid>
               <Grid is_flex>
                 <Text margin="0px" size="14px">
-                  10개
+                  10
                 </Text>
               </Grid>
             </Grid>
