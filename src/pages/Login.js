@@ -5,7 +5,7 @@ const Login = (props) => {
   return (
     <React.Fragment>
       <Grid maxWidth="500px" margin="auto">
-        <Grid padding="50px">
+        <Grid padding="50px" margin="150px 0px 0px 0px">
           <Text size="36px" weight="700" align="center">
             로그인
           </Text>
