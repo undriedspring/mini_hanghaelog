@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const Grid = (props) => {
   const {
     children,
+
     is_flex,
     is_grid,
     gridGap,
