@@ -1,14 +1,15 @@
 import React from 'react'
-
-import Post from './Post'
-import Login from '../pages/Login'
-import Register from '../pages/Register'
-import PostLists from '../pages/PostLists'
+import { Grid } from '../elements'
+import QuickMenu from '../components/QuickMenu'
+import Comments from '../pages/Comments'
 
 function App() {
   return (
     <>
-      <div></div>
+      <Grid>
+        <Comments></Comments>
+        <QuickMenu></QuickMenu>
+      </Grid>
     </>
   )
 }
