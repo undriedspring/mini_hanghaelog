@@ -5,6 +5,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
 import DeleteIcon from '@mui/icons-material/Delete'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
+import IconButton from '@mui/material/IconButton'
 
 const PostLists = (props) => {
   return (
@@ -25,11 +26,15 @@ const PostLists = (props) => {
         </Grid>
 
         <Grid is_flex>
-          <Grid>
+          <Grid padding="8px">
             <Text size="15px">콩이입니다</Text>
           </Grid>
-          <BorderColorIcon></BorderColorIcon>
-          <DeleteIcon></DeleteIcon>
+          <IconButton>
+            <BorderColorIcon></BorderColorIcon>
+          </IconButton>
+          <IconButton>
+            <DeleteIcon></DeleteIcon>
+          </IconButton>
         </Grid>
 
         <Grid is_flex>
@@ -38,7 +43,7 @@ const PostLists = (props) => {
 
         <Grid is_flex>
           <Grid is_flex width="auto">
-            <Grid is_flex>
+            {/* <Grid is_flex>
               <Grid is_flex width="auto">
                 <FavoriteBorderIcon></FavoriteBorderIcon>
               </Grid>
@@ -47,16 +52,18 @@ const PostLists = (props) => {
                   10
                 </Text>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Grid>
-          <Grid is_flex margin="0px 8px">
+          <Grid is_flex margin="0px">
             <Grid is_flex>
               <Grid is_flex width="auto" margin="0px 4px">
-                <ChatBubbleOutlineIcon></ChatBubbleOutlineIcon>
+                <IconButton>
+                  <ChatBubbleOutlineIcon></ChatBubbleOutlineIcon>
+                </IconButton>
               </Grid>
               <Grid is_flex>
-                <Text margin="0px" size="14px">
-                  10
+                <Text margin="0px" size="13px">
+                  댓글 10개
                 </Text>
               </Grid>
             </Grid>
