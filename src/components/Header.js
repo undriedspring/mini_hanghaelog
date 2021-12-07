@@ -32,7 +32,7 @@ const Header = (props) => {
 
   if (is_login) {
     return (
-      <Grid is_flex width="100%" height="60px" borderBottom="0.5px solid #333" bg="lightgrey" top="61px" zIndex="1">
+      <Grid is_flex width="100%" height="60px" borderBottom="0.5px solid #333" bg="#FFF" top="61px" zIndex="1">
         <Grid is_flex maxWidth="1000px" minWidth="650px" height="60px" margin="0 auto" bg="#FFF" zIndex="2">
           <Grid width="auto" margin="0 20px">
             <Logo>HHL</Logo>
@@ -57,7 +57,7 @@ const Header = (props) => {
 
   return (
     <React.Fragment>
-      <Grid is_flex width="100%" height="60px" borderBottom="0.5px solid #333" bg="lightgrey" top="0" zIndex="1">
+      <Grid is_flex width="100%" height="60px" borderBottom="0.5px solid #333" bg="#FFF" top="0" zIndex="1">
         <Grid is_flex maxWidth="1000px" minWidth="650px" height="60px" margin="0 auto" bg="#FFF" zIndex="2">
           <Grid width="auto" margin="0 20px">
             <Logo>HHL</Logo>
