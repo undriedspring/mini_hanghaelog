@@ -30,7 +30,7 @@ Text.defaultProps = {
 const P = styled.p`
   color: ${(props) => props.color};
   ${(props) => (props.size ? `font-size: ${props.size};` : '')}
-  ${(props) => (props.margin ? `${props.margin};` : '')}
+  ${(props) => (props.margin ? `margin: ${props.margin};` : '')}
   ${(props) => (props.weight ? `font-weight: ${props.weight};` : '')}
   ${(props) => (props.align ? `text-align: ${props.align};` : '')}
 `
