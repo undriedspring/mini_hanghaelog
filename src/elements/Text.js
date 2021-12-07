@@ -29,8 +29,10 @@ Text.defaultProps = {
 
 const P = styled.p`
   color: ${(props) => props.color};
-  font-size: ${(props) => props.size};
+  ${(props) => (props.size ? `font-size: ${props.size};` : '')}
   ${(props) => (props.margin ? `${props.margin};` : '')}
+  ${(props) => (props.weight ? `font-weight: ${props.weight};` : '')}
+  ${(props) => (props.align ? `text-align: ${props.align};` : '')}
 `
 
 export default Text
