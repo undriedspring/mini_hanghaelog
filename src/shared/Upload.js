@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
+import styled from 'styled-components'
+
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Text, Grid } from '../elements'
-import { storage } from './firebase'
+import { Grid } from '../elements'
 import { actionCreators as imageActions } from '../redux/modules/image'
 
 const Upload = (props) => {
   const dispatch = useDispatch()
-  const is_uploading = useSelector((state) => state.image.uploading)
+  // const is_uploading = useSelector((state) => state.image.uploading)
   const fileInput = React.useRef()
 
   const selectFile = (e) => {
@@ -20,20 +21,53 @@ const Upload = (props) => {
       dispatch(imageActions.setPreview(reader.result))
     }
   }
+
   const uploadFB = () => {
     let image = fileInput.current.files[0]
-    dispatch(imageActions.uploadImageFB(image))
+    // dispatch(imageActions.uploadImageFB(image))
   }
 
   return (
     <React.Fragment>
-      <Grid padding="10px">
-        <Text size="20px">이미지 선택하기</Text>
-        <input type="file" onChange={selectFile} ref={fileInput} disabled={is_uploading} />
-        {/* <Button _onClick={uploadFB}>업로드 하기</Button> */}
+      <Grid>
+        <Label className="input-file-button" for="input-file">
+          업로드
+        </Label>
+        <UploadName onChange={() => {}} value="첨부파일" placeholder="첨부파일"></UploadName>
+        <input type="file" id="input-file" style={{ display: 'none' }} onChange={selectFile} ref={fileInput}></input>
       </Grid>
     </React.Fragment>
   )
 }
+
+const Label = styled.label`
+  width: 100px;
+  height: 25px;
+  padding: 6px 25px;
+  margin-right: 10px;
+  background-color: #a496c7;
+  border-radius: 4px;
+  color: whitesmoke;
+  font-size: 12px;
+  cursor: pointer;
+  box-sizing: border-box;
+`
+
+const UploadName = styled.input`
+  display: inline-block;
+  width: 69%;
+  height: 27px;
+  padding: 0 10px;
+  vertical-align: middle;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #999999;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+  }
+`
 
 export default Upload
