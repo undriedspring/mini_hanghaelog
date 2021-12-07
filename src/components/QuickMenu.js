@@ -1,13 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Grid, Button, Image, Input, Text } from '../elements'
+import AddCircleIcon from '@mui/icons-material/AddCircle'
+import ArrowDropDownCircleSharpIcon from '@mui/icons-material/ArrowDropDownCircleSharp'
 
 const QuickMenu = () => {
   return (
     <React.Fragment>
-      <Grid is_grid position="fixed" left="1050px" bottom="100px">
-        <Button text="+" width="50px" height="50px" border="none" padding="15px" margin="10px 20px" cursor="pointer"></Button>
-        <Button text="^" width="50px" height="50px" border="none" padding="15px" margin="10px 20px" cursor="pointer"></Button>
+      <Grid is_grid position="fixed" left="1050px" bottom="50px">
+        <AddCircleIcon class="AddButton" width="70px" cursor="pointer"></AddCircleIcon>
+        <ArrowDropDownCircleSharpIcon class="TopToButton" width="70px" cursor="pointer"></ArrowDropDownCircleSharpIcon>
       </Grid>
     </React.Fragment>
   )
