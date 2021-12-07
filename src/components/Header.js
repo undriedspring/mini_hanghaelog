@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-// import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { history } from '../redux/configureStore'
 
 import { Grid, Button, Text } from '../elements'
 import '../index.css'
@@ -10,16 +11,16 @@ const Header = (props) => {
   // if (is_login && is_session) {
   // return (
   //   <Grid is_flex width="100%" height="60px" borderBottom="0.5px solid #333" bg="lightgrey" position="fixed" top="61px" zIndex="1">
-  //     <Grid is_flex maxWidth="1000px" minWidth="650px" height="60px" margin="0 auto" bg="#FFF" zIndex="2">
-  //       <Grid width="auto" margin="0 20px">
-  //         <Logo>HHL</Logo>
-  //       </Grid>
-  //       <Grid width="auto">
-  //         <Button text="nickname" _onClick={() => {}} bg="#FFF" width="100px" height="40px" border="none" borderRadius="20px" margin="0 10px"></Button>
-  //         <Button text="LOGOUT" _onClick={() => {}} bg="#FFF" width="100px" height="40px" border="0.5px solid #333" borderRadius="20px" margin="0 20px 0 10px"></Button>
+  //       <Grid is_flex maxWidth="1000px" minWidth="650px" height="60px" margin="0 auto" bg="#FFF" zIndex="2">
+  //         <Grid width="auto" margin="0 20px">
+  //           <Logo>HHL</Logo>
+  //         </Grid>
+  //         <Grid is_flex width="auto">
+  //           <HeaderBtn style={{ border: 'none', margin: '0 10px' }}>nickname</HeaderBtn>
+  //           <HeaderBtn style={{ margin: '0 20px 0 10px' }}>LOGOUT</HeaderBtn>
+  //         </Grid>
   //       </Grid>
   //     </Grid>
-  //   </Grid>
   // )
   // }
 
@@ -32,8 +33,22 @@ const Header = (props) => {
             <Logo>HHL</Logo>
           </Grid>
           <Grid is_flex width="auto">
-            <Button text="LOGIN" _onClick={() => {}} bg="#FFF" width="100px" height="40px" border="0.5px solid #333" borderRadius="20px" margin="0 10px" boxShadow=""></Button>
-            <Button text="JOIN" _onClick={() => {}} bg="#FFF" width="100px" height="40px" border="0.5px solid #333" borderRadius="20px" margin="0 20px 0 10px" boxShadow=""></Button>
+            <HeaderBtn
+              style={{ margin: '0 10px' }}
+              onClick={() => {
+                history.push('/auth/login')
+              }}
+            >
+              LOGIN
+            </HeaderBtn>
+            <HeaderBtn
+              style={{ margin: '0 20px 0 10px' }}
+              onClick={() => {
+                history.push('/auth/register')
+              }}
+            >
+              JOIN
+            </HeaderBtn>
           </Grid>
         </Grid>
       </Grid>
@@ -43,19 +58,10 @@ const Header = (props) => {
             <Logo>HHL</Logo>
           </Grid>
           <Grid is_flex width="auto">
-            <Button
-              onmouseover="this.style.backgroundColor='red"
-              text="nickname"
-              _onClick={() => {}}
-              bg="#FFF"
-              width="100px"
-              height="40px"
-              border="none"
-              borderRadius="20px"
-              margin="0 10px"
-              boxShadow=""
-            ></Button>
-            <Button text="LOGOUT" _onClick={() => {}} bg="#FFF" width="100px" height="40px" border="0.5px solid #333" borderRadius="20px" margin="0 20px 0 10px" boxShadow=""></Button>
+            <Nickname>
+              <span style={{ fontWeight: '700' }}>nickname</span> 님, 반가워요!
+            </Nickname>
+            <HeaderBtn style={{ margin: '0 20px 0 10px' }}>LOGOUT</HeaderBtn>
           </Grid>
         </Grid>
       </Grid>
@@ -67,6 +73,40 @@ const Logo = styled.p`
   font-family: 'Expletus Sans', cursive;
   font-size: 2rem;
   font-weight: 900;
+`
+
+const HeaderBtn = styled.button`
+  width: 120px;
+  height: 40px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  background-color: #333;
+  color: #fdfdfd;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+
+  will-change: transform;
+  transition: transform 450ms;
+  &:hover {
+    background-color: #a496c7;
+    transition: transform 500ms;
+    transform: translateY(-3px);
+  }
+`
+
+const Nickname = styled.p`
+  margin: 0 10px;
+  width: 300px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  background-color: #fff;
+  font-size: 14px;
+  text-align: right;
+  vertical-align: middle;
 `
 
 export default Header
