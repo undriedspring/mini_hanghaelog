@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton'
 const PostLists = (props) => {
   return (
     <React.Fragment>
-      <Grid maxWidth="700px" minWidth="500px" margin="135px 0px 0px 0px">
+      <Grid maxWidth="700px" minWidth="500px" margin="120px 0px 0px 0px">
         <Grid is_flex>
           <Grid is_flex width="auto">
             <Image shape="circle" />
