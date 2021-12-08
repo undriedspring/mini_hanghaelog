@@ -20,12 +20,12 @@ function App() {
       <Grid>
         <Header></Header>
         <ConnectedRouter history={history}>
-          <Route path="/api/posts" exact component={Main}></Route>
-          <Route path="/auth/login" exact component={Login}></Route>
-          <Route path="/auth/register" exact component={Register}></Route>
-          <Route path="/api/posts/write" exact component={PostWrite}></Route>
-          <Route path="/api/posts/:id/edit" exact component={PostWrite}></Route>
-          <Route path="/api/posts/:id/comments" exact component={Comments}></Route>
+          <Route path="/posts" exact component={Main}></Route>
+          <Route path="/login" exact component={Login}></Route>
+          <Route path="/register" exact component={Register}></Route>
+          <Route path="/posts/write" exact component={PostWrite}></Route>
+          <Route path="/posts/:id/edit" exact component={PostWrite}></Route>
+          <Route path="/posts/:id/comments" exact component={Comments}></Route>
         </ConnectedRouter>
         <QuickMenu></QuickMenu>
       </Grid>
