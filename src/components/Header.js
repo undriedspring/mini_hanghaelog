@@ -9,33 +9,22 @@ import { Grid, Button, Text } from '../elements'
 import '../index.css'
 
 const Header = (props) => {
-  // **** Login **** //
-  // if (is_login && is_session) {
-  // return (
-  //   <Grid is_flex width="100%" height="60px" borderBottom="0.5px solid #333" bg="lightgrey" position="fixed" top="61px" zIndex="1">
-  //       <Grid is_flex maxWidth="1000px" minWidth="650px" height="60px" margin="0 auto" bg="#FFF" zIndex="2">
-  //         <Grid width="auto" margin="0 20px">
-  //           <Logo>HHL</Logo>
-  //         </Grid>
-  //         <Grid is_flex width="auto">
-  //           <HeaderBtn style={{ border: 'none', margin: '0 10px' }}>nickname</HeaderBtn>
-  //           <HeaderBtn style={{ margin: '0 20px 0 10px' }}>LOGOUT</HeaderBtn>
-  //         </Grid>
-  //       </Grid>
-  //     </Grid>
-  // )
-  // }
-
-  // **** Logout **** //
   const dispatch = useDispatch()
   const is_login = useSelector((state) => state.user.is_login)
 
+  // **** Login **** //
   if (is_login) {
     return (
-      <Grid is_flex width="100%" height="60px" borderBottom="0.5px solid #333" bg="#FFF" top="61px" zIndex="1">
+      <Grid is_flex width="100%" height="60px" borderBottom="0.5px solid #b7b7b7" bg="#FFF" position="sticky" top="0" zIndex="1">
         <Grid is_flex maxWidth="1000px" minWidth="650px" height="60px" margin="0 auto" bg="#FFF" zIndex="2">
           <Grid width="auto" margin="0 20px">
-            <Logo>HHL</Logo>
+            <Logo
+              onClick={() => {
+                history.push('/api/posts')
+              }}
+            >
+              HHL
+            </Logo>
           </Grid>
           <Grid is_flex width="auto">
             <Nickname>
@@ -55,12 +44,19 @@ const Header = (props) => {
     )
   }
 
+  // **** Logout **** //
   return (
     <React.Fragment>
-      <Grid is_flex width="100%" height="60px" borderBottom="0.5px solid #333" bg="#FFF" top="0" zIndex="1">
+      <Grid is_flex width="100%" height="60px" borderBottom="0.5px solid #b7b7b7" bg="#FFF" position="sticky" top="0" zIndex="1">
         <Grid is_flex maxWidth="1000px" minWidth="650px" height="60px" margin="0 auto" bg="#FFF" zIndex="2">
           <Grid width="auto" margin="0 20px">
-            <Logo>HHL</Logo>
+            <Logo
+              onClick={() => {
+                history.push('/api/posts')
+              }}
+            >
+              HHL
+            </Logo>
           </Grid>
           <Grid is_flex width="auto">
             <HeaderBtn
@@ -90,6 +86,7 @@ const Logo = styled.p`
   font-family: 'Expletus Sans', cursive;
   font-size: 2rem;
   font-weight: 900;
+  cursor: pointer;
 `
 
 const HeaderBtn = styled.button`
