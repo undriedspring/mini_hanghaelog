@@ -25,7 +25,7 @@ const Main = () => {
 const Container = styled.div`
   max-width: 1000px;
   min-width: 650px;
-  /* margin: 120px auto 0 auto; */
+  margin: 120px auto 0 auto;
 
   display: flex;
 `

@@ -1,7 +1,7 @@
 // HotDeal.jsx
 // const resp = await axios.get('EC2IP:8000/api/hotdeals')
-const resp = RESP.HOTDEALS
-for (let i = 0; i < resp.length; i++) {}
+// const resp = RESP.HOTDEALS
+// for (let i = 0; i < resp.length; i++) {}
 
 // response.js
 export const RESP = {
@@ -31,25 +31,25 @@ export const RESP = {
       {
         commentsId: 'AAAA',
         userId: 'sdfggs',
-        postiId: 'fghdfhdgf',
+        postId: 'fghdfhdgf',
         comment: '고양이 너무 귀여워요.',
       },
       {
         commentsId: 'BBBB',
         userId: 'ertryy',
-        postiId: 'sdghhfd',
+        postId: 'sdghhfd',
         comment: '지금 너무 졸려요.',
       },
       {
         commentsId: 'CCCC',
         userId: 'hfdger',
-        postiId: 'sfdghdfg',
+        postId: 'sfdghdfg',
         comment: '오늘 너무 추워요.',
       },
       {
         commentsId: 'DDDD',
         userId: 'gczasd',
-        postiId: 'etgdfgdg',
+        postId: 'etgdfgdg',
         comment: '할 게 너무 많아요.',
       },
     ],
