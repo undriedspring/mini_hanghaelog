@@ -20,7 +20,7 @@ const Header = (props) => {
           <Grid width="auto" margin="0 20px">
             <Logo
               onClick={() => {
-                history.push('/api/posts')
+                history.push('/posts')
               }}
             >
               HHL
@@ -52,7 +52,7 @@ const Header = (props) => {
           <Grid width="auto" margin="0 20px">
             <Logo
               onClick={() => {
-                history.push('/api/posts')
+                history.push('/posts')
               }}
             >
               HHL
@@ -62,7 +62,7 @@ const Header = (props) => {
             <HeaderBtn
               style={{ margin: '0 10px' }}
               onClick={() => {
-                history.push('/auth/login')
+                history.push('/login')
               }}
             >
               LOGIN
@@ -70,7 +70,7 @@ const Header = (props) => {
             <HeaderBtn
               style={{ margin: '0 20px 0 10px' }}
               onClick={() => {
-                history.push('/auth/register')
+                history.push('/register')
               }}
             >
               JOIN
