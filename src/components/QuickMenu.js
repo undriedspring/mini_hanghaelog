@@ -20,7 +20,14 @@ const QuickMenu = () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
             />
-            <AddCircleIcon class="AddButton" width="70px" cursor="pointer" />
+            <AddCircleIcon
+              class="AddButton"
+              width="70px"
+              cursor="pointer"
+              onClick={() => {
+                history.push('/posts/write')
+              }}
+            />
           </Grid>
         </div>
       </Grid>
