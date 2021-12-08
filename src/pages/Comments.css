@@ -1,18 +1,19 @@
-.VerticalLine {
+/* .VerticalLine {
   border: 0.5px solid #333333;
   width: 0.1px;
   height: 30px;
-}
+} */
 
 .commentLine {
   border: none;
-  border-bottom: solid 1.5px #333333;
+  background: none;
+  border-bottom: solid 1.5px #a496c7;
   padding: 12px 4px;
   width: 100%;
 }
 
 .profileImage {
-  border: 0.5px solid lightgray;
+  border: 0.5px solid lightslategray;
   border-radius: 50px;
   width: auto;
   height: auto;
@@ -23,12 +24,179 @@
 .commentSubmit {
   width: 40px;
   height: 50px;
-  margin-left: 20px;
+  margin-left: 15px;
   margin-right: 10px;
 }
 
 .commentSubmit:hover {
   cursor: pointer;
-  transform: scale(1.1);
-  transition: 0.5s;
+  transition: transform 500ms;
+  transform: translateX(3px);
+}
+
+.CommentEditButton {
+  width: 45px;
+  height: 35px;
+  margin: 10px;
+  font-family: 'proxima-nova', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase !important;
+  letter-spacing: 2px;
+  color: black;
+  cursor: default;
+  text-align: center;
+  text-transform: capitalize;
+  border: 1px solid black;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden !important;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background: transparent !important;
+  z-index: 10;
+}
+
+.CommentEditButton:hover {
+  border: 1px solid #a496c7;
+  color: white !important;
+}
+
+.CommentEditButton::before {
+  content: '';
+  width: 0%;
+  height: 100%;
+  display: block;
+  background: #a496c7;
+  position: absolute;
+  -ms-transform: skewX(-20deg);
+  -webkit-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+  left: -10%;
+  opacity: 1;
+  top: 0;
+  z-index: -12;
+  -moz-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  box-shadow: 2px 0px 14px rgba(0, 0, 0, 0.6);
+}
+
+.CommentEditButton::after {
+  content: '';
+  width: 0%;
+  height: 100%;
+  display: block;
+  background: #ffa07a;
+  position: absolute;
+  -ms-transform: skewX(-20deg);
+  -webkit-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+  left: -10%;
+  opacity: 0;
+  top: 0;
+  z-index: -15;
+  -webkit-transition: all 0.94s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  -moz-transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  -o-transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  box-shadow: 2px 0px 14px rgba(0, 0, 0, 0.6);
+}
+
+.CommentEditButton:hover::before,
+.CommentEditButton:hover::before {
+  opacity: 1;
+  width: 116%;
+}
+
+.CommentEditButton:hover::after,
+.CommentEditButton:hover::after {
+  opacity: 1;
+  width: 120%;
+}
+
+.CommentDeleteButton {
+  width: 45px;
+  height: 35px;
+  font-family: 'proxima-nova', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase !important;
+  letter-spacing: 2px;
+  color: black;
+  cursor: hand;
+  text-align: center;
+  text-transform: capitalize;
+  border: 1px solid black;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden !important;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background: transparent !important;
+  z-index: 10;
+}
+
+.CommentDeleteButton:hover {
+  border: 1px solid #a496c7;
+  color: white !important;
+}
+
+.CommentDeleteButton::before {
+  content: '';
+  width: 0%;
+  height: 100%;
+  display: block;
+  background: #a496c7;
+  position: absolute;
+  -ms-transform: skewX(-20deg);
+  -webkit-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+  left: -10%;
+  opacity: 1;
+  top: 0;
+  z-index: -12;
+  -moz-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  box-shadow: 2px 0px 14px rgba(0, 0, 0, 0.6);
+}
+
+.CommentDeleteButton::after {
+  content: '';
+  width: 0%;
+  height: 100%;
+  display: block;
+  background: red;
+  position: absolute;
+  -ms-transform: skewX(-20deg);
+  -webkit-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+  left: -10%;
+  opacity: 0;
+  top: 0;
+  z-index: -15;
+  -webkit-transition: all 0.94s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  -moz-transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  -o-transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  box-shadow: 2px 0px 14px rgba(0, 0, 0, 0.6);
+}
+
+.CommentDeleteButton:hover::before,
+.CommentDeleteButton:hover::before {
+  opacity: 1;
+  width: 116%;
+}
+
+.CommentDeleteButton:hover::after,
+.CommentDeleteButton:hover::after {
+  opacity: 1;
+  width: 120%;
 }

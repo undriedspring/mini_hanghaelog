@@ -9,10 +9,17 @@ import ArrowDropDownCircleSharpIcon from '@mui/icons-material/ArrowDropDownCircl
 const QuickMenu = () => {
   return (
     <React.Fragment>
-      <Grid position="fixed" right="15%" bottom="5%">
+      <Grid position="fixed" right="7%" bottom="5%">
         <div className="Rotate">
           <Grid is_grid>
-            <ArrowDropDownCircleSharpIcon class="TopToButton" width="70px" cursor="pointer" />
+            <ArrowDropDownCircleSharpIcon
+              class="TopToButton"
+              width="70px"
+              cursor="pointer"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+            />
             <AddCircleIcon class="AddButton" width="70px" cursor="pointer" />
           </Grid>
         </div>
