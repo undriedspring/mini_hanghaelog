@@ -46,8 +46,9 @@ const PostWrite = (props) => {
 
   const changeContent = (e) => {
     setContent(e.target.value)
-    console.log(content)
   }
+
+  const textCnt = content.length
 
   const addPost = () => {
     if (preview === null || content === '') {
@@ -103,7 +104,7 @@ const PostWrite = (props) => {
             </Text>
             <Upload />
             <Textarea value={content} onChange={changeContent} label="게시글 내용" placeholder="텍스트를 입력해주세요." maxLength="200" required></Textarea>
-            <TextCnt>0 / 200</TextCnt>
+            {<TextCnt>{textCnt}/ 200</TextCnt>}
             {is_edit ? <Btn onClick={editPost}>수정하기</Btn> : <Btn onClick={addPost}>작성하기</Btn>}
           </Grid>
           <Grid width="100%" maxWidth="450px" minWidth="400px" margin="18px">
