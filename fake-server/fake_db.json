@@ -1,5 +1,61 @@
 {
-  "posts": [
+  "LOGIN": [
+    {
+      "ok": "true",
+      "token": "sdfjksngkjndk",
+      "msg": "로그인에 성공하셨습니다."
+    }
+  ],
+
+  "REGISTER": [
+    {
+      "ok": "true",
+      "msg": "회원가입에 성공하셨습니다."
+    }
+  ],
+
+  "COMMENTWRITE": [
+    {
+      "ok": "true",
+      "msg": "작성 완료"
+    }
+  ],
+
+  "COMMENTEDIT": [
+    {
+      "ok": true,
+      "msg": "수정 완료"
+    }
+  ],
+
+  "COMMENTS": [
+    {
+      "commentsId": "AAAA",
+      "userId": "sdfggs",
+      "postId": "fghdfhdgf",
+      "comment": "고양이 너무 귀여워요."
+    },
+    {
+      "commentsId": "BBBB",
+      "userId": "ertryy",
+      "postId": "sdghhfd",
+      "comment": "지금 너무 졸려요."
+    },
+    {
+      "commentsId": "CCCC",
+      "userId": "hfdger",
+      "postId": "sfdghdfg",
+      "comment": "오늘 너무 추워요."
+    },
+    {
+      "commentsId": "DDDD",
+      "userId": "gczasd",
+      "postId": "etgdfgdg",
+      "comment": "할 게 너무 많아요."
+    }
+  ],
+
+  "POSTS": [
     {
       "userId": "ertryy",
       "postId": "fghdfhdgf",
@@ -7,7 +63,7 @@
       "createdAt": "2021-10-22 11:24:25",
       "content": "고양이 진짜 귀엽죠??",
       "imgUrl": "http://image.dongascience.com/Photo/2020/10/8a5748b94df480da7df06adcdaa417c9.jpg",
-      "numOfComments": "7"
+      "numOfComments": 7
     },
     {
       "userId": "hfdger",
