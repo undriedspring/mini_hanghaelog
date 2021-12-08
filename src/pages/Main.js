@@ -9,7 +9,7 @@ const Main = () => {
   return (
     <React.Fragment>
       <Container>
-        <Grid maxWidth="700px" minWidth="500px">
+        <Grid maxWidth="700px" minWidth="500px" bg="#FFF">
           <PostLists></PostLists>
           <PostLists></PostLists>
           <PostLists></PostLists>
@@ -25,7 +25,7 @@ const Main = () => {
 const Container = styled.div`
   max-width: 1000px;
   min-width: 650px;
-  margin: 120px auto 0 auto;
+  margin: 0 auto;
 
   display: flex;
 `

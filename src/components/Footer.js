@@ -15,7 +15,7 @@ const Footer = (props) => {
     { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
   ]
   return (
-    <Grid maxWidth="300px" minWidth="150px" height="450px" bg="#eee" padding="20px 0 0 0">
+    <Grid maxWidth="300px" minWidth="150px" height="450px" padding="20px 0 0 0">
       <Grid>
         {members.map((member) => {
           return (

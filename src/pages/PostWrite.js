@@ -1,15 +1,100 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Upload from '../shared/Upload'
 import { Grid, Text } from '../elements'
+import { actionCreators as postActions } from '../redux/modules/post'
+import { actionCreators as imageActions } from '../redux/modules/image'
 
-const PostWrite = () => {
+const PostWrite = (props) => {
+  const defaultImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCQrU2ehVPXr5xwc4CBn-uOUjT3dAPOSZSQ&usqp=CAU'
+
+  const dispatch = useDispatch()
+
+  const is_login = useSelector((state) => state.user.is_login)
+  const preview = useSelector((state) => state.image.preview)
+  // **** post module 완성 후 주석 풀기 **** //
+  // const post_list = useSelector((state) => state.post.list)
+
+  const post_id = props.match.params.id
+  const is_edit = post_id ? true : false
+  // **** post module 완성 후 주석 풀기 **** //
+  // const _post = is_edit ? post_list.find((post) => post.id === post_id) : null
+
+  const { history } = props
+
+  const [content, setContent] = React.useState('')
+
+  // **** post module 완성 후 주석 풀기 **** //
+  // const [content, setContent] = React.useState(_post ? _post.content : '')
+
+  // **** post module 완성 후 주석 풀기 **** //
+  // React.useEffect(() => {
+  //   if (is_edit && !_post) {
+  //     window.alert('포스트 정보가 없습니다.')
+  //     console.log('포스트 정보가 없습니다.')
+  //     history.goBack()
+
+  //     return
+  //   }
+
+  //   if (is_edit) {
+  //     dispatch(imageActions.setPreview(_post.imgUrl))
+  //   }
+  // }, [])
+
+  const changeContent = (e) => {
+    setContent(e.target.value)
+    console.log(content)
+  }
+
+  const addPost = () => {
+    if (preview === null || content === '') {
+      window.alert('이미지 업로드와 텍스트 입력을 모두 완료해주세요!')
+      return
+    } else {
+      // **** post module 완성 후 주석 풀기 **** //
+      // dispatch(postActions.addPostFB(content))
+    }
+  }
+
+  const editPost = () => {
+    if (preview === null || content === '') {
+      window.alert('이미지 업로드와 텍스트 입력을 모두 완료해주세요!')
+      return
+    } else {
+      // **** post module 완성 후 주석 풀기 **** //
+      // dispatch(postAction.editPost(post_id, { content: content }))
+    }
+  }
+
+  // **** 로그인 구현 후 주석 풀기 **** //
+  // if (!is_login) {
+  //   return (
+  //     <Grid maxWidth="400px" margin="auto">
+  //       <Grid margin="200px 0px 0px 0px" height="328px" border="2px solid #a496c7">
+  //         <Text size="20px" align="center" margin="80px 0 120px 0">
+  //           로그인 후 작성하실 수 있습니다.
+  //         </Text>
+  //         <Btn
+  //           style={{ margin: 'auto' }}
+  //           onClick={() => {
+  //             history.replace('/api/posts')
+  //           }}
+  //         >
+  //           홈으로 이동
+  //         </Btn>
+  //       </Grid>
+  //     </Grid>
+  //   )
+  // }
+
   return (
     <React.Fragment>
       <Wrap>
         <Grid>
-          <Title>New Post</Title>
+          <Title>{is_edit ? 'Edit Post' : 'New Post'}</Title>
         </Grid>
         <Grid is_flex>
           <Grid padding="0 0 0 20px" maxWidth="300px" minWidth="150px">
@@ -17,12 +102,12 @@ const PostWrite = () => {
               nickname
             </Text>
             <Upload />
-            <Textarea placeholder="텍스트를 입력해주세요." maxLength="200" required></Textarea>
+            <Textarea value={content} onChange={changeContent} label="게시글 내용" placeholder="텍스트를 입력해주세요." maxLength="200" required></Textarea>
             <TextCnt>0 / 200</TextCnt>
-            <SubmitBtn>작성하기</SubmitBtn>
+            {is_edit ? <Btn onClick={editPost}>수정하기</Btn> : <Btn onClick={addPost}>작성하기</Btn>}
           </Grid>
           <Grid width="100%" maxWidth="450px" minWidth="400px" margin="18px">
-            <Image></Image>
+            <ImageInner src={preview ? preview : defaultImage}></ImageInner>
           </Grid>
         </Grid>
       </Wrap>
@@ -53,7 +138,9 @@ const Textarea = styled.textarea`
   max-height: 200px;
   min-height: 150px;
   margin: 20px 0 0 0;
+  padding: 10px;
   box-sizing: border-box;
+  border-radius: 4px;
 
   border: none;
   resize: none;
@@ -75,7 +162,7 @@ const TextCnt = styled.p`
   }
 `
 
-const SubmitBtn = styled.button`
+const Btn = styled.button`
   display: block;
   width: 120px;
   height: 40px;
@@ -99,12 +186,14 @@ const SubmitBtn = styled.button`
   }
 `
 
-const Image = styled.div`
+const ImageInner = styled.div`
   position: relative;
   padding-top: 100%;
   overflow: hidden;
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCQrU2ehVPXr5xwc4CBn-uOUjT3dAPOSZSQ&usqp=CAU');
+  background-image: url('${(props) => props.src}');
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 `
 
 export default PostWrite
