@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Button, Input, Text } from '../elements/index'
+import { Grid, Text } from '../elements/index'
 import { useState } from 'react'
 
 import styled from 'styled-components'
@@ -41,8 +41,8 @@ const Register = (props) => {
   // 이름
   const onChangeName = (e) => {
     setName(e.target.value)
-    if (e.target.value.length < 2 || e.target.value.length > 5) {
-      setNameMessage('2글자 이상 5글자 미만으로 입력해주세요.')
+    if (e.target.value.length < 2 || e.target.value.length > 11) {
+      setNameMessage('2글자 이상 11글자 미만으로 입력해주세요.')
       setIsName(false)
     } else {
       setNameMessage('올바른 이름 형식입니다 :)')
