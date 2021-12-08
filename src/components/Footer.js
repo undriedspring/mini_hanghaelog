@@ -28,13 +28,13 @@ const Footer = (props) => {
                 <Grid is_flex width="auto">
                   <FaceIcon
                     style={{ margin: '0 8px', color: '#333', cursor: 'pointer' }}
-                    onClikc={() => {
+                    onClick={() => {
                       window.location.href = ``
                     }}
                   ></FaceIcon>
                   <GitHubIcon
                     style={{ margin: '0 0 0 8px', color: '#333', cursor: 'pointer' }}
-                    onClikc={() => {
+                    onClick={() => {
                       window.location.href = ``
                     }}
                   ></GitHubIcon>
