@@ -98,4 +98,6 @@ export const RESP = {
   },
 }
 
+console.log(RESP.COMMENTLIST.comments)
+
 export default Response
