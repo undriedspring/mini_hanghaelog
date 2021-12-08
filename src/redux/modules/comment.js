@@ -1,40 +1,39 @@
-import { createAction, handleActions } from 'redux-actions'
-import { produce } from 'immer'
+// import { createAction, handleActions } from 'redux-actions'
+// import { produce } from 'immer'
 
-const SET_COMMENT = 'SET_COMMENT'
-const ADD_COMMENT = 'ADD_COMMENT'
-const LOADING = 'LOADING'
+// // Actions Types
+// const GET_COMMENT = 'GET_COMMENT'
+// const ADD_COMMENT = 'ADD_COMMENT'
+// const SET_COMMENT = 'SET_COMMENT'
+// const DELETE_COMMENT = 'DELETE_COMMENT'
+// const LOADING_COMMENT = 'LOADING_COMMENT'
 
-const setComment = createAction(SET_COMMENT, (post_id, comment_list) => ({ post_id, comment_list }))
-const addComment = createAction(ADD_COMMENT, (post_id, comment) => ({ post_id, comment }))
-const loading = createAction(LOADING, (is_loading) => ({ is_loading }))
+// // Action Creators
+// const getComment = createAction(GET_COMMENT)
+// const addComment = createAction(ADD_COMMENT, (postId, comment) => ({ postId, comment }))
+// const setComment = createAction(SET_COMMENT, (postId, comment_list) => ({ postId, comment_list }))
+// const deleteComment = createAction(DELETE_COMMENT, () => ({}))
+// const loading = createAction(LOADING_COMMENT, (is_loading_comment) => ({ is_loading_comment }))
 
-const initialState = {
-  list: {},
-  is_loading: false,
-}
+// const initialState = {
+//   list: [],
+//   is_loaded: false,
+// }
 
-export default handleActions(
-  {
-    [SET_COMMENT]: (state, action) =>
-      produce(state, (draft) => {
-        draft.list[action.payload.post_id] = action.payload.comment_list
-      }),
-    [ADD_COMMENT]: (state, action) =>
-      produce(state, (draft) => {
-        draft.list[action.payload.post_id].unshift(action.payload.comment)
-      }),
-    [LOADING]: (state, action) =>
-      produce(state, (draft) => {
-        draft.is_loading = action.payload.is_loading
-      }),
-  },
-  initialState
-)
+// // Middlewares
+// // const addCommentDB = (params, userInfo) => {
+// //   return async function (disspatch, getState, { history }) {
+// //     const payload = await apiPostComment(params)
+// //     dispatch(addComment(payload.data.data, userInfo))
+// //   }
+// // }
 
-const actionCreators = {
-  setComment,
-  addComment,
-}
+// // Reducer
+// const actionCreators = {
+//   getComment,
+//   addComment,
+//   setComment,
+//   // deleteComment,
+// }
 
-export { actionCreators }
+// export { actionCreators }

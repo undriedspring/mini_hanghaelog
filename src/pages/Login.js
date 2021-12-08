@@ -38,7 +38,7 @@ const Login = (props) => {
             </Grid>
             <Grid maxWidth="350px" margin="auto">
               <Text>
-                <Input value={pwd} onChange={changePwd} placeholder="비밀번호"></Input>
+                <Input type="password" value={pwd} onChange={changePwd} placeholder="비밀번호"></Input>
               </Text>
             </Grid>
             <Grid margin="40px 0px 25px 0px">

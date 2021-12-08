@@ -2,7 +2,6 @@ import React from 'react'
 import './QuickMenu.css'
 import { Grid, Button, Image, Input, Text } from '../elements'
 import { history } from '../redux/configureStore'
-import Comments from '../pages/Comments'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import ArrowDropDownCircleSharpIcon from '@mui/icons-material/ArrowDropDownCircleSharp'
 

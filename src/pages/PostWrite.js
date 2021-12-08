@@ -121,7 +121,7 @@ const Wrap = styled.div`
   min-width: 600px;
   max-height: 600px;
   min-height: 400px;
-  margin: 200px auto 0 auto;
+  margin: 150px auto 0 auto;
   border: 2px solid #a496c7;
 `
 
