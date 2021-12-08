@@ -21,7 +21,7 @@ const loginAction = (user) => {
   return function (dispatch, getState, { history }) {
     console.log(history)
     dispatch(logIn(user))
-    history.push('/api/posts')
+    history.push('/posts')
   }
 }
 
