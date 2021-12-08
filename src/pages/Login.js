@@ -4,6 +4,8 @@ import { Grid, Button, Input, Text } from '../elements/index'
 import { actionCreators as userActions } from '../redux/modules/user'
 import { useDispatch } from 'react-redux'
 
+import styled from 'styled-components'
+
 const Login = (props) => {
   const dispatch = useDispatch()
   const [id, setId] = React.useState('')
@@ -24,7 +26,7 @@ const Login = (props) => {
   return (
     <React.Fragment>
       <Grid maxWidth="400px" margin="auto">
-        <Grid margin="200px 0px 0px 0px" border="2px solid #a496c7">
+        <Grid margin="150px 0px 0px 0px" border="2px solid #a496c7">
           <Grid padiing="50px">
             <Text size="36px" weight="700" align="center">
               Login
