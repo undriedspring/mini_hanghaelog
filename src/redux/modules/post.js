@@ -8,15 +8,15 @@ import moment from 'moment'
 import { actionCreators as imageActions } from './image'
 import { apis } from '../../shared/api'
 
-// ************ Action Type ************ //
+// // ************ Action Type ************ //
 
-const GET_POST = 'GET_POST'
-const ADD_POST = 'ADD_POST'
-const EDIT_POST = 'EDIT_POST'
-const DELETE_POST = 'DELETE_POST'
-const LOADING = 'LOADING'
+// const GET_POST = 'GET_POST'
+// const ADD_POST = 'ADD_POST'
+// const EDIT_POST = 'EDIT_POST'
+// const DELETE_POST = 'DELETE_POST'
+// const LOADING = 'LOADING'
 
-// ************ Action Creator ************ //
+// // ************ Action Creator ************ //
 
 const getPost = createAction(GET_POST, (post_list, paging) => ({ post_list, paging }))
 const addPost = createAction(ADD_POST, (post) => ({ post }))
@@ -105,3 +105,4 @@ const actionCreators = {
 }
 
 export { actionCreators }
+
