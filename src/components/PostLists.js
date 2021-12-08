@@ -1,5 +1,6 @@
 import React from 'react'
 import { Grid, Button, Input, Text, Image } from '../elements'
+import { history } from '../redux/configureStore'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
@@ -30,7 +31,11 @@ const PostLists = (props) => {
             <Text size="15px">콩이입니다</Text>
           </Grid>
           <IconButton>
-            <BorderColorIcon></BorderColorIcon>
+            <BorderColorIcon
+              onClick={() => {
+                history.push('/posts/:id/edit')
+              }}
+            ></BorderColorIcon>
           </IconButton>
           <IconButton>
             <DeleteIcon></DeleteIcon>
@@ -58,7 +63,11 @@ const PostLists = (props) => {
             <Grid is_flex>
               <Grid is_flex width="auto" margin="0px 4px">
                 <IconButton>
-                  <ChatBubbleOutlineIcon></ChatBubbleOutlineIcon>
+                  <ChatBubbleOutlineIcon
+                    onClick={() => {
+                      history.push('/posts/:id/comments')
+                    }}
+                  ></ChatBubbleOutlineIcon>
                 </IconButton>
               </Grid>
               <Grid is_flex>
