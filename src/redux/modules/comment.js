@@ -1,8 +1,5 @@
 import { createAction, handleActions } from 'redux-actions'
 import { produce } from 'immer'
-import { actionCreators as postActions } from './post'
-import 'moment'
-import moment from 'moment'
 
 const SET_COMMENT = 'SET_COMMENT'
 const ADD_COMMENT = 'ADD_COMMENT'
