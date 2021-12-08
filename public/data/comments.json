@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "commentsId": "AAAA",
+      "userId": "sdfggs",
+      "postId": "fghdfhdgf",
+      "comment": "고양이 너무 귀여워요."
+    },
+    {
+      "commentsId": "BBBB",
+      "userId": "ertryy",
+      "postId": "sdghhfd",
+      "comment": "지금 너무 졸려요."
+    },
+    {
+      "commentsId": "CCCC",
+      "userId": "hfdger",
+      "postId": "sfdghdfg",
+      "comment": "오늘 너무 추워요."
+    },
+    {
+      "commentsId": "DDDD",
+      "userId": "gczasd",
+      "postId": "etgdfgdg",
+      "comment": "할 게 너무 많아요."
+    }
+  ]
+}
