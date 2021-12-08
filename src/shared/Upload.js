@@ -7,8 +7,11 @@ import { actionCreators as imageActions } from '../redux/modules/image'
 
 const Upload = (props) => {
   const dispatch = useDispatch()
-  // const is_uploading = useSelector((state) => state.image.uploading)
+
+  const is_uploading = useSelector((state) => state.image.uploading)
   const fileInput = React.useRef()
+
+  const [filename, setFilename] = React.useState('')
 
   const selectFile = (e) => {
     console.log(fileInput.current.files[0])
@@ -20,6 +23,8 @@ const Upload = (props) => {
       console.log(reader.result)
       dispatch(imageActions.setPreview(reader.result))
     }
+
+    setFilename(e.target.value)
   }
 
   const uploadFB = () => {
@@ -30,11 +35,11 @@ const Upload = (props) => {
   return (
     <React.Fragment>
       <Grid>
-        <Label className="input-file-button" for="input-file">
+        <Label className="input-file-button" htmlFor="input-file">
           업로드
         </Label>
-        <UploadName onChange={() => {}} value="첨부파일" placeholder="첨부파일"></UploadName>
-        <input type="file" id="input-file" style={{ display: 'none' }} onChange={selectFile} ref={fileInput}></input>
+        <UploadName value={filename} placeholder="첨부파일"></UploadName>
+        <input type="file" accept="image/*" id="input-file" style={{ display: 'none' }} onChange={selectFile} ref={fileInput}></input>
       </Grid>
     </React.Fragment>
   )
@@ -64,6 +69,7 @@ const UploadName = styled.input`
   font-size: 12px;
   color: #999999;
   box-sizing: border-box;
+  background-color: rgb(247, 247, 247);
 
   &:focus {
     outline: none;
