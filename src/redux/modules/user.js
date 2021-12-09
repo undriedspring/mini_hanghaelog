@@ -4,7 +4,7 @@ import { produce } from 'immer'
 import { setCookie, getCookie, deleteCookie } from '../../shared/Cookie'
 import { applyMiddleware } from 'redux'
 
-import { apis } from '../../shared/api'
+import { apis } from '../../shared/fake_api'
 
 const LOG_IN = 'LOG_IN'
 const LOG_OUT = 'LOG_OUT'
@@ -29,22 +29,19 @@ const user_initial = {
 }
 
 //middleware
-const loginAction = (user) => {
-  return function (dispatch, getState, { history }) {
-    console.log(history)
-    dispatch(setUser(user))
-    history.push('/posts')
-  }
-}
 
 const registerDB = (email, nickname, password, passwordCheck) => {
   return function (dispatch, getState, { history }) {
     apis
-      .register(email, nickname, password, passwordCheck)
+      .register(email, nickname, password, passwordCheck) //유저가 입력한 유저정보를 api로 넘겨줘야함
       .then((res) => {
+        //완료되면 res가 넘어오고
+        console.log(res)
         history.push('/login')
+        window.alert('회원가입을 축하드립니다! 로그인 후 이용하실 수 있어요(о´∀`о)')
       })
       .catch((err) => {
+        //오류나면 이리로
         console.log(err)
       })
   }
@@ -52,20 +49,40 @@ const registerDB = (email, nickname, password, passwordCheck) => {
 
 const logInDB = (email, password) => {
   return function (dispatch, getState, { history }) {
-    apis.login(email, password).then((res) => {
-      setCookie()
-    })
+    apis
+      .login(email, password)
+      .then((res) => {
+        console.log(res)
+        setCookie('token', res.data[0].token, 3)
+        // localStorage.setItem()
+        dispatch(setUser({ email: email }))
+        history.replace('/posts')
+      })
+      .catch((err) => {
+        console.log(err)
+        // window.alert('회원정보가 없습니다.')
+      })
   }
 }
 
 const logOutDB = () => {
   return function (dispatch, getState, { history }) {
     deleteCookie('token')
+    localStorage.removeItem()
+    dispatch(logOut('/login'))
   }
 }
 
 const loginCheckDB = () => {
-  return function (dispatch, getState, { history }) {}
+  return function (dispatch, getState, { history }) {
+    const userId = localStorage.getItem('username')
+    const tokenCheck = document.cookie
+    if (tokenCheck) {
+      dispatch(SET_USER({ id: userId }))
+    } else {
+      dispatch(logOut())
+    }
+  }
 }
 
 //reducer
@@ -73,13 +90,13 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        setCookie('is_login', 'success')
+        // setCookie('is_login', 'success')
         draft.user = action.payload.user
         draft.is_login = true
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
-        deleteCookie('is_login')
+        // deleteCookie('is_login')
         draft.user = null
         draft.is_login = false
       }),
@@ -92,7 +109,6 @@ const actionCreators = {
   setUser,
   logOut,
   getUser,
-  loginAction,
   registerDB,
   logInDB,
   logOutDB,
