@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-
 import { useDispatch, useSelector } from 'react-redux'
+
+// **** component, elements, modules, apis **** //
 import { Grid } from '../elements'
 import { actionCreators as imageActions } from '../redux/modules/image'
 
@@ -13,9 +14,9 @@ const Upload = (props) => {
 
   const [filename, setFilename] = React.useState('')
 
-  const selectFile = (e) => {
-    console.log(fileInput.current.files[0])
+  const selectFile = async (e) => {
     const reader = new FileReader()
+    // 이미지 업로드 POST api request 파라미터에 넣을 데이터
     const file = fileInput.current.files[0]
 
     reader.readAsDataURL(file)
@@ -24,12 +25,9 @@ const Upload = (props) => {
       dispatch(imageActions.setPreview(reader.result))
     }
 
-    setFilename(e.target.value)
-  }
+    dispatch(imageActions.uploadImageDB(file))
 
-  const uploadFB = () => {
-    let image = fileInput.current.files[0]
-    // dispatch(imageActions.uploadImageFB(image))
+    setFilename(e.target.value)
   }
 
   return (
