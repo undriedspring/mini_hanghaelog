@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Comments.css'
 import EachComment from '../components/EachComment'
+import { actionCreators as commentActions } from '../redux/modules/comment'
 import styled from 'styled-components'
 import SendIcon from '@mui/icons-material/Send'
 import { Grid, Button, Image, Input, Text } from '../elements'
@@ -10,6 +11,17 @@ const Comments = (props) => {
   const dispatch = useDispatch()
   const posts_list = useSelector((state) => state.POSTS)
   const comments_list = useSelector((state) => state.COMMENTS)
+
+  const [comment_text, setCommentText] = React.useState('')
+  const { postId } = props
+
+  const onChange = (e) => {
+    setCommentText(e.target.value)
+  }
+  const write = () => {
+    dispatch(commentActions.addCommentDB(postId, comment_text))
+    setCommentText('')
+  }
 
   return (
     <React.Fragment>
@@ -36,8 +48,17 @@ const Comments = (props) => {
             </Grid>
           </Grid>
           <Grid width="100%" margin="0px 0px 20px 0px" is_flex>
-            <input className="commentLine" type="text" placeholder="최대 140자까지 자유롭게 댓글을 남길 수 있습니다 : )" maxlength="140" />
-            <SendIcon class="commentSubmit" onClick=""></SendIcon>
+            <input
+              className="commentLine"
+              type="text"
+              placeholder="최대 100자까지 자유롭게 댓글을 남길 수 있습니다 : )"
+              maxlength="100"
+              _onChange={onChange}
+              value={comment_text}
+              onSubmit={write}
+              is_submit
+            />
+            <SendIcon class="commentSubmit" _onClick={write}></SendIcon>
           </Grid>
           <Grid justify-content="center">
             <EachComment />
