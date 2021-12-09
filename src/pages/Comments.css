@@ -34,7 +34,7 @@
   transform: translateX(3px);
 }
 
-.CommentEditButton {
+/* .CommentEditButton {
   width: 45px;
   height: 35px;
   margin: 10px;
@@ -199,4 +199,4 @@
 .CommentDeleteButton:hover::after {
   opacity: 1;
   width: 120%;
-}
+} */

@@ -38,7 +38,7 @@ const Register = (props) => {
       setEmailMessage('이메일 형식을 확인해주세요.')
       setIsEmail(false)
     } else {
-      setEmailMessage('올바른 이메일 형식이에요 : )')
+      setEmailMessage('올바른 이메일 형식이에요 (*´꒳`*)')
       setIsEmail(true)
     }
   }
@@ -50,7 +50,7 @@ const Register = (props) => {
       setNameMessage('2글자 이상 11글자 미만으로 입력해주세요.')
       setIsName(false)
     } else {
-      setNameMessage('올바른 이름 형식이에요 :)')
+      setNameMessage('올바른 이름 형식이에요 (*´꒳`*)')
       setIsName(true)
     }
   }
@@ -65,7 +65,7 @@ const Register = (props) => {
       setPasswordMessage('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요.')
       setIsPassword(false)
     } else {
-      setPasswordMessage('안전한 비밀번호에요 : )')
+      setPasswordMessage('안전한 비밀번호에요 (*´꒳`*)')
       setIsPassword(true)
     }
   }
@@ -76,7 +76,7 @@ const Register = (props) => {
     setPasswordCheck(passwordConfirmCurrent)
 
     if (password === passwordConfirmCurrent) {
-      setPasswordCheckMessage('비밀번호를 똑같이 입력했어요 : )')
+      setPasswordCheckMessage('비밀번호를 똑같이 입력했어요 (*´꒳`*)')
       setIsPasswordConfirm(true)
     } else {
       setPasswordCheckMessage('비밀번호가 일치하지 않습니다.')

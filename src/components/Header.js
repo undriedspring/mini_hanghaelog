@@ -33,7 +33,7 @@ const Header = (props) => {
             <HeaderBtn
               style={{ margin: '0 20px 0 10px' }}
               onClick={() => {
-                dispatch(userActions.logOut({}))
+                dispatch(userActions.logOutDB({}))
               }}
             >
               LOGOUT
