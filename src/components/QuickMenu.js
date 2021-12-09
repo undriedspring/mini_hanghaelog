@@ -1,9 +1,10 @@
 import React from 'react'
 import './QuickMenu.css'
+import styled from 'styled-components'
 import Permit from '../shared/Permit'
 import { Grid, Button, Image, Input, Text } from '../elements'
 import { history } from '../redux/configureStore'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined'
 import ArrowDropDownCircleSharpIcon from '@mui/icons-material/ArrowDropDownCircleSharp'
 
 const QuickMenu = () => {
@@ -11,21 +12,25 @@ const QuickMenu = () => {
     <React.Fragment>
       <Grid position="fixed" right="7%" bottom="5%">
         <div className="Rotate">
-          <Grid is_grid>
+          <Grid is_grid font-size="5rem">
             {/* <Permit> */}
             <ArrowDropDownCircleSharpIcon
-              class="TopToButton"
-              width="70px"
-              cursor="pointer"
+              className="TopToButton"
+              fontSize="10rem"
+              width="auto"
+              height="auto"
+              outline="none"
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
             />
             {/* </Permit> */}
-            <AddCircleIcon
-              class="AddButton"
-              width="70px"
-              cursor="pointer"
+            <AddCircleOutlinedIcon
+              className="AddButton"
+              fontSize="10rem"
+              width="auto"
+              height="auto"
+              outline="none"
               onClick={() => {
                 history.push('/posts/write')
               }}
