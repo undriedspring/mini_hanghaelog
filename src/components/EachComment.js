@@ -29,19 +29,17 @@ const EachComment = (props) => {
         </Grid>
         <Grid margin="20px">
           {/* 공백포함 180자 */}
-          <Text>그럼 한 줄에 담기는 글자수는 몇 자 일까요? 정확하게 42자가 되네요 충분</Text>
+          <Text>그럼 한 줄에 담기는 글자수는 몇 자 일까요? 이정도 쓸 수 있으면 충분하겠네요</Text>
         </Grid>
         <Grid is_flex width="auto" margin="30px">
-          {props.is_me && (
-            <button
-              className="CommentEditButton"
-              _onClick={() => {
-                history.push(`/posts/${props.id}/edit`)
-              }}
-            >
-              수정
-            </button>
-          )}
+          {/* <button
+            className="CommentEditButton"
+            _onClick={() => {
+              history.push(`/posts/${props.id}/edit`)
+            }}
+          >
+            수정
+          </button> */}
           {props.is_me && (
             <button
               className="CommentDeleteButton"

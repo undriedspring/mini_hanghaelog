@@ -30,9 +30,14 @@ const uploadImageDB = (file) => {
       fileObj: file,
     }
 
+    console.log(file)
+    console.log(fileObj)
+
     try {
-      const imageData = await apis.uploadImage(fileObj)
-      dispatch(uploadImage(imageData.image_url))
+      const { data } = await apis.uploadImage(fileObj)
+      // console.log(data)
+      // console.log(data.image_url)
+      dispatch(uploadImage(data.image_url))
     } catch (error) {
       console.log(error)
     }

@@ -11,9 +11,9 @@ const DELETE_COMMENT = 'DELETE_COMMENT'
 const LOADING_COMMENT = 'LOADING_COMMENT'
 
 // Action Creators
-const getComment = createAction(GET_COMMENT, (comment) => ({ comment }))
-const addComment = createAction(ADD_COMMENT, (comment, postId) => ({ comment, postId }))
-const editComment = createAction(EDIT_COMMENT, (commentId, params) => ({ commentId, params }))
+const getComment = createAction(GET_COMMENT, (comment_list, paging) => ({ comment_list, paging }))
+const addComment = createAction(ADD_COMMENT, (postId, comment) => ({ postId, comment }))
+const editComment = createAction(EDIT_COMMENT, (postId, commentId) => ({ postId, commentId }))
 const deleteComment = createAction(DELETE_COMMENT, (commentId, params) => ({ commentId, params }))
 const loadingComment = createAction(LOADING_COMMENT, (is_loading_comment) => ({ is_loading_comment }))
 
@@ -26,7 +26,7 @@ const initialState = {
 }
 
 // Thunk function
-export const _getComment =
+export const getCommentDB =
   (postId) =>
   async (dispatch, getState, { history }) => {
     try {
@@ -37,7 +37,7 @@ export const _getComment =
     }
   }
 
-export const _addComment =
+export const addCommentDB =
   (postId, content) =>
   async (dispatch, getState, { history }) => {
     try {
@@ -46,13 +46,13 @@ export const _addComment =
     } catch (e) {}
   }
 
-export const _editComment = (postId, commentId, newContent, setEditMode) => async (dispatch) => {
+export const editCommentDB = (postId, commentId, newContent, setEditMode) => async (dispatch) => {
   const { data } = await apis.editComment(postId, commentId, newContent)
   dispatch(editComment(commentId, data))
   setEditMode(false)
 }
 
-export const _deleteComment = (postId, commentId) => (dispatch) => {
+export const deleteCommentDB = (postId, commentId) => (dispatch) => {
   try {
     apis.deleteComment(postId, commentId)
     dispatch(deleteComment(commentId))
@@ -87,10 +87,10 @@ export default handleActions(
 )
 
 const actionCreators = {
-  getComment,
-  addComment,
-  editComment,
-  deleteComment,
+  getCommentDB,
+  addCommentDB,
+  editCommentDB,
+  deleteCommentDB,
   loadingComment,
 }
 
