@@ -44,19 +44,19 @@ api.interceptors.response.use(
 
 export const apis = {
   // **** post **** //
-  addPost: (post) => api.post('/POSTS', post),
-  editPost: (postId, post) => api.put(`/POSTS/${postId}`, post),
-  deletePost: (postId) => api.delete(`/POSTS/${postId}`),
+  addPost: (post) => api.get('/POSTS', post),
+  editPost: (postId, post) => api.get(`/POSTS/${postId}`, post),
+  deletePost: (postId) => api.get(`/POSTS/${postId}`),
   // get posts에서 한 postId의 comment 데이터까지 한 번에 가져오도록 수정할 건지 백 확인 필요
   posts: () => api.get('/POSTS'),
 
   // **** comment **** //
-  addComment: (postId, comment) => api.post(`/POST/${postId}/COMMENTS`, comment),
-  editComment: (postId, commentsId, comment) => api.put(`/POSTS/${postId}/COMMENTS/${commentsId}`, comment),
-  deleteComment: (postId, commentsId) => api.delete(`/POSTS/${postId}/COMMENTS/${commentsId}`),
+  addComment: (postId, comment) => api.get(`/POST/${postId}/COMMENTS`, comment),
+  editComment: (postId, commentsId, comment) => api.get(`/POSTS/${postId}/COMMENTS/${commentsId}`, comment),
+  deleteComment: (postId, commentsId) => api.get(`/POSTS/${postId}/COMMENTS/${commentsId}`),
   comments: (postId) => api.get(`/POSTS/${postId}/COMMENTS`),
 
   // **** user **** //
-  login: (email, password) => api.post('/LOGIN', { email: email, password: password }),
-  register: (email, nickname, password, passwordCheck) => api.post('/REGISTER', { email: email, nickname: nickname, password: password, passwordCheck: passwordCheck }),
+  login: (email, password) => api.get('/LOGIN', { email: email, password: password }),
+  register: (email, nickname, password, passwordCheck) => api.get('/REGISTER', { email: email, nickname: nickname, password: password, passwordCheck: passwordCheck }),
 }

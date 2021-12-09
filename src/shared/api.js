@@ -24,12 +24,6 @@ api.interceptors.response.use(
       const { config } = response
       const originalRequest = config
 
-      const newAccessToken = response.data.token
-      document.cookie = `token=${newAccessToken};`
-
-      axios.defaults.headers.common['Authorization'] = `${newAccessToken}`
-      originalRequest.headers['Authorization'] = `${newAccessToken}`
-
       return axios(originalRequest)
     }
 

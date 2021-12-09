@@ -85,7 +85,7 @@ const Register = (props) => {
   }
 
   const register = () => {
-    dispatch(userActions.registerDB(nickname, email, password, passwordCheck))
+    dispatch(userActions.registerDB(email, nickname, password, passwordCheck))
   }
 
   return (

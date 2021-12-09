@@ -3,7 +3,9 @@
     {
       "ok": "true",
       "token": "sdfjksngkjndk",
-      "msg": "로그인에 성공하셨습니다."
+      "msg": "로그인에 성공하셨습니다.",
+      "userId": "userId",
+      "nickname": "nickname"
     }
   ],
 
