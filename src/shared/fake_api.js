@@ -3,7 +3,7 @@ import axios from 'axios'
 // ******** Axios 인스턴스 생성 ******** //
 
 const api = axios.create({
-  baseURL: 'https://api.example.com',
+  baseURL: 'http://localhost:8080/',
 })
 
 // ******** Interceptor를 통한 Header 설정 ******** //
@@ -24,6 +24,12 @@ api.interceptors.response.use(
       const { config } = response
       const originalRequest = config
 
+      const newAccessToken = response.data.token
+      document.cookie = `token=${newAccessToken};`
+
+      axios.defaults.headers.common['Authorization'] = `${newAccessToken}`
+      originalRequest.headers['Authorization'] = `${newAccessToken}`
+
       return axios(originalRequest)
     }
 
@@ -38,19 +44,19 @@ api.interceptors.response.use(
 
 export const apis = {
   // **** post **** //
-  addPost: (post) => api.post('/api/posts', post),
-  editPost: (postId, post) => api.put(`/api/posts/${postId}`, post),
-  deletePost: (postId) => api.delete(`/api/posts/${postId}`),
+  addPost: (post) => api.get('/POSTS', post),
+  editPost: (postId, post) => api.get(`/POSTS/${postId}`, post),
+  deletePost: (postId) => api.get(`/POSTS/${postId}`),
   // get posts에서 한 postId의 comment 데이터까지 한 번에 가져오도록 수정할 건지 백 확인 필요
-  posts: () => api.get('/api/posts'),
+  posts: () => api.get('/POSTS'),
 
   // **** comment **** //
-  addComment: (postId, comment) => api.post(`/api/posts/${postId}/comments`, comment),
-  editComment: (postId, commentsId, comment) => api.put(`/api/posts/${postId}/comments/${commentsId}`, comment),
-  deleteComment: (postId, commentsId) => api.delete(`/api/posts/${postId}/comments/${commentsId}`),
-  comments: (postId) => api.get(`/api/posts/${postId}/comments`),
+  addComment: (postId, comment) => api.get(`/POST/${postId}/COMMENTS`, comment),
+  editComment: (postId, commentsId, comment) => api.get(`/POSTS/${postId}/COMMENTS/${commentsId}`, comment),
+  deleteComment: (postId, commentsId) => api.get(`/POSTS/${postId}/COMMENTS/${commentsId}`),
+  comments: (postId) => api.get(`/POSTS/${postId}/COMMENTS`),
 
   // **** user **** //
-  login: (email, password) => api.post('/api/auth/login', { email: email, password: password }),
-  register: (email, nickname, password, passwordCheck) => api.post('/api/auth/register', { email: email, nickname: nickname, password: password, passwordCheck: passwordCheck }),
+  login: (email, password) => api.get('/LOGIN', { email: email, password: password }),
+  register: (email, nickname, password, passwordCheck) => api.get('/REGISTER', { email: email, nickname: nickname, password: password, passwordCheck: passwordCheck }),
 }
