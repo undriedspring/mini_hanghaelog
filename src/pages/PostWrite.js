@@ -14,35 +14,29 @@ const PostWrite = (props) => {
 
   const is_login = useSelector((state) => state.user.is_login)
   const preview = useSelector((state) => state.image.preview)
-  // **** post module 완성 후 주석 풀기 **** //
-  // const post_list = useSelector((state) => state.post.list)
+  const post_list = useSelector((state) => state.post.list)
 
   const post_id = props.match.params.id
   const is_edit = post_id ? true : false
-  // **** post module 완성 후 주석 풀기 **** //
-  // const _post = is_edit ? post_list.find((post) => post.id === post_id) : null
+  const _post = is_edit ? post_list.find((post) => post.postId === post_id) : null
 
   const { history } = props
 
-  const [content, setContent] = React.useState('')
+  const [content, setContent] = React.useState(_post ? _post.content : '')
 
-  // **** post module 완성 후 주석 풀기 **** //
-  // const [content, setContent] = React.useState(_post ? _post.content : '')
+  React.useEffect(() => {
+    if (is_edit && !_post) {
+      window.alert('포스트 정보가 없습니다.')
+      console.log('포스트 정보가 없습니다.')
+      history.goBack()
 
-  // **** post module 완성 후 주석 풀기 **** //
-  // React.useEffect(() => {
-  //   if (is_edit && !_post) {
-  //     window.alert('포스트 정보가 없습니다.')
-  //     console.log('포스트 정보가 없습니다.')
-  //     history.goBack()
+      return
+    }
 
-  //     return
-  //   }
-
-  //   if (is_edit) {
-  //     dispatch(imageActions.setPreview(_post.imgUrl))
-  //   }
-  // }, [])
+    if (is_edit) {
+      dispatch(imageActions.setPreview(_post.imgUrl))
+    }
+  }, [])
 
   const changeContent = (e) => {
     setContent(e.target.value)
@@ -55,8 +49,7 @@ const PostWrite = (props) => {
       window.alert('이미지 업로드와 텍스트 입력을 모두 완료해주세요!')
       return
     } else {
-      // **** post module 완성 후 주석 풀기 **** //
-      // dispatch(postActions.addPostFB(content))
+      dispatch(postActions.addPostDB(content))
     }
   }
 
@@ -65,8 +58,7 @@ const PostWrite = (props) => {
       window.alert('이미지 업로드와 텍스트 입력을 모두 완료해주세요!')
       return
     } else {
-      // **** post module 완성 후 주석 풀기 **** //
-      // dispatch(postAction.editPost(post_id, { content: content }))
+      dispatch(postActions.editPostDB(post_id, content))
     }
   }
 
@@ -104,7 +96,10 @@ const PostWrite = (props) => {
             </Text>
             <Upload />
             <Textarea value={content} onChange={changeContent} label="게시글 내용" placeholder="텍스트를 입력해주세요." maxLength="200" required></Textarea>
-            {<TextCnt>{textCnt} / 200</TextCnt>}
+            <Grid is_flex width="auto">
+              <Grid></Grid>
+              {<TextCnt>{textCnt} / 200</TextCnt>}
+            </Grid>
             {is_edit ? <Btn onClick={editPost}>수정하기</Btn> : <Btn onClick={addPost}>작성하기</Btn>}
           </Grid>
           <Grid width="100%" maxWidth="450px" minWidth="400px" margin="18px">
@@ -153,6 +148,8 @@ const Textarea = styled.textarea`
 `
 
 const TextCnt = styled.p`
+  width: 60px;
+  display: inline-block;
   font-size: 12px;
   color: #9f9f9f;
   text-align: right;
