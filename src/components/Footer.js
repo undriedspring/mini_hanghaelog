@@ -15,7 +15,7 @@ const Footer = (props) => {
     { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
   ]
   return (
-    <Grid maxWidth="300px" minWidth="150px" height="450px" padding="20px 0 0 0">
+    <Grid maxWidth="300px" minWidth="150px" height="450px" padding="20px 0 0 0" margin="0">
       <Grid>
         {members.map((member) => {
           return (
@@ -23,7 +23,9 @@ const Footer = (props) => {
               <Grid is_flex margin="5px 15px 5px 10px">
                 <Grid is_flex width="auto">
                   <Image src={member.src} shape="circle" size="36"></Image>
-                  <Text margin="0">{member.nickname}</Text>
+                  <Text size="14px" margin="0">
+                    {member.nickname}
+                  </Text>
                 </Grid>
                 <Grid is_flex width="auto">
                   <FaceIcon

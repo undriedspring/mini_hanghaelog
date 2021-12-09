@@ -31,6 +31,7 @@ const Grid = (props) => {
 
     position,
     zIndex,
+    overflowY,
 
     top,
     right,
@@ -69,6 +70,7 @@ const Grid = (props) => {
 
     position: position,
     zIndex: zIndex,
+    overflowY: overflowY,
 
     top: top,
     right: right,
@@ -117,6 +119,7 @@ Grid.defaultProps = {
 
   position: 'false',
   zIndex: 0,
+  overflowY: 'false',
 
   top: 'false',
   right: 'false',
@@ -155,6 +158,7 @@ const Gridbox = styled.div`
 
 	${(props) => (props.position ? `position: ${props.position};` : '')}
 	${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : '')}
+	${(props) => (props.overflowY ? `overflow-y: ${props.overflowY};` : '')}
 
 	${(props) => (props.top ? `top: ${props.top};` : '')}
 	${(props) => (props.right ? `right: ${props.right};` : '')}

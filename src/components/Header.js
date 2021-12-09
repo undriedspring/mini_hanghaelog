@@ -104,8 +104,12 @@ const HeaderBtn = styled.button`
 
   will-change: transform;
   transition: transform 450ms;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
   &:hover {
     background-color: #a496c7;
+    transition: background-color 1s linear;
     transition: transform 500ms;
     transform: translateY(-3px);
   }
