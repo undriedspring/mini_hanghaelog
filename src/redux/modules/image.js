@@ -1,5 +1,6 @@
 import { createAction, handleActions } from 'redux-actions'
 import produce from 'immer'
+import { apis } from '../../shared/api'
 
 // **************** Action Type **************** //
 
@@ -22,6 +23,21 @@ const initialState = {
 }
 
 // **************** Middlewares **************** //
+
+const uploadImageDB = (file) => {
+  return async function (dispatch, getState, { history }) {
+    const fileObj = {
+      fileObj: file,
+    }
+
+    try {
+      const imageData = await apis.uploadImage(fileObj)
+      dispatch(uploadImage(imageData.image_url))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 
 // **************** Reducer **************** //
 
@@ -48,6 +64,7 @@ export default handleActions(
 const actionCreators = {
   uploading,
   uploadImage,
+  uploadImageDB,
   setPreview,
 }
 
