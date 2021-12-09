@@ -83,7 +83,7 @@ const Header = (props) => {
 }
 
 const Logo = styled.p`
-  font-family: 'Expletus Sans', cursive;
+  font-family: 'Cabin Sketch', cursive;
   font-size: 2rem;
   font-weight: 900;
   cursor: pointer;

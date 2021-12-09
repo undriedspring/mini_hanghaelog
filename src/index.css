@@ -11,4 +11,24 @@ code {
 }
 
 /* Header LOGO Font */
-@import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@700&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&display=swap');
+
+/* @import url('https://fonts.googleapis.com/css2?family=Modak&display=swap'); */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Qahiri&display=swap'); */
+
+/* @font-face {
+  font-family: 'ONE-Mobile-POP';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+} */
+
+/* @font-face {
+  font-family: 'Jayoo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_06@1.0/Jayoo.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+} */

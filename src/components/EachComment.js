@@ -40,16 +40,16 @@ const EachComment = (props) => {
           >
             수정
           </button> */}
-          {props.is_me && (
-            <button
-              className="CommentDeleteButton"
-              _onClick={() => {
-                dispatch(commentActions.deleteComment({}))
-              }}
-            >
-              삭제
-            </button>
-          )}
+          {/* {props.is_me && ( */}
+          <button
+            className="CommentDeleteButton"
+            _onClick={() => {
+              dispatch(commentActions.deleteComment({}))
+            }}
+          >
+            삭제
+          </button>
+          {/* )} */}
         </Grid>
       </Grid>
       {/* 댓글 */}
