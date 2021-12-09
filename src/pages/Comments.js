@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import './Comments.css'
-// import '../../public/data/comments.json'
+import EachComment from '../components/EachComment'
 import styled from 'styled-components'
 import SendIcon from '@mui/icons-material/Send'
 import { Grid, Button, Image, Input, Text } from '../elements'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Comments = (props) => {
+  const dispatch = useDispatch()
+  const posts_list = useSelector((state) => state.POSTS)
+  const comments_list = useSelector((state) => state.COMMENTS)
+
   return (
     <React.Fragment>
       <Container>
@@ -35,9 +40,7 @@ const Comments = (props) => {
             <SendIcon class="commentSubmit" onClick=""></SendIcon>
           </Grid>
           <Grid justify-content="center">
-            {/* 댓글 */}
-
-            {/* 댓글 */}
+            <EachComment />
           </Grid>
         </Grid>
       </Container>
@@ -56,7 +59,7 @@ const Container = styled.div`
 export default Comments
 
 const CommentItem = (props) => {
-  const { comment, commentsId, userId, postiId } = props
+  const { comment, commentsId, userId, postId } = props
   return (
     <Grid is_flex border=".5px solid" margin="0 0 5px 0">
       <Grid is_flex padding="15px">
