@@ -1,6 +1,5 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
++ 팀명 : 항해톡 (hanghaelog)
+=============
 
 ## Available Scripts
 
