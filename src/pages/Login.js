@@ -1,12 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Grid, Text } from '../elements/index'
-
 import { actionCreators as userActions } from '../redux/modules/user'
 import { useDispatch } from 'react-redux'
 
 import { useState } from 'react'
-
-import styled from 'styled-components'
 
 const Login = (props) => {
   const dispatch = useDispatch()

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import { Grid, Button, Input, Text, Image } from '../elements'
 import { history } from '../redux/configureStore'
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
@@ -7,8 +8,31 @@ import BorderColorIcon from '@mui/icons-material/BorderColor'
 import IconButton from '@mui/material/IconButton'
 
 const PostLists = (props) => {
+  const defaultImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCQrU2ehVPXr5xwc4CBn-uOUjT3dAPOSZSQ&usqp=CAU'
+
+  const [showModal, setShowModal] = useState(false)
+
+  const openModal = () => {
+    setShowModal(true)
+  }
+
+  const closeModal = () => {
+    setShowModal(false)
+  }
+  console.log(showModal)
+
   return (
     <React.Fragment>
+      {showModal ? (
+        <Background onClick={closeModal}>
+          <Container onClick={(e) => e.stopPropagation()}>
+            <Bar>
+              <p>x</p>
+            </Bar>
+            <Modal src={props.imgUrl ? props.imgUrl : defaultImage}></Modal>
+          </Container>
+        </Background>
+      ) : null}
       <Grid maxWidth="700px" minWidth="500px" margin="10px 0px 60px 0px">
         <Grid is_flex>
           <Grid is_flex width="auto">
@@ -40,7 +64,7 @@ const PostLists = (props) => {
           </IconButton>
         </Grid>
 
-        <Grid is_flex>
+        <Grid is_flex _onClick={openModal}>
           <Image Image size="700" src="https://kimkong2.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20211129_233615066_02.jpg"></Image>
         </Grid>
 
@@ -91,5 +115,48 @@ PostLists.defaultProps = {
   comment_cnt: 10,
   insert_dt: '2021-02-27 10:00:00',
 }
+
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 4;
+`
+
+const Container = styled.div`
+  width: 800px;
+  height: 840px;
+
+  border-radius: 20px;
+
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+`
+
+const Bar = styled.div`
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+`
+
+const Modal = styled.div`
+  width: 100%;
+  padding-top: 100%;
+
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-image: url('${(props) => props.src}');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+`
 
 export default PostLists
