@@ -20,7 +20,7 @@ function App() {
       <Grid>
         <Header></Header>
         <ConnectedRouter history={history}>
-          <Route path="/posts" exact component={Main}></Route>
+          <Route path="/" exact component={Main}></Route>
           <Route path="/login" exact component={Login}></Route>
           <Route path="/register" exact component={Register}></Route>
           <Route path="/posts/write" exact component={PostWrite}></Route>

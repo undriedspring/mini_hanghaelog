@@ -16,7 +16,7 @@ const getUser = createAction(GET_USER, (user) => ({ user }))
 const setUser = createAction(SET_USER, (user) => ({ user }))
 
 const initialState = {
-  user: {},
+  user: null,
   is_login: false,
 }
 
@@ -58,7 +58,8 @@ const logInDB = (email, password) => {
         console.log(res.data)
         setCookie('token', res.data.token, 3)
         localStorage.setItem('id', res.data.user.id)
-        dispatch(setUser({ email: email, nickname: res.data.user.nickname }))
+        localStorage.setItem('nickname', res.data.user.nickname)
+        dispatch(setUser({ email: email.email, nickname: res.data.user.nickname }))
         history.replace('/posts')
       })
       .catch((err) => {
