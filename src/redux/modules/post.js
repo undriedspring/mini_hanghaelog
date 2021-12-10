@@ -76,12 +76,17 @@ const addPostDB = (contents) => {
     apis
       .addPost(contents)
       .then((res) => {
+        console.log(res.data)
+        console.log(res.data.post)
         dispatch(addPost(res.data.post))
-        history.replace('/posts')
+        // history.replace('/posts')
         dispatch(imageActions.setPreview(null))
       })
       .catch((error) => {
         console.log('게시글 작성에 문제가 발생했습니다.', error)
+      })
+      .then(() => {
+        history.replace('/posts')
       })
   }
 }
@@ -121,6 +126,7 @@ export default handleActions(
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
         console.log(state)
+
         draft.list = action.payload.post_list
 
         // draft.list = draft.list.reduce((acc, cur) => {

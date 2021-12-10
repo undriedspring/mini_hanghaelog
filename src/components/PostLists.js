@@ -11,7 +11,9 @@ import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
 import TimeAgo from '../shared/TimeAgo'
 
 const PostLists = (props) => {
-  console.log(props)
+
+  console.log(props.imgUrl)
+  console.log(typeof props)
 
   const defaultImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCQrU2ehVPXr5xwc4CBn-uOUjT3dAPOSZSQ&usqp=CAU'
 
@@ -75,7 +77,7 @@ const PostLists = (props) => {
         </Grid>
 
         <Grid is_flex _onClick={openModal}>
-          <Image Image size="700" src="https://kimkong2.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20211129_233615066_02.jpg"></Image>
+          <Image Image size="700" src={props.imgUrl}></Image>
         </Grid>
 
         <Grid is_flex>
@@ -115,16 +117,16 @@ const PostLists = (props) => {
   )
 }
 
-PostLists.defaultProps = {
-  user_info: {
-    user_name: 'jawoon',
-    user_profile: 'https://cdn-icons-png.flaticon.com/512/1864/1864514.png',
-  },
-  image_url: 'https://kimkong2.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20211129_233615066_02.jpg',
-  contents: '김콩',
-  comment_cnt: 10,
-  insert_dt: '2021-02-27 10:00:00',
-}
+// PostLists.defaultProps = {
+//   user_info: {
+//     user_name: 'jawoon',
+//     user_profile: 'https://cdn-icons-png.flaticon.com/512/1864/1864514.png',
+//   },
+//   image_url: 'https://kimkong2.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20211129_233615066_02.jpg',
+//   contents: '김콩',
+//   comment_cnt: 10,
+//   insert_dt: '2021-02-27 10:00:00',
+// }
 
 const Background = styled.div`
   position: fixed;
