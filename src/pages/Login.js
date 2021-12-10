@@ -37,6 +37,7 @@ const Login = (props) => {
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
     const passwordCurrent = e.target.value
     setPassword(passwordCurrent)
+    console.log(password)
 
     if (!passwordRegex.test(passwordCurrent)) {
       setPasswordMessage('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요.')
@@ -106,15 +107,33 @@ const Btn = styled.button`
   border: none;
   width: 300px;
   height: 50px;
-  border-radius: 10px;
+  border-radius: 30px;
   cursor: pointer;
-  background-color: #333;
-  color: #fff;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition: 0.5s;
-  .disabled {
-    opacity: 0.3;
+  background-color: #6e6e6e;
+  color: #fff;
+  :disabled {
+    opacity: 0.5;
     cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* 추가 */
+  text-transform: uppercase;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  /* 추가 */
+  will-change: transform;
+  transition: transform 450ms;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+  &:hover {
+    background-color: #a496c7;
+    box-shadow: 0px 15px 20px rgba(161, 150, 199, 0.4);
+    color: #fff;
+    transform: translateY(-3px);
+    transition: transform 500ms;
   }
 `
 
