@@ -181,6 +181,9 @@ const Btn = styled.button`
   /* 추가 */
   will-change: transform;
   transition: transform 450ms;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
   &:hover {
     background-color: #a496c7;
     box-shadow: 0px 15px 20px rgba(161, 150, 199, 0.4);

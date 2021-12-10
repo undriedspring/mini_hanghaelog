@@ -20,8 +20,8 @@ api.interceptors.request.use(async (config) => {
 
 export const apis = {
   // **** post **** //
-  addPost: (post) => api.post('/api/posts/', post),
-  editPost: (postId, newPost) => api.put(`/api/posts/${postId}/`, newPost),
+  addPost: (post) => api.post('/api/posts', post),
+  editPost: (postId, newPost) => api.put(`/api/posts/${postId}`, newPost),
   deletePost: (postId) => api.delete(`/api/posts/${postId}`),
   // get posts에서 한 postId의 comment 데이터까지 한 번에 가져오도록 수정할 건지 백 확인 필요
   posts: () => api.get('/api/posts'),
