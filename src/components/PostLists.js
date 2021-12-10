@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 import { Grid, Button, Input, Text, Image } from '../elements'
 import { history } from '../redux/configureStore'
+
+// ** icon
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
 import DeleteIcon from '@mui/icons-material/Delete'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import IconButton from '@mui/material/IconButton'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
+
+import { actionCreators as postActions } from '../redux/modules/post'
 
 import TimeAgo from '../shared/TimeAgo'
 
@@ -25,6 +30,7 @@ const PostLists = (props) => {
 
   const day = moment(props.updatedAt).fromNow()
 
+
   const defaultImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCQrU2ehVPXr5xwc4CBn-uOUjT3dAPOSZSQ&usqp=CAU'
 
   const [showModal, setShowModal] = React.useState(false)
@@ -42,6 +48,17 @@ const PostLists = (props) => {
       setShowModal(true)
     }
   })
+
+  console.log(props.id)
+  console.log(props.updated)
+
+  const deletePost = () => {
+    if (window.confirm('게시글을 삭제하시겠습니까?')) {
+      return dispatch(postActions.deletePostDB(props.id))
+    } else {
+      return
+    }
+  }
 
   return (
     <React.Fragment>
@@ -74,16 +91,20 @@ const PostLists = (props) => {
           <Grid padding="8px">
             <Text size="15px">{props.content}</Text>
           </Grid>
-          <IconButton>
-            <BorderColorIcon
-              onClick={() => {
-                history.push('/posts/:id/edit')
-              }}
-            ></BorderColorIcon>
-          </IconButton>
-          <IconButton>
-            <DeleteIcon></DeleteIcon>
-          </IconButton>
+          {props.is_me && (
+            <IconButton>
+              <BorderColorIcon
+                onClick={() => {
+                  history.push(`/posts/${props.id}/edit`)
+                }}
+              ></BorderColorIcon>
+            </IconButton>
+          )}
+          {props.is_me && (
+            <IconButton>
+              <DeleteIcon onClick={deletePost}></DeleteIcon>
+            </IconButton>
+          )}
         </Grid>
 
         <Grid is_flex _onClick={openModal}>
@@ -109,7 +130,7 @@ const PostLists = (props) => {
                 <IconButton>
                   <ChatBubbleOutlineIcon
                     onClick={() => {
-                      history.push('/posts/:id/comments')
+                      history.push(`/posts/${props.id}/comments`)
                     }}
                   ></ChatBubbleOutlineIcon>
                 </IconButton>

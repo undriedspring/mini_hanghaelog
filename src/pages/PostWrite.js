@@ -14,16 +14,16 @@ const PostWrite = (props) => {
   const dispatch = useDispatch()
   const { history } = props
 
-  const is_login = useSelector((state) => state.user.is_login)
   const preview = useSelector((state) => state.image.preview)
   const post_list = useSelector((state) => state.post.list)
-  const is_uploading = useSelector((state) => state.image.uploading)
 
   const fileInput = React.useRef()
 
-  const post_id = props.match.params.id
+  const post_id = Number(props.match.params.id)
   const is_edit = post_id ? true : false
-  const _post = is_edit ? post_list.find((post) => post.postId === post_id) : null
+  const _post = is_edit ? post_list.find((post) => post.id === post_id) : null
+
+  const nickname = localStorage.getItem('nickname')
 
   const [content, setContent] = React.useState(_post ? _post.content : '')
   const [filename, setFilename] = React.useState('')
@@ -47,11 +47,9 @@ const PostWrite = (props) => {
   const selectFile = async (e) => {
     const reader = new FileReader()
     const file = fileInput.current.files[0]
-    console.log(file)
 
     reader.readAsDataURL(file)
     reader.onloadend = () => {
-      console.log(reader.result)
       dispatch(imageActions.setPreview(reader.result))
     }
     setFilename(e.target.value)
@@ -90,48 +88,55 @@ const PostWrite = (props) => {
   }
 
   const editPost = () => {
-    if (preview === null || content === '') {
-      window.alert('이미지 업로드와 텍스트 입력을 모두 완료해주세요!')
-      return
+    const file = fileInput.current.files[0]
+    if (content === '') {
+      window.alert('게시글 내용을 입력해주세요.')
+    }
+    if (!file) {
+      const newContents = {
+        content: content,
+        imgUrl: _post.imgUrl,
+      }
+      dispatch(postActions.editPostDB(_post.id, newContents))
     } else {
-      dispatch(postActions.editPostDB(post_id, content))
+      const upload = new AWS.S3.ManagedUpload({
+        params: {
+          Bucket: 'mini-hanghaelog',
+          Key: file.name + now.getTime() + '.jpg',
+          Body: file,
+        },
+      })
+
+      const promise = upload.promise()
+
+      promise
+        .then((data) => {
+          dispatch(imageActions.getImageUrl(data.Location))
+          const newContents = {
+            content: content,
+            imgUrl: data.Location,
+          }
+          dispatch(postActions.editPostDB(_post.id, newContents))
+        })
+        .catch((err) => {
+          window.alert('이미지 업로드에 문제가 있어요!', err)
+        })
     }
   }
 
-  // React.useEffect(() => {
-  //   if (is_edit && !_post) {
-  //     window.alert('포스트 정보가 없습니다.')
-  //     console.log('포스트 정보가 없습니다.')
-  //     history.goBack()
+  React.useEffect(() => {
+    if (is_edit && !_post) {
+      window.alert('포스트 정보가 없습니다.')
+      console.log('포스트 정보가 없습니다.')
+      history.goBack()
 
-  //     return
-  //   }
+      return
+    }
 
-  //   if (is_edit) {
-  //     dispatch(imageActions.setPreview(_post.imgUrl))
-  //   }
-  // }, [])
-
-  // **** 로그인 구현 후 주석 풀기 **** //
-  // if (!is_login) {
-  //   return (
-  //     <Grid maxWidth="400px" margin="auto">
-  //       <Grid margin="200px 0px 0px 0px" height="328px" border="2px solid #a496c7">
-  //         <Text size="20px" align="center" margin="80px 0 120px 0">
-  //           로그인 후 작성하실 수 있습니다.
-  //         </Text>
-  //         <Btn
-  //           style={{ margin: 'auto' }}
-  //           onClick={() => {
-  //             history.replace('/api/posts')
-  //           }}
-  //         >
-  //           홈으로 이동
-  //         </Btn>
-  //       </Grid>
-  //     </Grid>
-  //   )
-  // }
+    if (is_edit) {
+      dispatch(imageActions.setPreview(_post.imgUrl))
+    }
+  }, [])
 
   return (
     <React.Fragment>
@@ -142,9 +147,8 @@ const PostWrite = (props) => {
         <Grid is_flex>
           <Grid padding="0 0 0 20px" maxWidth="300px" minWidth="150px">
             <Text size="20px" weight="700">
-              nickname
+              {nickname}
             </Text>
-            {/* <form name="post_info" encType="multipart/form-data"> */}
             <Grid>
               <Label className="input-file-button" htmlFor="img">
                 업로드
@@ -158,7 +162,6 @@ const PostWrite = (props) => {
               {<TextCnt>{textCnt} / 200</TextCnt>}
             </Grid>
             {is_edit ? <Btn onClick={editPost}>수정하기</Btn> : <Btn onClick={addPost}>작성하기</Btn>}
-            {/* </form> */}
           </Grid>
           <Grid width="100%" maxWidth="450px" minWidth="400px" margin="18px">
             <ImageInner src={preview ? preview : defaultImage}></ImageInner>

@@ -18,6 +18,12 @@ const deleteComment = createAction(DELETE_COMMENT, (commentId, params) => ({ com
 const loadingComment = createAction(LOADING_COMMENT, (is_loading_comment) => ({ is_loading_comment }))
 
 const initialState = {
+  list: [],
+  paging: { state: null, next: null, size: 3 },
+  is_laoding: false,
+}
+
+const initialComment = {
   commentId: null,
   userId: null,
   postId: null,
@@ -33,7 +39,7 @@ export const getCommentDB =
       const { data } = await apis.comments(postId)
       dispatch(getComment(data))
     } catch (e) {
-      // console.log(`코멘트 불러오기 실패! ${e}`);
+      console.log(`코멘트 불러오기 실패! ${e}`)
     }
   }
 

@@ -18,10 +18,10 @@ const LOADING = 'LOADING'
 
 // // ************ Action Creator ************ //
 
-const getPost = createAction(GET_POST, (post_list, paging) => ({ post_list, paging }))
-const addPost = createAction(ADD_POST, (postData) => ({ postData }))
-const editPost = createAction(EDIT_POST, (postId, post) => ({ postId, post }))
-const deletePost = createAction(DELETE_POST, (post_id) => ({ post_id }))
+const getPost = createAction(GET_POST, (post_list) => ({ post_list }))
+const addPost = createAction(ADD_POST, (post) => ({ post }))
+const editPost = createAction(EDIT_POST, (postId, newContents) => ({ postId, newContents }))
+const deletePost = createAction(DELETE_POST, (postId) => ({ postId }))
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }))
 
 // ************ Initial Data ************ //
@@ -61,7 +61,7 @@ const getPostDB = (start = null, size = 3) => {
     try {
       const post_list = await apis.posts()
 
-      dispatch(getPost(post_list.data, _paging))
+      dispatch(getPost(post_list.data))
 
       dispatch(imageActions.setPreview(null))
     } catch (error) {
@@ -76,8 +76,6 @@ const addPostDB = (contents) => {
     apis
       .addPost(contents)
       .then((res) => {
-        console.log(res.data)
-        console.log(res.data.post)
         dispatch(addPost(res.data.post))
         // history.replace('/posts')
         dispatch(imageActions.setPreview(null))
@@ -86,38 +84,28 @@ const addPostDB = (contents) => {
         console.log('게시글 작성에 문제가 발생했습니다.', error)
       })
       .then(() => {
-        history.replace('/posts')
+        history.replace('/')
       })
   }
 }
 
-const editPostDB = (postId, newContent) => {
+const editPostDB = (postId, newContents) => {
   return async function (dispatch, getState, { history }) {
     if (!postId) {
       console.log('게시물 정보가 없습니다.')
       return
     }
-
-    const image_url = getState().image.image_url
-
-    const _image = getState().image.preview
-    const _post_idx = getState().post.list.findIndex((post) => post.postId === postId)
-    const _post = getState().post.list[_post_idx]
-
-    try {
-      if (_image === _post.imgUrl) {
-        await apis.editPost(postId, { content: newContent, imgUrl: _post.imgUrl })
-        dispatch(editPost(postId, { content: newContent }))
-        history.replace('/posts')
-      } else {
-        await apis.editPost(postId, { content: newContent, imgUrl: image_url })
-        dispatch(editPost(postId, { content: newContent, imgUrl: image_url }))
-        history.replace('/posts')
-      }
-    } catch (error) {
-      console.log('게시글 수정에 문제가 발생했습니다.', error)
-      // window.alert('게시글 작성에 문제가 발생했습니다')
-    }
+    apis
+      .editPost(postId, newContents)
+      .then(() => {
+        dispatch(editPost(postId, newContents))
+      })
+      .catch((error) => {
+        console.log('게시글 수정에 문제가 발생했습니다.', error)
+      })
+      .then(() => {
+        history.replace('/')
+      })
   }
 }
 
@@ -127,13 +115,24 @@ const deletePostDB = (postId) => {
       console.log('게시물 정보가 없습니다.')
       return
     }
-    try {
-      await apis.deletePost(postId)
-      dispatch(deletePost(postId))
-    } catch (error) {
-      console.log('게시글 삭제에 문제가 발생했습니다.')
-      // window.alert('게시글 삭제에 문제가 발생했습니다')
-    }
+    // try {
+    //   await apis.deletePost(postId)
+    //   dispatch(deletePost(postId))
+    // } catch (error) {
+    //   console.log('게시글 삭제에 문제가 발생했습니다.')
+    //   // window.alert('게시글 삭제에 문제가 발생했습니다')
+    // }
+    apis
+      .deletePost(postId)
+      .then(() => {
+        dispatch(deletePost(postId))
+      })
+      .catch((error) => {
+        console.log('게시글 삭제에 문제가 발생했습니다.', error)
+      })
+      .then(() => {
+        window.location.reload()
+      })
   }
 }
 
@@ -143,21 +142,7 @@ export default handleActions(
   {
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
-
-        console.log(state)
-
         draft.list = action.payload.post_list
-
-        // draft.list = draft.list.reduce((acc, cur) => {
-        //   console.log(draft.list)
-        //   if (acc.findIndex((a) => a.id === cur.id) === -1) {
-        //     return [...acc, cur]
-        //   } else {
-        //     acc[acc.findIndex((a) => a.id === cur.id)] = cur
-        //     return acc
-        //   }
-        // }, [])
-
 
         if (action.payload.paging) {
           draft.paging = action.payload.paging
@@ -166,16 +151,16 @@ export default handleActions(
       }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.unshift(action.payload.postData)
+        draft.list.unshift(action.payload.post)
       }),
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
-        let idx = draft.list.findIndex((p) => p.id === action.payload.post_id)
-        draft.list[idx] = { ...draft.list[idx], ...action.payload.post }
+        let idx = draft.list.findIndex((p) => p.id === action.payload.postId)
+        draft.list[idx] = { ...draft.list[idx], ...action.payload.newContents }
       }),
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.filter((p) => p.id !== action.payload.post_id)
+        draft.list.filter((p) => p.id !== action.payload.postId)
       }),
     [LOADING]: (state, action) =>
       produce(state, (draft) => {
