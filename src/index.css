@@ -4,6 +4,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(247, 247, 247);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  width: 0 !important;
 }
 
 code {
@@ -11,4 +18,28 @@ code {
 }
 
 /* Header LOGO Font */
-@import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@700&display=swap'); */
+/* font-family: 'Expletus Sans', cursive; */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&display=swap'); */
+/* font-family: 'Cabin Sketch', cursive; */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Modak&display=swap'); */
+/* font-family: 'Modak', cursive; */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Qahiri&display=swap'); */
+/* font-family: 'Qahiri', sans-serif; */
+
+@font-face {
+  font-family: 'ONE-Mobile-POP';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* @font-face {
+  font-family: 'Jayoo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_06@1.0/Jayoo.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+} */
