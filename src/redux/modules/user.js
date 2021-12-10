@@ -31,10 +31,6 @@ const initialState = {
 
 const registerDB = (email, nickname, password, passwordCheck) => {
   return function (dispatch, getState, { history }) {
-    console.log(email)
-    console.log(nickname)
-    console.log(password)
-    console.log(passwordCheck)
     apis
       .register(email, nickname, password, passwordCheck) //유저가 입력한 유저정보를 api로 넘겨줘야함
       .then((res) => {
