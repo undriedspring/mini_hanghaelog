@@ -9,21 +9,19 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const Comments = (props) => {
   const dispatch = useDispatch()
-  const posts_list = useSelector((state) => state.POSTS)
-  const comments_list = useSelector((state) => state.COMMENTS)
-
   const [comment, setComment] = React.useState('')
   const { postId } = props
 
   const onChange = (e) => {
-    setComment(e.target.value)
+    const commentCurrent = e.target.value
+    setComment(commentCurrent)
   }
+
   const write = () => {
     dispatch(commentActions.addCommentDB(postId, comment))
     setComment('')
   }
 
-  // aa
   return (
     <React.Fragment>
       <Container>
@@ -54,12 +52,12 @@ const Comments = (props) => {
               type="text"
               placeholder="최대 100자까지 자유롭게 댓글을 남길 수 있습니다 : )"
               maxlength="100"
-              _onChange={onChange}
+              onChange={onChange}
               value={comment}
               onSubmit={write}
               is_submit
             />
-            <SendIcon className="commentSubmit" _onClick={write} fontSize="5rem"></SendIcon>
+            <SendIcon className="commentSubmit" onClick={write} fontSize="5rem"></SendIcon>
           </Grid>
           <Grid justify-content="center">
             <EachComment />

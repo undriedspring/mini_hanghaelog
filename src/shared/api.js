@@ -3,7 +3,7 @@ import axios from 'axios'
 // ******** Axios 인스턴스 생성 ******** //
 
 const api = axios.create({
-  baseURL: 'http://13.209.4.79:5000/',
+  baseURL: 'http://13.209.4.79:5001/',
 })
 
 // ******** Interceptor를 통한 Header 설정 ******** //
@@ -27,7 +27,7 @@ export const apis = {
   posts: () => api.get('/api/posts'),
 
   // **** image upload **** //
-  uploadImage: (fileObj) => api.post('/api/posts/upload', fileObj),
+  uploadImage: (file) => api.post('/api/posts/upload', { fileObj: file }),
 
   // **** comment **** //
   addComment: (postId, comment) => api.post(`/api/posts/${postId}/comments`, comment),
