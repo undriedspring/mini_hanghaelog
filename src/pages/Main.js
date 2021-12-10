@@ -5,12 +5,12 @@ import Footer from '../components/Footer'
 import PostLists from '../components/PostLists'
 import QuickMenu from '../components/QuickMenu'
 
-const Main = () => {
+const Main = (props) => {
   return (
     <React.Fragment>
       <Container>
         <Grid maxWidth="300px" minWidth="150px">
-          <Footer></Footer>
+          <Footer />
         </Grid>
         <Postbox>
           <PostLists></PostLists>

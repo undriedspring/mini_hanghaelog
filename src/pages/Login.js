@@ -1,12 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Grid, Text } from '../elements/index'
-
 import { actionCreators as userActions } from '../redux/modules/user'
 import { useDispatch } from 'react-redux'
 
 import { useState } from 'react'
-
-import styled from 'styled-components'
 
 const Login = (props) => {
   const dispatch = useDispatch()
@@ -37,7 +35,6 @@ const Login = (props) => {
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
     const passwordCurrent = e.target.value
     setPassword(passwordCurrent)
-    console.log(password)
 
     if (!passwordRegex.test(passwordCurrent)) {
       setPasswordMessage('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요.')
@@ -109,6 +106,8 @@ const Btn = styled.button`
   height: 50px;
   border-radius: 30px;
   cursor: pointer;
+  background-color: #333;
+  color: #fff;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   background-color: #6e6e6e;
   color: #fff;
@@ -117,7 +116,6 @@ const Btn = styled.button`
     cursor: not-allowed;
     pointer-events: none;
   }
-
   /* 추가 */
   text-transform: uppercase;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
