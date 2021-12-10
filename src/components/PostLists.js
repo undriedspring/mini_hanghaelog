@@ -7,6 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import IconButton from '@mui/material/IconButton'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
+
 import TimeAgo from '../shared/TimeAgo'
 
 import 'moment'
@@ -14,6 +15,7 @@ import 'moment/locale/ko'
 import moment from 'moment'
 
 const PostLists = (props) => {
+
   console.log(props.imgUrl)
   console.log(typeof props)
   console.log(props.updatedAt)
