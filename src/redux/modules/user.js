@@ -16,7 +16,7 @@ const getUser = createAction(GET_USER, (user) => ({ user }))
 const setUser = createAction(SET_USER, (user) => ({ user }))
 
 const initialState = {
-  user: null,
+  user: {},
   is_login: false,
 }
 
@@ -58,7 +58,7 @@ const logInDB = (email, password) => {
         console.log(res.data)
         setCookie('token', res.data.token, 3)
         localStorage.setItem('id', res.data.user.id)
-        dispatch(setUser({ email: email }))
+        dispatch(setUser({ email: email, nickname: res.data.user.nickname }))
         history.replace('/posts')
       })
       .catch((err) => {
@@ -95,6 +95,7 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user
+        console.log(draft.user)
         draft.is_login = true
       }),
     [LOG_OUT]: (state, action) =>
