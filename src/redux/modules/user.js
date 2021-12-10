@@ -60,7 +60,7 @@ const logInDB = (email, password) => {
         localStorage.setItem('id', res.data.user.id)
         localStorage.setItem('nickname', res.data.user.nickname)
         dispatch(setUser({ email: email.email, nickname: res.data.user.nickname }))
-        history.replace('/posts')
+        history.replace('/')
       })
       .catch((err) => {
         console.log(err)

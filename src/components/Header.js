@@ -9,7 +9,11 @@ import '../index.css'
 
 const Header = (props) => {
   const a = localStorage.getItem('id')
-  const user_info = useSelector((state) => state.user)
+
+  const nickname = localStorage.getItem('nickname')
+
+  const user_info = useSelector((state) => state.user.user)
+
   console.log(user_info)
   console.log(props)
   const dispatch = useDispatch()
@@ -26,7 +30,7 @@ const Header = (props) => {
           <Grid width="auto" margin="0 20px">
             <Logo
               onClick={() => {
-                history.push('/posts')
+                history.push('/')
               }}
             >
               HHL
@@ -34,7 +38,7 @@ const Header = (props) => {
           </Grid>
           <Grid is_flex width="auto">
             <Nickname>
-              <span style={{ fontWeight: '700' }}>nickname</span> 님, 반가워요!
+              <span style={{ fontWeight: '700' }}>{nickname}</span> 님, 반가워요!
             </Nickname>
             <HeaderBtn
               style={{ margin: '0 20px 0 10px' }}
