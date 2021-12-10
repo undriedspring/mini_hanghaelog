@@ -7,10 +7,12 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import IconButton from '@mui/material/IconButton'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
+
 import TimeAgo from '../shared/TimeAgo'
 
 const PostLists = (props) => {
   console.log(props)
+
   const defaultImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCQrU2ehVPXr5xwc4CBn-uOUjT3dAPOSZSQ&usqp=CAU'
 
   const [showModal, setShowModal] = useState(false)

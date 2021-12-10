@@ -47,7 +47,9 @@ const initialPost = {
 const getPostDB = (start = null, size = 3) => {
   return async function (dispatch, getState, { history }) {
     let _paging = getState().post.paging
+
     console.log(_paging)
+
     if (_paging.start && !_paging.next) {
       return
     }
@@ -58,7 +60,9 @@ const getPostDB = (start = null, size = 3) => {
 
     try {
       const post_list = await apis.posts()
+
       dispatch(getPost(post_list.data, _paging))
+
       dispatch(imageActions.setPreview(null))
     } catch (error) {
       console.log('게시글 조회에 문제가 발생했습니다.', error)
@@ -134,11 +138,13 @@ export default handleActions(
   {
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
+
         console.log(state)
         draft.list.push(action.payload.post_list)
 
         draft.list = draft.list.reduce((acc, cur) => {
           console.log(draft.list)
+
           if (acc.findIndex((a) => a.id === cur.id) === -1) {
             return [...acc, cur]
           } else {

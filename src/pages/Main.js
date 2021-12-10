@@ -34,7 +34,6 @@ const Main = (props) => {
               </Grid>
             )
           })}
-
           <QuickMenu></QuickMenu>
         </Postbox>
       </Container>
