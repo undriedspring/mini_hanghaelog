@@ -5,19 +5,19 @@ import { apis } from '../../shared/api'
 // **************** Action Type **************** //
 
 const UPLOADING = 'UPLOADING'
-const UPLOAD_IMAGE = 'UPLOAD_IMAGE'
+const GET_IMAGE_URL = 'GET_IMAGE_URL'
 const SET_PREVIEW = 'SET_PREVIEW'
 
 // **************** Action Creators **************** //
 
 const uploading = createAction(UPLOADING, (uploading) => ({ uploading }))
-const uploadImage = createAction(UPLOAD_IMAGE, (image_url) => ({ image_url }))
+const getImageUrl = createAction(GET_IMAGE_URL, (image_url) => ({ image_url }))
 const setPreview = createAction(SET_PREVIEW, (preview) => ({ preview }))
 
 // **************** Initial Data **************** //
 
 const initialState = {
-  image_url: '',
+  image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCQrU2ehVPXr5xwc4CBn-uOUjT3dAPOSZSQ&usqp=CAU',
   uploading: false,
   preview: null,
 }
@@ -26,21 +26,24 @@ const initialState = {
 
 const uploadImageDB = (file) => {
   return async function (dispatch, getState, { history }) {
-    const fileObj = {
-      fileObj: file,
-    }
-
     console.log(file)
-    console.log(fileObj)
-
-    try {
-      const { data } = await apis.uploadImage(fileObj)
-      // console.log(data)
-      // console.log(data.image_url)
-      dispatch(uploadImage(data.image_url))
-    } catch (error) {
-      console.log(error)
-    }
+    // try {
+    //   const { data } = await apis.uploadImage(file)
+    //   console.log(data)
+    //   // console.log(data.image_url)
+    //   dispatch(uploadImage(data.image_url))
+    // } catch (error) {
+    //   console.log(error)
+    // }
+    // apis
+    //   .uploadImage(file)
+    //   .then((res) => {
+    //     console.log(res)
+    //     console.log(res.data)
+    //   })
+    //   .catch((error) => {
+    //     console.log('이미지 업로드에 문제가 발생했습니다', error)
+    //   })
   }
 }
 
@@ -48,7 +51,7 @@ const uploadImageDB = (file) => {
 
 export default handleActions(
   {
-    [UPLOAD_IMAGE]: (state, action) =>
+    [GET_IMAGE_URL]: (state, action) =>
       produce(state, (draft) => {
         draft.image_url = action.payload.image_url
       }),
@@ -68,7 +71,7 @@ export default handleActions(
 
 const actionCreators = {
   uploading,
-  uploadImage,
+  getImageUrl,
   uploadImageDB,
   setPreview,
 }

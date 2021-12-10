@@ -6,6 +6,7 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
 import DeleteIcon from '@mui/icons-material/Delete'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import IconButton from '@mui/material/IconButton'
+import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
 
 const PostLists = (props) => {
   const defaultImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCQrU2ehVPXr5xwc4CBn-uOUjT3dAPOSZSQ&usqp=CAU'
@@ -19,7 +20,6 @@ const PostLists = (props) => {
   const closeModal = () => {
     setShowModal(false)
   }
-  console.log(showModal)
 
   return (
     <React.Fragment>
@@ -27,7 +27,7 @@ const PostLists = (props) => {
         <Background onClick={closeModal}>
           <Container onClick={(e) => e.stopPropagation()}>
             <Bar>
-              <p>x</p>
+              <ClearRoundedIcon onClick={closeModal}></ClearRoundedIcon>
             </Bar>
             <Modal src={props.imgUrl ? props.imgUrl : defaultImage}></Modal>
           </Container>
@@ -139,12 +139,32 @@ const Container = styled.div`
 `
 
 const Bar = styled.div`
+  display: flex;
+  justify-content: right;
+  align-items: center;
   width: 100%;
   height: 40px;
   background-color: #fff;
 
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+
+  svg {
+    margin: 0 15px;
+    font-size: 2rem;
+    color: #6e6e6e;
+    cursor: pointer;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: linear;
+    transition: all 0.3s ease 0s;
+
+    &:hover {
+      color: #a496c7;
+      transform: background-color;
+      transition: transform 500ms;
+    }
+  }
 `
 
 const Modal = styled.div`

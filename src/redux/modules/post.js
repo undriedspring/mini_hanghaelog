@@ -77,7 +77,7 @@ const addPostDB = (content) => {
     //   // 프로필 사진 설정할지 ??
     //   userProfile: _user.userProfile,
     // }
-
+    console.log(content, image_url)
     try {
       const postData = await apis.addPost({ content: content, imgUrl: image_url })
       dispatch(addPost(postData.post))
