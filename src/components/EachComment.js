@@ -14,10 +14,7 @@ const EachComment = (props) => {
   const comment_list = useSelector((state) => state.comments.list)
   // const user_id = useSelector((state) => state.COMMENTS.userId)
   // const is_click = onclick ? true : false
-<<<<<<< HEAD
-=======
   // const
->>>>>>> main
 
   return (
     <React.Fragment>
