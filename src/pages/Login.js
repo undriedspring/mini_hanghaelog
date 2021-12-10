@@ -50,7 +50,7 @@ const Login = (props) => {
       window.alert('아이디, 비밀번호를 입력해주세요!')
       return
     }
-    dispatch(userActions.logInDB(email, password))
+    dispatch(userActions.logInDB({ email, password }))
   }
 
   return (

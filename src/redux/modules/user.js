@@ -54,8 +54,9 @@ const logInDB = (email, password) => {
       .login(email, password)
       .then((res) => {
         console.log(res)
+        console.log(res.data)
         setCookie('token', res.data.token, 3)
-        localStorage.setItem('userID', res.data[0].userId)
+        localStorage.setItem('id', res.data.user.id)
         dispatch(setUser({ email: email }))
         history.replace('/posts')
       })
@@ -69,14 +70,15 @@ const logInDB = (email, password) => {
 const logOutDB = () => {
   return function (dispatch, getState, { history }) {
     deleteCookie('token')
-    localStorage.removeItem('userID')
-    dispatch(logOut('/login'))
+    localStorage.removeItem('id')
+    dispatch(logOut())
+    history.replace('/login')
   }
 }
 
 const loginCheckDB = () => {
   return function (dispatch, getState, { history }) {
-    const userId = localStorage.getItem('userID')
+    const userId = localStorage.getItem('id')
     const tokenCheck = document.cookie
     if (tokenCheck) {
       dispatch(SET_USER({ id: userId }))
