@@ -17,7 +17,6 @@ const PostWrite = (props) => {
   const is_login = useSelector((state) => state.user.is_login)
   const preview = useSelector((state) => state.image.preview)
   const post_list = useSelector((state) => state.post.list)
-  const is_uploading = useSelector((state) => state.image.uploading)
 
   const fileInput = React.useRef()
 
@@ -47,11 +46,9 @@ const PostWrite = (props) => {
   const selectFile = async (e) => {
     const reader = new FileReader()
     const file = fileInput.current.files[0]
-    console.log(file)
 
     reader.readAsDataURL(file)
     reader.onloadend = () => {
-      console.log(reader.result)
       dispatch(imageActions.setPreview(reader.result))
     }
     setFilename(e.target.value)
@@ -90,27 +87,50 @@ const PostWrite = (props) => {
   }
 
   const editPost = () => {
-    if (preview === null || content === '') {
+    const file = fileInput.current.files[0]
+    console.log(content, file)
+    if (!file || content === '') {
       window.alert('이미지 업로드와 텍스트 입력을 모두 완료해주세요!')
       return
     } else {
-      dispatch(postActions.editPostDB(post_id, content))
+      const upload = new AWS.S3.ManagedUpload({
+        params: {
+          Bucket: 'mini-hanghaelog',
+          Key: file.name + now.getTime() + '.jpg',
+          Body: file,
+        },
+      })
+
+      const promise = upload.promise()
+
+      promise
+        .then((data) => {
+          dispatch(imageActions.getImageUrl(data.Location))
+          const newContents = {
+            content: content,
+            imgUrl: data.Location,
+          }
+          dispatch(postActions.editPostDB(_post.id, newContents))
+        })
+        .catch((err) => {
+          window.alert('이미지 업로드에 문제가 있어요!', err)
+        })
     }
   }
 
-  // React.useEffect(() => {
-  //   if (is_edit && !_post) {
-  //     window.alert('포스트 정보가 없습니다.')
-  //     console.log('포스트 정보가 없습니다.')
-  //     history.goBack()
+  React.useEffect(() => {
+    if (is_edit && !_post) {
+      window.alert('포스트 정보가 없습니다.')
+      console.log('포스트 정보가 없습니다.')
+      history.goBack()
 
-  //     return
-  //   }
+      return
+    }
 
-  //   if (is_edit) {
-  //     dispatch(imageActions.setPreview(_post.imgUrl))
-  //   }
-  // }, [])
+    if (is_edit) {
+      dispatch(imageActions.setPreview(_post.imgUrl))
+    }
+  }, [])
 
   // **** 로그인 구현 후 주석 풀기 **** //
   // if (!is_login) {

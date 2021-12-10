@@ -8,7 +8,11 @@ import BorderColorIcon from '@mui/icons-material/BorderColor'
 import IconButton from '@mui/material/IconButton'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
 
+import TimeAgo from '../shared/TimeAgo'
+
 const PostLists = (props) => {
+  console.log(props)
+
   const defaultImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCQrU2ehVPXr5xwc4CBn-uOUjT3dAPOSZSQ&usqp=CAU'
 
   const [showModal, setShowModal] = useState(false)
@@ -46,17 +50,17 @@ const PostLists = (props) => {
           </Grid>
           <Grid is_flex margin="0px 8px">
             <Text margin="0px" weight="500" size="18px">
-              jawoon
+              {props.nickname}
             </Text>
             <Text margin="0px" size="13px" color="#A4A4A4">
-              20분 전
+              {props.updatedAt}
             </Text>
           </Grid>
         </Grid>
 
         <Grid is_flex>
           <Grid padding="8px">
-            <Text size="15px">콩이입니다</Text>
+            <Text size="15px">{props.content}</Text>
           </Grid>
           <IconButton>
             <BorderColorIcon
@@ -93,7 +97,7 @@ const PostLists = (props) => {
                 <IconButton>
                   <ChatBubbleOutlineIcon
                     onClick={() => {
-                      history.push('/posts/:id/comments')
+                      history.push(`/posts/${props.id}/comments`)
                     }}
                   ></ChatBubbleOutlineIcon>
                 </IconButton>
