@@ -34,6 +34,7 @@ export const apis = {
   posts: () => api.get('/api/posts'),
 
   // **** image upload **** //
+
   uploadImage: (file) => api.post('/api/posts/upload', { img: file }),
 
   // **** comment **** //

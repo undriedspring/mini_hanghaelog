@@ -23,7 +23,7 @@ const Upload = (props) => {
 
     reader.readAsDataURL(file)
     reader.onloadend = () => {
-      console.log(reader.result)
+      console.log(file.name)
       dispatch(imageActions.setPreview(reader.result))
     }
 
