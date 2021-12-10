@@ -76,12 +76,17 @@ const addPostDB = (contents) => {
     apis
       .addPost(contents)
       .then((res) => {
-        dispatch(addPost(res.data))
-        history.replace('/posts')
+        console.log(res.data)
+        console.log(res.data.post)
+        dispatch(addPost(res.data.post))
+        // history.replace('/posts')
         dispatch(imageActions.setPreview(null))
       })
       .catch((error) => {
         console.log('게시글 작성에 문제가 발생했습니다.', error)
+      })
+      .then(() => {
+        history.replace('/posts')
       })
   }
 }
@@ -140,18 +145,19 @@ export default handleActions(
       produce(state, (draft) => {
 
         console.log(state)
-        draft.list.push(action.payload.post_list)
 
-        draft.list = draft.list.reduce((acc, cur) => {
-          console.log(draft.list)
+        draft.list = action.payload.post_list
 
-          if (acc.findIndex((a) => a.id === cur.id) === -1) {
-            return [...acc, cur]
-          } else {
-            acc[acc.findIndex((a) => a.id === cur.id)] = cur
-            return acc
-          }
-        }, [])
+        // draft.list = draft.list.reduce((acc, cur) => {
+        //   console.log(draft.list)
+        //   if (acc.findIndex((a) => a.id === cur.id) === -1) {
+        //     return [...acc, cur]
+        //   } else {
+        //     acc[acc.findIndex((a) => a.id === cur.id)] = cur
+        //     return acc
+        //   }
+        // }, [])
+
 
         if (action.payload.paging) {
           draft.paging = action.payload.paging
