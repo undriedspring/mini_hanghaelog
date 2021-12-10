@@ -99,7 +99,7 @@ const PostLists = (props) => {
                 <IconButton>
                   <ChatBubbleOutlineIcon
                     onClick={() => {
-                      history.push('/posts/:id/comments')
+                      history.push(`/posts/${props.id}/comments`)
                     }}
                   ></ChatBubbleOutlineIcon>
                 </IconButton>
