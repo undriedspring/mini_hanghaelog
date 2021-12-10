@@ -35,7 +35,6 @@ const Login = (props) => {
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
     const passwordCurrent = e.target.value
     setPassword(passwordCurrent)
-    console.log(password)
 
     if (!passwordRegex.test(passwordCurrent)) {
       setPasswordMessage('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요.')
