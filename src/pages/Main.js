@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux'
 const Main = (props) => {
   const dispatch = useDispatch()
   const post_list = useSelector((state) => state.post.list)
+  // console.log(_post_list)
+  // const post_list = _post_list[0]
   console.log(post_list)
 
   React.useEffect(() => {
@@ -25,16 +27,17 @@ const Main = (props) => {
           <Footer />
         </Grid>
         <Postbox>
-          {post_list.map((p, idx) => {
-            // console.log(p.data)
-            console.log(p)
-            return (
-              <Grid key={p.id}>
-                <PostLists {...p} />
-              </Grid>
-            )
+          {post_list.map((p) => {
+            if (post_list === 'undefined') {
+              console.log(p)
+            } else {
+              return (
+                <Grid key={p.id}>
+                  <PostLists {...p} />
+                </Grid>
+              )
+            }
           })}
-
           <QuickMenu></QuickMenu>
         </Postbox>
       </Container>
