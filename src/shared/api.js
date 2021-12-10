@@ -6,28 +6,24 @@ const api = axios.create({
   baseURL: 'http://13.209.4.79:5001/',
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
-    'Content-type': 'application/json;charset=UTF-8',
+    'Content-type': 'application/json; charset=UTF-8',
     accept: 'application/json',
-    authorization: `bearer ${document.cookie.split('=')[1]}`,
   },
 })
 
 // ******** Interceptor를 통한 Header 설정 ******** //
 
-// api.interceptors.request.use(async (config) => {
-//   config.headers['X-Requested-With'] = 'XMLHttpRequest'
-//   const accessToken = document.cookie.split('=')[1]
-//   config.headers['Content-type'] = 'application/json;charset=utf-8'
-//   config.headers['Accept'] = '*/*'
-//   config.headers['Authorization'] = `bearer ${accessToken}`
-//   return config
-// })
+api.interceptors.request.use((config) => {
+  const accessToken = document.cookie.split('=')[1]
+  config.headers.common['authorization'] = `${accessToken}`
+  return config
+})
 
 // ******** Export api ******** //
 
 export const apis = {
   // **** post **** //
-  addPost: (content, image) => api.post('/api/posts', { content: content, img: image }),
+  addPost: (contents) => api.post('/api/posts', contents),
   editPost: (postId, newPost) => api.put(`/api/posts/${postId}`, newPost),
   deletePost: (postId) => api.delete(`/api/posts/${postId}`),
   // get posts에서 한 postId의 comment 데이터까지 한 번에 가져오도록 수정할 건지 백 확인 필요
@@ -35,7 +31,7 @@ export const apis = {
 
   // **** image upload **** //
 
-  uploadImage: (file) => api.post('/api/posts/upload', { img: file }),
+  uploadImage: (img) => api.post('/api/posts/upload', { img: '' }),
 
   // **** comment **** //
   addComment: (postId, comment) => api.post(`/api/posts/${postId}/comments`, comment),
