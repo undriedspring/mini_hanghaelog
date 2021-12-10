@@ -1,36 +1,51 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
+import AWS from 'aws-sdk'
 
 import { Grid, Text } from '../elements'
 import { actionCreators as postActions } from '../redux/modules/post'
 import { actionCreators as imageActions } from '../redux/modules/image'
+import { now } from 'moment'
 
 const PostWrite = (props) => {
   const defaultImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCQrU2ehVPXr5xwc4CBn-uOUjT3dAPOSZSQ&usqp=CAU'
 
   const dispatch = useDispatch()
+  const { history } = props
 
   const is_login = useSelector((state) => state.user.is_login)
   const preview = useSelector((state) => state.image.preview)
   const post_list = useSelector((state) => state.post.list)
+  const is_uploading = useSelector((state) => state.image.uploading)
+
+  const fileInput = React.useRef()
 
   const post_id = props.match.params.id
   const is_edit = post_id ? true : false
   const _post = is_edit ? post_list.find((post) => post.postId === post_id) : null
 
-  const { history } = props
-
   const [content, setContent] = React.useState(_post ? _post.content : '')
-
-  const is_uploading = useSelector((state) => state.image.uploading)
-  const fileInput = React.useRef()
-
   const [filename, setFilename] = React.useState('')
 
+  const changeContent = (e) => {
+    setContent(e.target.value)
+  }
+
+  AWS.config.update({
+    region: 'ap-northeast-2',
+    credentials: new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: 'ap-northeast-2:a19bdb6b-e974-4d6f-b794-0d96243aaf83',
+    }),
+  })
+
+  // ** 실시간 글자수 표시 ** //
+  const textCnt = content.length
+  let now = new Date()
+
+  // ** preview 설정 ** //
   const selectFile = async (e) => {
     const reader = new FileReader()
-    // 이미지 업로드 POST api request 파라미터에 넣을 데이터
     const file = fileInput.current.files[0]
     console.log(file)
 
@@ -39,40 +54,40 @@ const PostWrite = (props) => {
       console.log(reader.result)
       dispatch(imageActions.setPreview(reader.result))
     }
-
     setFilename(e.target.value)
   }
 
-  React.useEffect(() => {
-    if (is_edit && !_post) {
-      window.alert('포스트 정보가 없습니다.')
-      console.log('포스트 정보가 없습니다.')
-      history.goBack()
-
-      return
-    }
-
-    if (is_edit) {
-      dispatch(imageActions.setPreview(_post.imgUrl))
-    }
-  }, [])
-
-  const changeContent = (e) => {
-    setContent(e.target.value)
-  }
-
-  const textCnt = content.length
-
   const addPost = () => {
-    if (preview === null || content === '') {
+    const file = fileInput.current.files[0]
+    console.log(content, file)
+    if (!file || content === '') {
       window.alert('이미지 업로드와 텍스트 입력을 모두 완료해주세요!')
       return
     } else {
-      dispatch(postActions.addPostDB(content))
+      const upload = new AWS.S3.ManagedUpload({
+        params: {
+          Bucket: 'mini-hanghaelog',
+          Key: file.name + now.getTime() + '.jpg',
+          Body: file,
+        },
+      })
+
+      const promise = upload.promise()
+
+      promise
+        .then((data) => {
+          dispatch(imageActions.getImageUrl(data.Location))
+          const contents = {
+            content: content,
+            imgUrl: data.Location,
+          }
+          dispatch(postActions.addPostDB(contents))
+        })
+        .catch((err) => {
+          window.alert('이미지 업로드에 문제가 있어요!', err)
+        })
     }
   }
-
-  console.log(content)
 
   const editPost = () => {
     if (preview === null || content === '') {
@@ -82,6 +97,20 @@ const PostWrite = (props) => {
       dispatch(postActions.editPostDB(post_id, content))
     }
   }
+
+  // React.useEffect(() => {
+  //   if (is_edit && !_post) {
+  //     window.alert('포스트 정보가 없습니다.')
+  //     console.log('포스트 정보가 없습니다.')
+  //     history.goBack()
+
+  //     return
+  //   }
+
+  //   if (is_edit) {
+  //     dispatch(imageActions.setPreview(_post.imgUrl))
+  //   }
+  // }, [])
 
   // **** 로그인 구현 후 주석 풀기 **** //
   // if (!is_login) {
@@ -115,21 +144,21 @@ const PostWrite = (props) => {
             <Text size="20px" weight="700">
               nickname
             </Text>
-            <form name="post_info" encType="multipart/form-data">
-              <Grid>
-                <Label className="input-file-button" htmlFor="img">
-                  업로드
-                </Label>
-                <UploadName value={filename} placeholder="첨부파일"></UploadName>
-                <input name="img" type="file" accept="image/*" id="img" style={{ display: 'none' }} onChange={selectFile} ref={fileInput}></input>
-              </Grid>
-              <Textarea name="content" value={content} onChange={changeContent} label="게시글 내용" placeholder="텍스트를 입력해주세요." maxLength="200" required></Textarea>
-              <Grid is_flex width="auto">
-                <Grid></Grid>
-                {<TextCnt>{textCnt} / 200</TextCnt>}
-              </Grid>
-              {is_edit ? <Btn onClick={editPost}>수정하기</Btn> : <Btn onClick={addPost}>작성하기</Btn>}
-            </form>
+            {/* <form name="post_info" encType="multipart/form-data"> */}
+            <Grid>
+              <Label className="input-file-button" htmlFor="img">
+                업로드
+              </Label>
+              <UploadName value={filename} placeholder="첨부파일"></UploadName>
+              <input name="img" type="file" accept="image/*" id="img" style={{ display: 'none' }} onChange={selectFile} ref={fileInput}></input>
+            </Grid>
+            <Textarea name="content" value={content} onChange={changeContent} label="게시글 내용" placeholder="텍스트를 입력해주세요." maxLength="200" required></Textarea>
+            <Grid is_flex width="auto">
+              <Grid></Grid>
+              {<TextCnt>{textCnt} / 200</TextCnt>}
+            </Grid>
+            {is_edit ? <Btn onClick={editPost}>수정하기</Btn> : <Btn onClick={addPost}>작성하기</Btn>}
+            {/* </form> */}
           </Grid>
           <Grid width="100%" maxWidth="450px" minWidth="400px" margin="18px">
             <ImageInner src={preview ? preview : defaultImage}></ImageInner>
