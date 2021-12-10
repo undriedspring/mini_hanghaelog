@@ -18,7 +18,7 @@ const LOADING = 'LOADING'
 
 // // ************ Action Creator ************ //
 
-const getPost = createAction(GET_POST, (post_list, paging) => ({ post_list, paging }))
+const getPost = createAction(GET_POST, (post_list) => ({ post_list }))
 const addPost = createAction(ADD_POST, (post) => ({ post }))
 const editPost = createAction(EDIT_POST, (postId, post) => ({ postId, post }))
 const deletePost = createAction(DELETE_POST, (post_id) => ({ post_id }))
@@ -48,6 +48,8 @@ const getPostDB = (start = null, size = 3) => {
   return async function (dispatch, getState, { history }) {
     let _paging = getState().post.paging
 
+    console.log(_paging)
+
     if (_paging.start && !_paging.next) {
       return
     }
@@ -58,7 +60,9 @@ const getPostDB = (start = null, size = 3) => {
 
     try {
       const post_list = await apis.posts()
-      dispatch(getPost(post_list, _paging))
+
+      dispatch(getPost(post_list.data))
+
       dispatch(imageActions.setPreview(null))
     } catch (error) {
       console.log('게시글 조회에 문제가 발생했습니다.', error)
@@ -116,16 +120,19 @@ export default handleActions(
   {
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(...action.payload.post_list)
+        console.log(state)
+        draft.list = action.payload.post_list
 
-        draft.list = draft.list.reduce((acc, cur) => {
-          if (acc.findIndex((a) => a.id === cur.id) === -1) {
-            return [...acc, cur]
-          } else {
-            acc[acc.findIndex((a) => a.id === cur.id)] = cur
-            return acc
-          }
-        }, [])
+        // draft.list = draft.list.reduce((acc, cur) => {
+        //   console.log(draft.list)
+
+        //   if (acc.findIndex((a) => a.id === cur.id) === -1) {
+        //     return [...acc, cur]
+        //   } else {
+        //     acc[acc.findIndex((a) => a.id === cur.id)] = cur
+        //     return acc
+        //   }
+        // }, [])
 
         if (action.payload.paging) {
           draft.paging = action.payload.paging
