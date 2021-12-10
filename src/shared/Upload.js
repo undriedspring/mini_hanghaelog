@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 // **** component, elements, modules, apis **** //
 import { Grid } from '../elements'
 import { actionCreators as imageActions } from '../redux/modules/image'
+import { actionCreators as postActions } from '../redux/modules/post'
 
 const Upload = (props) => {
   const dispatch = useDispatch()
@@ -18,14 +19,13 @@ const Upload = (props) => {
     const reader = new FileReader()
     // 이미지 업로드 POST api request 파라미터에 넣을 데이터
     const file = fileInput.current.files[0]
+    console.log(file)
 
     reader.readAsDataURL(file)
     reader.onloadend = () => {
-      console.log(reader.result)
+      console.log(file.name)
       dispatch(imageActions.setPreview(reader.result))
     }
-
-    dispatch(imageActions.uploadImageDB(file))
 
     setFilename(e.target.value)
   }
@@ -33,11 +33,11 @@ const Upload = (props) => {
   return (
     <React.Fragment>
       <Grid>
-        <Label className="input-file-button" htmlFor="input-file">
+        <Label className="input-file-button" htmlFor="img">
           업로드
         </Label>
         <UploadName value={filename} placeholder="첨부파일"></UploadName>
-        <input type="file" accept="image/*" id="input-file" style={{ display: 'none' }} onChange={selectFile} ref={fileInput}></input>
+        <input name="img" type="file" accept="image/*" id="img" style={{ display: 'none' }} onChange={selectFile} ref={fileInput}></input>
       </Grid>
     </React.Fragment>
   )

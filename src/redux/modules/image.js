@@ -11,7 +11,7 @@ const SET_PREVIEW = 'SET_PREVIEW'
 // **************** Action Creators **************** //
 
 const uploading = createAction(UPLOADING, (uploading) => ({ uploading }))
-const getImageUrl = createAction(GET_IMAGE_URL, (image_url) => ({ image_url }))
+const getImageUrl = createAction(GET_IMAGE_URL, (file) => ({ file }))
 const setPreview = createAction(SET_PREVIEW, (preview) => ({ preview }))
 
 // **************** Initial Data **************** //
@@ -20,6 +20,7 @@ const initialState = {
   image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCQrU2ehVPXr5xwc4CBn-uOUjT3dAPOSZSQ&usqp=CAU',
   uploading: false,
   preview: null,
+  imgDT: null,
 }
 
 // **************** Middlewares **************** //
@@ -27,11 +28,12 @@ const initialState = {
 const uploadImageDB = (file) => {
   return async function (dispatch, getState, { history }) {
     console.log(file)
+    dispatch(getImageUrl(file))
     // try {
     //   const { data } = await apis.uploadImage(file)
     //   console.log(data)
-    //   // console.log(data.image_url)
-    //   dispatch(uploadImage(data.image_url))
+    //   console.log(data.image_url)
+    //   dispatch(getImageUrl(data.image_url))
     // } catch (error) {
     //   console.log(error)
     // }
@@ -53,7 +55,7 @@ export default handleActions(
   {
     [GET_IMAGE_URL]: (state, action) =>
       produce(state, (draft) => {
-        draft.image_url = action.payload.image_url
+        draft.imgDT = action.payload.file
       }),
     [UPLOADING]: (state, action) =>
       produce(state, (draft) => {
