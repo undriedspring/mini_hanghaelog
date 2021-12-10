@@ -16,9 +16,9 @@ const Main = (props) => {
           <PostLists></PostLists>
           <PostLists></PostLists>
           <PostLists></PostLists>
+          <QuickMenu></QuickMenu>
         </Postbox>
       </Container>
-      <QuickMenu></QuickMenu>
     </React.Fragment>
   )
 }
