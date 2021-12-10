@@ -31,6 +31,10 @@ const initialState = {
 
 const registerDB = (email, nickname, password, passwordCheck) => {
   return function (dispatch, getState, { history }) {
+    console.log(email)
+    console.log(nickname)
+    console.log(password)
+    console.log(passwordCheck)
     apis
       .register(email, nickname, password, passwordCheck) //유저가 입력한 유저정보를 api로 넘겨줘야함
       .then((res) => {
@@ -48,11 +52,13 @@ const registerDB = (email, nickname, password, passwordCheck) => {
 
 const logInDB = (email, password) => {
   return function (dispatch, getState, { history }) {
+    console.log(email)
+    console.log(password)
     apis
       .login(email, password)
       .then((res) => {
         console.log(res)
-        setCookie('token', res.data[0].token, 3)
+        setCookie('token', res.data.token, 3)
         localStorage.setItem('userID', res.data[0].userId)
         dispatch(setUser({ email: email }))
         history.replace('/posts')
@@ -97,7 +103,11 @@ export default handleActions(
         draft.user = null
         draft.is_login = false
       }),
-    [GET_USER]: (state, action) => produce(state, (draft) => {}),
+    [GET_USER]: (state, action) =>
+      produce(state, (draft) => {
+        // draft.user = action.payload.user
+        // draft.is_login = true
+      }),
   },
   initialState
 )

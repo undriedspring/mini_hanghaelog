@@ -36,7 +36,7 @@ export const apis = {
   comments: (postId) => api.get(`/api/posts/${postId}/comments`),
 
   // **** user **** //
-  login: (email, password) => api.post('/api/auth/login', { email: email, password: password }),
+  login: (email, password) => api.post('/api/auth/login', { email: email.email, password: email.password }),
   register: (email, nickname, password, passwordCheck) => api.post('/api/auth/register', { email: email, nickname: nickname, password: password, passwordCheck: passwordCheck }),
   users: () => api.get('/api/auth'),
 }
