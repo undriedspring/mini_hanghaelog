@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const EachComment = (props) => {
   const dispatch = useDispatch()
   const post_list = useSelector((state) => state.post.list)
-
+  // aa
   console.log(post_list)
 
   return (
