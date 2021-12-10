@@ -42,6 +42,7 @@ const registerDB = (email, nickname, password, passwordCheck) => {
       .catch((err) => {
         //오류나면 이리로
         console.log(err)
+        window.alert('이미 등록된 사용자 입니다! 아이디 또는 닉네임을 변경해주세요(*⁰▿⁰*)')
       })
   }
 }
@@ -62,7 +63,7 @@ const logInDB = (email, password) => {
       })
       .catch((err) => {
         console.log(err)
-        // window.alert('회원정보가 없습니다.')
+        window.alert('회원정보가 없습니다. 회원가입 후 이용해주세요!(*⁰▿⁰*)')
       })
   }
 }
@@ -81,7 +82,7 @@ const loginCheckDB = () => {
     const userId = localStorage.getItem('id')
     const tokenCheck = document.cookie
     if (tokenCheck) {
-      dispatch(SET_USER({ id: userId }))
+      dispatch(setUser({ userId: userId }))
     } else {
       dispatch(logOut())
     }

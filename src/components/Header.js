@@ -4,14 +4,18 @@ import { useSelector, useDispatch } from 'react-redux'
 import { actionCreators as userActions } from '../redux/modules/user'
 import { history } from '../redux/configureStore'
 
-import { getCookie, deleteCookie } from '../shared/Cookie'
 import { Grid, Button, Text } from '../elements'
 import '../index.css'
 
 const Header = (props) => {
+  const a = localStorage.getItem('id')
+  console.log(props)
   const dispatch = useDispatch()
-  const is_login = useSelector((state) => state.user.is_login)
+  const __is_login = useSelector((state) => state.user.is_login)
+  const _is_login = a ? true : false
+  const is_login = _is_login || __is_login
 
+  console.log(is_login)
   // **** Login **** //
   if (is_login) {
     return (
