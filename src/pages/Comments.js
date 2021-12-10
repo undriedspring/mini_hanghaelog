@@ -12,15 +12,15 @@ const Comments = (props) => {
   const posts_list = useSelector((state) => state.POSTS)
   const comments_list = useSelector((state) => state.COMMENTS)
 
-  const [comment_text, setCommentText] = React.useState('')
+  const [comment, setComment] = React.useState('')
   const { postId } = props
 
   const onChange = (e) => {
-    setCommentText(e.target.value)
+    setComment(e.target.value)
   }
   const write = () => {
-    dispatch(commentActions.addCommentDB(postId, comment_text))
-    setCommentText('')
+    dispatch(commentActions.addCommentDB(postId, comment))
+    setComment('')
   }
 
   return (
@@ -54,7 +54,7 @@ const Comments = (props) => {
               placeholder="최대 100자까지 자유롭게 댓글을 남길 수 있습니다 : )"
               maxlength="100"
               _onChange={onChange}
-              value={comment_text}
+              value={comment}
               onSubmit={write}
               is_submit
             />

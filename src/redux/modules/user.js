@@ -4,7 +4,7 @@ import { produce } from 'immer'
 import { setCookie, deleteCookie } from '../../shared/Cookie'
 import { applyMiddleware } from 'redux'
 
-import { apis } from '../../shared/fake_api'
+import { apis } from '../../shared/api'
 
 const LOG_OUT = 'LOG_OUT'
 const GET_USER = 'GET_USER'
