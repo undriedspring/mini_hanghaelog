@@ -1,70 +1,98 @@
-import React from 'react'
+import React, { useState } from 'react'
+import './Comments.css'
+import EachComment from '../components/EachComment'
+import { actionCreators as commentActions } from '../redux/modules/comment'
+import styled from 'styled-components'
+import SendIcon from '@mui/icons-material/Send'
 import { Grid, Button, Image, Input, Text } from '../elements'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Comments = (props) => {
+  const dispatch = useDispatch()
+  const [comment, setComment] = React.useState('')
+  const { postId } = props
+
+  const onChange = (e) => {
+    const commentCurrent = e.target.value
+    setComment(commentCurrent)
+  }
+
+  const write = () => {
+    dispatch(commentActions.addCommentDB(postId, comment))
+    setComment('')
+  }
+
   return (
     <React.Fragment>
-      <Grid min-width="650px" max-width="1000px" top="0" left="0" justify-content="space-around">
-        <Grid>
-          <Button
-            width="100px"
-            height="100px"
-            border="none"
-            bg="none"
-            src="url(https://fonts.gstatic.com/s/expletussans/v14/RLpiK5v5_bqufTYdnhFzDj2ddfsgZ60_U1vMJ6ZYmQ.woff2) format('woff2')"
-            font-family="Expletus Sans"
-          >
-            HHL
-          </Button>
-        </Grid>
-        <Grid is_grid>
-          <Grid is_flex padding="20px" margin="10px 0px">
-            <Image shape="circle" size="30"></Image>
-            <Grid margin="0px 5px">
-              <Text color="#333333">213am</Text>
+      <Container>
+        <Grid maxWidth="800px" minWidth="300px">
+          <Grid is_flex padding="30px" margin="100px 0 5px 0" width="auto" border="2px solid #a496c7">
+            <div className="profileImage">
+              <Image shape="circle" size="70" />
+            </div>
+            <Grid margin="0px 0px 60px 5px">
+              <Text color="black" size="30px" margin="15px 0 0 10px">
+                213am
+              </Text>
+              <Grid margin="-6px 0 0 10px">
+                <hr noshade width="140px" align="left"></hr>
+              </Grid>
+              <Grid min-width="300px" max-width="500px">
+                <Text color="#333333" margin="15px 0 0 10px" size="20px">
+                  &nbsp;오늘은 글자수 제한을 140자로 했을 때, 얼마나 많은 내용이 담기는 지 알아보겠습니다. 띄어쓰기를 포함해 140자인데 이게 생각보다는 많은 내용이 들어가네요? 이렇게 주저리주저리
+                  말해도 고작 100자 정도라니 꽉 채워서 댓글다는 사람에게는 잘해주세요
+                </Text>
+              </Grid>
+              <Grid margin="50px 0 -50px 15px">댓글 0개</Grid>
             </Grid>
           </Grid>
-          <Grid width="100%" margin="0px 0px 20px 0px">
-            <Input type="text"></Input>
+          <Grid width="100%" margin="0px 0px 20px 0px" is_flex>
+            <input
+              className="commentLine"
+              type="text"
+              placeholder="최대 100자까지 자유롭게 댓글을 남길 수 있습니다 : )"
+              maxlength="100"
+              onChange={onChange}
+              value={comment}
+              onSubmit={write}
+              is_submit
+            />
+            <SendIcon className="commentSubmit" onClick={write} fontSize="5rem"></SendIcon>
           </Grid>
-          <Grid margin="10px 0 30px 0">
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
-            <Text>댓글 목록입니다</Text>
+          <Grid justify-content="center">
+            <EachComment />
           </Grid>
         </Grid>
-      </Grid>
+      </Container>
     </React.Fragment>
   )
 }
 
+const Container = styled.div`
+  max-width: 1000px;
+  min-width: 650px;
+  margin: 0px auto 0px auto;
+  display: flex;
+  justify-content: space-around;
+`
+
 export default Comments
+
+const CommentItem = (props) => {
+  const { comment, commentsId, userId, postId } = props
+  return (
+    <Grid is_flex border=".5px solid" margin="0 0 5px 0">
+      <Grid is_flex padding="15px">
+        <Image shape="circle" size="30"></Image>
+        <Grid margin="0px 5px">
+          <Text color="#333333" width="auto" bold>
+            {userId}
+          </Text>
+        </Grid>
+      </Grid>
+      <Grid>
+        <Text>{comment}</Text>
+      </Grid>
+    </Grid>
+  )
+}

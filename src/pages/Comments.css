@@ -1,0 +1,72 @@
+/* .VerticalLine {
+  border: 0.5px solid #333333;
+  width: 0.1px;
+  height: 30px;
+} */
+
+.commentLine {
+  border: none;
+  background: none;
+  border-bottom: solid 1.5px #a496c7;
+  padding: 12px 4px;
+  width: 100%;
+}
+
+.profileImage {
+  border: 0.5px solid lightslategray;
+  border-radius: 50px;
+  width: auto;
+  height: auto;
+  position: relative;
+  top: -70px;
+}
+
+.commentSubmit {
+  font-size: 2rem;
+  margin-top: 5px;
+  margin-left: 15px;
+  margin-right: 10px;
+  color: #6e6e6e;
+}
+
+.commentSubmit:hover {
+  cursor: pointer;
+  transition: transform 500ms;
+  transform: translateX(3px);
+  color: #a496c7;
+}
+
+.CommentDeleteButton {
+  width: 45px;
+  height: 35px;
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: uppercase !important;
+  letter-spacing: 2px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  background-color: #6e6e6e;
+  color: #fdfdfd;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  /* 추가 */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  /* 추가 */
+  will-change: transform;
+  transition: transform 450ms;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+}
+
+.CommentDeleteButton:hover {
+  background-color: #a496c7;
+  box-shadow: 0px 15px 20px rgba(161, 150, 199, 0.4);
+  color: #fff;
+  transform: translateY(-3px);
+  transition: transform 500ms;
+}
