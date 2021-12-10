@@ -9,9 +9,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const EachComment = (props) => {
   const dispatch = useDispatch()
-  const { comment, commentsId, userId, postId } = props
-  const post_list = useSelector((state) => state.POSTS)
-  const comment_list = useSelector((state) => state.COMMENTS)
+  const { comments, commentsId, userId, postId } = props
+  const post_list = useSelector((state) => state.posts.list)
+  const comment_list = useSelector((state) => state.comments.list)
   // const user_id = useSelector((state) => state.COMMENTS.userId)
   const is_click = onclick ? true : false
 
@@ -29,7 +29,14 @@ const EachComment = (props) => {
         </Grid>
         <Grid margin="20px">
           {/* 공백포함 180자 */}
-          <Text>그럼 한 줄에 담기는 글자수는 몇 자 일까요? 이정도 쓸 수 있으면 충분하겠네요</Text>
+          {post_list.map((p, idx) => {
+            // 옵셔널 체이닝: 유저가 null 일때를 위하여
+            if (p.postId === comments.post.userId) {
+              return <Text key={p.postId} {...p} is_me />
+            } else {
+              return <Text key={p.postId} {...p} />
+            }
+          })}
         </Grid>
         <Grid is_flex width="auto" margin="30px">
           {/* <button

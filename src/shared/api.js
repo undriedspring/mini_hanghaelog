@@ -27,7 +27,7 @@ const api = axios.create({
 
 export const apis = {
   // **** post **** //
-  addPost: (content, image) => api.post('/api/posts', { content: content, img: image }),
+  addPost: (content, img) => api.post('/api/posts', { content: content, img: '' }),
   editPost: (postId, newPost) => api.put(`/api/posts/${postId}`, newPost),
   deletePost: (postId) => api.delete(`/api/posts/${postId}`),
   // get posts에서 한 postId의 comment 데이터까지 한 번에 가져오도록 수정할 건지 백 확인 필요
@@ -35,7 +35,7 @@ export const apis = {
 
   // **** image upload **** //
 
-  uploadImage: (file) => api.post('/api/posts/upload', { img: file }),
+  uploadImage: (img) => api.post('/api/posts/upload', { img: '' }),
 
   // **** comment **** //
   addComment: (postId, comment) => api.post(`/api/posts/${postId}/comments`, comment),

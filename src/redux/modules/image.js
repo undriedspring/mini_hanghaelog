@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions'
 import produce from 'immer'
 import { apis } from '../../shared/api'
+import axios from 'axios'
 
 // **************** Action Type **************** //
 
@@ -27,25 +28,50 @@ const initialState = {
 
 const uploadImageDB = (file) => {
   return async function (dispatch, getState, { history }) {
-    console.log(file)
-    dispatch(getImageUrl(file))
-    // try {
-    //   const { data } = await apis.uploadImage(file)
-    //   console.log(data)
-    //   console.log(data.image_url)
-    //   dispatch(getImageUrl(data.image_url))
-    // } catch (error) {
-    //   console.log(error)
+    //     let formData = new FormData()
+    //     formData.append('name', imgfile)
+
+    //     for (var key of formData.keys()) {
+    //       console.log(key)
+    //     }
+    //     for (var value of formData.values()) {
+    //       console.log(value)
+    //     }
+
+    //     axios({
+    //       method: 'post',
+    //       url: `/api/posts/upload`,
+    //       data: formData,
+    //       header: {
+    //         'Content-Type': 'multipart/form-data',
+    //       },
+    //     }).then((res) => {
+    //       console.log(res)
+    //       const new_img = {
+    //         name: res.data.newimg.name,
+    //       }
+    //       dispatch(uploadImageDB(new_img))
+    //     })
+    //   }
     // }
-    // apis
-    //   .uploadImage(file)
-    //   .then((res) => {
-    //     console.log(res)
-    //     console.log(res.data)
-    //   })
-    //   .catch((error) => {
-    //     console.log('이미지 업로드에 문제가 발생했습니다', error)
-    //   })
+
+    try {
+      const { data } = await apis.uploadImage(file)
+      console.log(data)
+      console.log(data.image_url)
+      dispatch(getImageUrl(data))
+    } catch (error) {
+      console.log(error)
+    }
+    apis
+      .uploadImage(file)
+      .then((res) => {
+        console.log(res)
+        console.log(res.data)
+      })
+      .catch((error) => {
+        console.log('이미지 업로드에 문제가 발생했습니다', error)
+      })
   }
 }
 

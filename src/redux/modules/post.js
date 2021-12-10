@@ -83,6 +83,8 @@ const addPostDB = (content) => {
       dispatch(addPost(postData.post))
       history.replace('/posts')
       dispatch(imageActions.setPreview(null))
+
+      console.log(postData)
     } catch (error) {
       console.log('게시글 작성에 문제가 발생했습니다.', error)
       // window.alert('게시글 작성에 문제가 발생했습니다')
