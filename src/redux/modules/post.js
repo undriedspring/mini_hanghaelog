@@ -69,7 +69,6 @@ const getPostDB = (start = null, size = 3) => {
 const addPostDB = (content) => {
   return async function (dispatch, getState, { history }) {
     // const _user = getState().user.user
-    const image_url = getState().image.image_url
 
     // const user_info = {
     //   userId: _user.userId,
@@ -77,9 +76,10 @@ const addPostDB = (content) => {
     //   // 프로필 사진 설정할지 ??
     //   userProfile: _user.userProfile,
     // }
-    console.log(content, image_url)
+    const image = getState().image.preview
+    console.log(content, image)
     try {
-      const postData = await apis.addPost({ content: content, imgUrl: image_url })
+      const postData = await apis.addPost(content, image)
       dispatch(addPost(postData.post))
       history.replace('/posts')
       dispatch(imageActions.setPreview(null))
