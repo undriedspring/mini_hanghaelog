@@ -66,29 +66,19 @@ const getPostDB = (start = null, size = 3) => {
   }
 }
 
-const addPostDB = (content) => {
+const addPostDB = (contents) => {
   return async function (dispatch, getState, { history }) {
-    // const _user = getState().user.user
-
-    // const user_info = {
-    //   userId: _user.userId,
-    //   nickname: _user.nickname,
-    //   // 프로필 사진 설정할지 ??
-    //   userProfile: _user.userProfile,
-    // }
-    const image = getState().image.preview
-    console.log(content, image)
-    try {
-      const postData = await apis.addPost(content, image)
-      dispatch(addPost(postData.post))
-      history.replace('/posts')
-      dispatch(imageActions.setPreview(null))
-
-      console.log(postData)
-    } catch (error) {
-      console.log('게시글 작성에 문제가 발생했습니다.', error)
-      // window.alert('게시글 작성에 문제가 발생했습니다')
-    }
+    console.log(contents)
+    apis
+      .addPost(contents)
+      .then((res) => {
+        dispatch(addPost(res.data))
+        history.replace('/posts')
+        dispatch(imageActions.setPreview(null))
+      })
+      .catch((error) => {
+        console.log('게시글 작성에 문제가 발생했습니다.', error)
+      })
   }
 }
 
