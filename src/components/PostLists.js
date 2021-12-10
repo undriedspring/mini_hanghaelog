@@ -21,6 +21,12 @@ const PostLists = (props) => {
     setShowModal(false)
   }
 
+  window.addEventListener('keyup', (e) => {
+    if (setShowModal(false) && e.key === 'Escape') {
+      setShowModal(true)
+    }
+  })
+
   return (
     <React.Fragment>
       {showModal ? (
