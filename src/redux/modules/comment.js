@@ -1,5 +1,5 @@
 import { createAction, handleActions } from 'redux-actions'
-import { apis } from '../../shared/fake_api'
+import { apis } from '../../shared/api'
 import axios from 'axios'
 import { produce } from 'immer'
 

@@ -7,12 +7,17 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 
 const Footer = (props) => {
   const members = [
-    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
-    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
-    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
-    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
-    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
-    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog_url: '', github_url: '' },
+    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'Jun', blog: 'https://www.linkedin.com/in/seungjunkim0906/', github: 'https://github.com/Seungjun0906' },
+    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: '길재원', blog: 'https://velog.io/@kiljw316', github: 'https://github.com/kiljw316' },
+    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'mincho', blog: 'https://luce-sicut-stella.tistory.com/', github: 'https://github.com/mintsid' },
+    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: '213am', blog: 'https://velog.io/@undriedspring', github: 'https://velog.io/@undriedspring' },
+    {
+      src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30',
+      nickname: 'jann_2',
+      blog: 'https://jann2codingdiary.tistory.com/manage/posts/',
+      github: 'https://jann2codingdiary.tistory.com/manage/posts/',
+    },
+    { src: 'https://t1.daumcdn.net/cfile/blog/99EFF04B5E01683F30', nickname: 'zubetcha', blog: 'https://zubetcha.tistory.com/', github: 'https://github.com/zubetcha' },
   ]
   return (
     <Grid maxWidth="300px" minWidth="150px" height="450px" padding="10px 0 0 0" margin="0">
@@ -31,13 +36,13 @@ const Footer = (props) => {
                   <FaceIcon
                     style={{ margin: '0 8px', color: '#6e6e6e', cursor: 'pointer' }}
                     onClick={() => {
-                      window.location.href = ``
+                      window.open(`${member.blog}`)
                     }}
                   ></FaceIcon>
                   <GitHubIcon
                     style={{ margin: '0 0 0 8px', color: '#6e6e6e', cursor: 'pointer' }}
                     onClick={() => {
-                      window.location.href = ``
+                      window.open(`${member.github}`)
                     }}
                   ></GitHubIcon>
                 </Grid>
