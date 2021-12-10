@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
 
-import Upload from '../shared/Upload'
 import { Grid, Text } from '../elements'
 import { actionCreators as postActions } from '../redux/modules/post'
 import { actionCreators as imageActions } from '../redux/modules/image'
@@ -23,6 +22,26 @@ const PostWrite = (props) => {
   const { history } = props
 
   const [content, setContent] = React.useState(_post ? _post.content : '')
+
+  const is_uploading = useSelector((state) => state.image.uploading)
+  const fileInput = React.useRef()
+
+  const [filename, setFilename] = React.useState('')
+
+  const selectFile = async (e) => {
+    const reader = new FileReader()
+    // 이미지 업로드 POST api request 파라미터에 넣을 데이터
+    const file = fileInput.current.files[0]
+    console.log(file)
+
+    reader.readAsDataURL(file)
+    reader.onloadend = () => {
+      console.log(reader.result)
+      dispatch(imageActions.setPreview(reader.result))
+    }
+
+    setFilename(e.target.value)
+  }
 
   React.useEffect(() => {
     if (is_edit && !_post) {
@@ -52,6 +71,8 @@ const PostWrite = (props) => {
       dispatch(postActions.addPostDB(content))
     }
   }
+
+  console.log(content)
 
   const editPost = () => {
     if (preview === null || content === '') {
@@ -94,13 +115,21 @@ const PostWrite = (props) => {
             <Text size="20px" weight="700">
               nickname
             </Text>
-            <Upload />
-            <Textarea value={content} onChange={changeContent} label="게시글 내용" placeholder="텍스트를 입력해주세요." maxLength="200" required></Textarea>
-            <Grid is_flex width="auto">
-              <Grid></Grid>
-              {<TextCnt>{textCnt} / 200</TextCnt>}
-            </Grid>
-            {is_edit ? <Btn onClick={editPost}>수정하기</Btn> : <Btn onClick={addPost}>작성하기</Btn>}
+            <form name="post_info" encType="multipart/form-data">
+              <Grid>
+                <Label className="input-file-button" htmlFor="img">
+                  업로드
+                </Label>
+                <UploadName value={filename} placeholder="첨부파일"></UploadName>
+                <input name="img" type="file" accept="image/*" id="img" style={{ display: 'none' }} onChange={selectFile} ref={fileInput}></input>
+              </Grid>
+              <Textarea name="content" value={content} onChange={changeContent} label="게시글 내용" placeholder="텍스트를 입력해주세요." maxLength="200" required></Textarea>
+              <Grid is_flex width="auto">
+                <Grid></Grid>
+                {<TextCnt>{textCnt} / 200</TextCnt>}
+              </Grid>
+              {is_edit ? <Btn onClick={editPost}>수정하기</Btn> : <Btn onClick={addPost}>작성하기</Btn>}
+            </form>
           </Grid>
           <Grid width="100%" maxWidth="450px" minWidth="400px" margin="18px">
             <ImageInner src={preview ? preview : defaultImage}></ImageInner>
@@ -125,6 +154,37 @@ const Title = styled.p`
   font-size: 36px;
   font-weight: 700;
   text-align: center;
+`
+
+const Label = styled.label`
+  width: 100px;
+  height: 25px;
+  padding: 6px 25px;
+  margin-right: 10px;
+  background-color: #a496c7;
+  border-radius: 4px;
+  color: whitesmoke;
+  font-size: 12px;
+  cursor: pointer;
+  box-sizing: border-box;
+`
+
+const UploadName = styled.input`
+  display: inline-block;
+  width: 69%;
+  height: 27px;
+  padding: 0 10px;
+  vertical-align: middle;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #999999;
+  box-sizing: border-box;
+  background-color: rgb(247, 247, 247);
+
+  &:focus {
+    outline: none;
+  }
 `
 
 const Textarea = styled.textarea`
