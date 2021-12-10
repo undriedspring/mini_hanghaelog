@@ -75,7 +75,16 @@ const Login = (props) => {
               </Grid>
             </Grid>
             <Grid margin="40px 0px 25px 0px">
-              <Btn type="submit" disabled={!(isEmail && isPassword)} onClick={login}>
+              <Btn
+                type="submit"
+                disabled={!(isEmail && isPassword)}
+                onClick={login}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    console.log('Enter')
+                  }
+                }}
+              >
                 로그인
               </Btn>
             </Grid>
