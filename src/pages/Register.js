@@ -85,13 +85,17 @@ const Register = (props) => {
   }
 
   const register = () => {
+    if (email === '' || nickname === '' || password === '' || passwordCheck === '') {
+      window.alert('모두 입력해주세요!')
+      return
+    }
     dispatch(userActions.registerDB(email, nickname, password, passwordCheck))
   }
 
   return (
     <React.Fragment>
       <Grid maxWidth="400px" margin="auto">
-        <Grid margin="150px 0px 150px 0px" border="2px solid #a496c7">
+        <Grid margin="120px 0px 150px 0px" border="2px solid #a496c7">
           <Grid padiing="50px">
             <Text size="36px" weight="700" align="center">
               Signup
@@ -159,9 +163,34 @@ const SignupButton = styled.button`
   border: none;
   width: 300px;
   height: 50px;
-  border-radius: 10px;
+  border-radius: 30px;
   cursor: pointer;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background-color: #6e6e6e;
+  color: #fff;
+  :disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* 추가 */
+  text-transform: uppercase;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  /* 추가 */
+  will-change: transform;
+  transition: transform 450ms;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+  &:hover {
+    background-color: #a496c7;
+    box-shadow: 0px 15px 20px rgba(161, 150, 199, 0.4);
+    color: #fff;
+    transform: translateY(-3px);
+    transition: transform 500ms;
+  }
 `
 
 export default Register

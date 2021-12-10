@@ -58,7 +58,7 @@ const Comments = (props) => {
               onSubmit={write}
               is_submit
             />
-            <SendIcon class="commentSubmit" _onClick={write}></SendIcon>
+            <SendIcon className="commentSubmit" _onClick={write} fontSize="5rem"></SendIcon>
           </Grid>
           <Grid justify-content="center">
             <EachComment />

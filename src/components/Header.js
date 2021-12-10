@@ -83,10 +83,11 @@ const Header = (props) => {
 }
 
 const Logo = styled.p`
-  font-family: 'Expletus Sans', cursive;
-  font-size: 2rem;
+  font-family: 'ONE-Mobile-POP';
+  font-size: 2.5rem;
   font-weight: 900;
   cursor: pointer;
+  color: #a496c7;
 `
 
 const HeaderBtn = styled.button`
@@ -96,12 +97,16 @@ const HeaderBtn = styled.button`
   border: none;
   border-radius: 20px;
   outline: none;
-  background-color: #333;
+  background-color: #6e6e6e;
   color: #fdfdfd;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-
+  /* 추가 */
+  text-transform: uppercase;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  /* 추가 */
   will-change: transform;
   transition: transform 450ms;
   transition-property: background-color;
@@ -109,9 +114,10 @@ const HeaderBtn = styled.button`
   transition-timing-function: linear;
   &:hover {
     background-color: #a496c7;
-    transition: background-color 1s linear;
-    transition: transform 500ms;
+    box-shadow: 0px 15px 20px rgba(161, 150, 199, 0.4);
+    color: #fff;
     transform: translateY(-3px);
+    transition: transform 500ms;
   }
 `
 

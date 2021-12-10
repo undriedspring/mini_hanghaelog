@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Grid } from '../elements'
 import Footer from '../components/Footer'
 import PostLists from '../components/PostLists'
+import QuickMenu from '../components/QuickMenu'
 
 const Main = () => {
   return (
@@ -17,6 +18,7 @@ const Main = () => {
           <PostLists></PostLists>
         </Postbox>
       </Container>
+      <QuickMenu></QuickMenu>
     </React.Fragment>
   )
 }

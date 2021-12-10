@@ -27,7 +27,7 @@ function App() {
           <Route path="/posts/:id/edit" exact component={PostWrite}></Route>
           <Route path="/posts/:id/comments" exact component={Comments}></Route>
         </ConnectedRouter>
-        <QuickMenu></QuickMenu>
+        {/* <QuickMenu></QuickMenu> */}
       </Grid>
     </>
   )

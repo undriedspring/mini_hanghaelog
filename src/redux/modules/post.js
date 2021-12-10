@@ -6,7 +6,7 @@ import moment from 'moment'
 
 // ************ modules ************ //
 import { actionCreators as imageActions } from './image'
-import { apis } from '../../shared/fake_api'
+import { apis } from '../../shared/api'
 
 // // ************ Action Type ************ //
 

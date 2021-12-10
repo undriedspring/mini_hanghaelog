@@ -168,19 +168,25 @@ const Btn = styled.button`
   border: none;
   border-radius: 20px;
   outline: none;
-  background-color: #333;
+  background-color: #6e6e6e;
   color: #fdfdfd;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
   margin: 20px auto 0 auto;
-
+  /* 추가 */
+  text-transform: uppercase;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  /* 추가 */
   will-change: transform;
   transition: transform 450ms;
   &:hover {
     background-color: #a496c7;
-    transition: transform 500ms;
+    box-shadow: 0px 15px 20px rgba(161, 150, 199, 0.4);
+    color: #fff;
     transform: translateY(-3px);
+    transition: transform 500ms;
   }
 `
 
