@@ -63,7 +63,7 @@ const logInDB = (email, password) => {
       })
       .catch((err) => {
         console.log(err)
-        window.alert('회원정보가 없습니다. 회원가입 후 이용해주세요!(*⁰▿⁰*)')
+        window.alert('잘못된 아이디나 비밀번호 입니다. 다시 확인해주세요!(*⁰▿⁰*)')
       })
   }
 }

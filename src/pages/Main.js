@@ -4,8 +4,12 @@ import { Grid } from '../elements'
 import Footer from '../components/Footer'
 import PostLists from '../components/PostLists'
 import QuickMenu from '../components/QuickMenu'
+import { useSelector } from 'react-redux'
 
 const Main = (props) => {
+  console.log(props)
+  const post_list = useSelector((state) => console.log(state))
+  console.log(post_list)
   return (
     <React.Fragment>
       <Container>
@@ -14,8 +18,8 @@ const Main = (props) => {
         </Grid>
         <Postbox>
           <PostLists></PostLists>
-          <PostLists></PostLists>
-          <PostLists></PostLists>
+          {/* <PostLists></PostLists>
+          <PostLists></PostLists> */}
           <QuickMenu></QuickMenu>
         </Postbox>
       </Container>
