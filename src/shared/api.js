@@ -31,7 +31,7 @@ export const apis = {
 
   // **** image upload **** //
 
-  uploadImage: (file) => api.post('/api/posts/upload', { img: file }),
+  uploadImage: (img) => api.post('/api/posts/upload', { img: '' }),
 
   // **** comment **** //
   addComment: (postId, comment) => api.post(`/api/posts/${postId}/comments`, comment),
