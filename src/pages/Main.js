@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux'
 const Main = (props) => {
   const dispatch = useDispatch()
   const post_list = useSelector((state) => state.post.list)
-  // console.log(_post_list)
+  console.log(post_list)
   // const post_list = _post_list[0]
   console.log(post_list)
 

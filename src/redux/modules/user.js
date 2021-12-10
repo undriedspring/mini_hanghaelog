@@ -58,8 +58,9 @@ const logInDB = (email, password) => {
         console.log(res.data)
         setCookie('token', res.data.token, 3)
         localStorage.setItem('id', res.data.user.id)
-        dispatch(setUser({ email: email, nickname: res.data.user.nickname }))
-        history.replace('/posts')
+        localStorage.setItem('nickname', res.data.user.nickname)
+        dispatch(setUser({ email: email.email, nickname: res.data.user.nickname }))
+        history.replace('/')
       })
       .catch((err) => {
         console.log(err)
