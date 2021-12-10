@@ -27,7 +27,7 @@ export const apis = {
   posts: () => api.get('/api/posts'),
 
   // **** image upload **** //
-  uploadImage: (fileObj) => api.post('/api/posts/upload', fileObj),
+  uploadImage: (file) => api.post('/api/posts/upload', { fileObj: file }),
 
   // **** comment **** //
   addComment: (postId, comment) => api.post(`/api/posts/${postId}/comments`, comment),
