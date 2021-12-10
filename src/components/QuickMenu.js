@@ -8,6 +8,8 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined'
 import ArrowDropDownCircleSharpIcon from '@mui/icons-material/ArrowDropDownCircleSharp'
 
 const QuickMenu = () => {
+  // var location = document.querySelector('#Header').offsetTop
+
   return (
     <React.Fragment>
       <Grid position="fixed" right="7%" bottom="5%">
@@ -20,9 +22,9 @@ const QuickMenu = () => {
               width="auto"
               height="auto"
               outline="none"
-              onClick={() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-              }}
+              // onClick={() => {
+              //   window.scrollTo({ top: location, behavior: 'smooth' })
+              // }}
             />
             {/* </Permit> */}
             <AddCircleOutlinedIcon
