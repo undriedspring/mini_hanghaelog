@@ -10,6 +10,7 @@ import '../index.css'
 const Header = (props) => {
   const a = localStorage.getItem('id')
   const nickname = localStorage.getItem('nickname')
+
   const dispatch = useDispatch()
   const __is_login = useSelector((state) => state.user.is_login)
   const _is_login = a ? true : false
