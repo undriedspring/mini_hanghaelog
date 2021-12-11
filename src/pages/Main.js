@@ -14,15 +14,14 @@ const Main = (props) => {
 
   const post_list = useSelector((state) => state.post.list)
   const user_id = Number(localStorage.getItem('id'))
-
-  console.log(post_list)
-  // const post_list = _post_list[0]
+  const user_nickname = localStorage.getItem('nickname')
 
   React.useEffect(() => {
     if (post_list.length === 0) {
       dispatch(postActions.getPostDB())
     }
   }, [])
+
   return (
     <React.Fragment>
       <Container>
@@ -45,7 +44,7 @@ const Main = (props) => {
               )
             }
           })}
-          <QuickMenu></QuickMenu>
+          {user_nickname ? <QuickMenu></QuickMenu> : null}
         </Postbox>
       </Container>
     </React.Fragment>
