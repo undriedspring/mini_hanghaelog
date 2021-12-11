@@ -11,9 +11,13 @@ import { useDispatch } from 'react-redux'
 
 const Main = (props) => {
   const dispatch = useDispatch()
+
   const post_list = useSelector((state) => state.post.list)
-  // console.log(_post_list)
-  // const post_list = _post_list[0]
+
+  const user_id = Number(localStorage.getItem('id'))
+
+  console.log(post_list)
+
 
   React.useEffect(() => {
     if (post_list.length === 0) {
@@ -28,8 +32,12 @@ const Main = (props) => {
         </Grid>
         <Postbox>
           {post_list.map((p) => {
-            if (post_list === 'undefined') {
-              console.log(p)
+            if (p.userId === user_id) {
+              return (
+                <Grid key={p.id}>
+                  <PostLists {...p} is_me />
+                </Grid>
+              )
             } else {
               return (
                 <Grid key={p.id}>
