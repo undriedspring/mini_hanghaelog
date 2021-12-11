@@ -9,8 +9,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const EachComment = (props) => {
   const dispatch = useDispatch()
-  const post_list = useSelector((state) => state.post.list)
-  // console.log(post_list)
+  const { comments, commentsId, userId, postId } = props
+  const post_list = useSelector((state) => state.posts.list)
+  const comment_list = useSelector((state) => state.comments.list)
+  // const user_id = useSelector((state) => state.COMMENTS.userId)
+  // const is_click = onclick ? true : false
 
   return (
     <React.Fragment>

@@ -12,6 +12,7 @@ const Header = (props) => {
   const nickname = localStorage.getItem('nickname')
 
   const user_info = useSelector((state) => state.user.user)
+
   console.log(user_info)
   console.log(props)
   const dispatch = useDispatch()
