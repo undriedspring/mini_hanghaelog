@@ -30,7 +30,6 @@ const PostLists = (props) => {
 
   const day = moment(props.updatedAt).fromNow()
 
-
   const defaultImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCQrU2ehVPXr5xwc4CBn-uOUjT3dAPOSZSQ&usqp=CAU'
 
   const [showModal, setShowModal] = React.useState(false)
@@ -48,9 +47,6 @@ const PostLists = (props) => {
       setShowModal(true)
     }
   })
-
-  console.log(props.id)
-  console.log(props.updated)
 
   const deletePost = () => {
     if (window.confirm('게시글을 삭제하시겠습니까?')) {
@@ -132,12 +128,13 @@ const PostLists = (props) => {
                     onClick={() => {
                       history.push(`/posts/${props.id}/comments`)
                     }}
+                    props
                   ></ChatBubbleOutlineIcon>
                 </IconButton>
               </Grid>
               <Grid is_flex>
                 <Text margin="0px" size="13px">
-                  댓글 10개
+                  {props.numOfComments} 개
                 </Text>
               </Grid>
             </Grid>
