@@ -20,7 +20,6 @@ import 'moment/locale/ko'
 import moment from 'moment'
 
 const PostLists = (props) => {
-
   console.log(props.imgUrl)
   console.log(typeof props)
   console.log(props.updatedAt)
@@ -167,8 +166,8 @@ const Background = styled.div`
 `
 
 const Container = styled.div`
-  width: 800px;
-  height: 840px;
+  width: 700px;
+  height: 740px;
 
   border-radius: 20px;
 
@@ -208,6 +207,19 @@ const Bar = styled.div`
 `
 
 const Modal = styled.div`
+  /* position: fixed;
+  z-index: 200;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 2px #ccc;
+  background-color: white;
+  padding: 10px;
+  text-align: center;
+  box-sizing: border-box;
+  top: 30%;
+  left: 25%;
+  width: 50%;
+  transition: all 0.2s ease-out; */
+
   width: 100%;
   padding-top: 100%;
 

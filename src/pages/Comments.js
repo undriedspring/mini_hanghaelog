@@ -35,6 +35,8 @@ const Comments = (props) => {
     }
   }, [])
 
+  console.log(_post_list)
+  console.log(comment_list)
   const onChange = (e) => {
     setComment(e.target.value)
   }
