@@ -111,7 +111,7 @@ const Register = (props) => {
             </Grid>
             <Grid maxWidth="350px" margin="auto">
               <Grid>
-                <SignupInput placeholder="닉네임" text="이름" type="text" typeName="name" onChange={onChangeName} />
+                <SignupInput maxlength="10" placeholder="닉네임" text="이름" type="text" typeName="name" onChange={onChangeName} />
                 {nickname.length > 0 && <Span className={`message ${isName ? 'success' : 'error'}`}>{nameMessage}</Span>}
               </Grid>
             </Grid>

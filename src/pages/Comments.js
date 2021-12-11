@@ -6,20 +6,29 @@ import styled from 'styled-components'
 import SendIcon from '@mui/icons-material/Send'
 import { Grid, Button, Image, Input, Text } from '../elements'
 import { useDispatch, useSelector } from 'react-redux'
+import { CommentOutlined } from '@material-ui/icons'
 
 const Comments = (props) => {
   const dispatch = useDispatch()
-  const [comment, setComment] = React.useState('')
-  const { postId } = props
+  const post_list = useSelector((state) => state.post.list)
+  const comment_list = useSelector((state) => state.comment.list)
+  const user_info = useSelector((state) => state.user.user)
+  const [comment, setComment] = React.useState(comment_list)
+  const [_post_list, setPostList] = React.useState(post_list)
+  const postId = props.match.params.id
 
+  console.log(_post_list)
+  console.log(comment_list)
   const onChange = (e) => {
     const commentCurrent = e.target.value
     setComment(commentCurrent)
   }
 
   const write = () => {
-    dispatch(commentActions.addCommentDB(postId, comment))
-    setComment('')
+    const comments = {
+      comment: comment,
+    }
+    dispatch(commentActions.addCommentDB(comment))
   }
 
   return (
@@ -77,22 +86,3 @@ const Container = styled.div`
 `
 
 export default Comments
-
-const CommentItem = (props) => {
-  const { comment, commentsId, userId, postId } = props
-  return (
-    <Grid is_flex border=".5px solid" margin="0 0 5px 0">
-      <Grid is_flex padding="15px">
-        <Image shape="circle" size="30"></Image>
-        <Grid margin="0px 5px">
-          <Text color="#333333" width="auto" bold>
-            {userId}
-          </Text>
-        </Grid>
-      </Grid>
-      <Grid>
-        <Text>{comment}</Text>
-      </Grid>
-    </Grid>
-  )
-}

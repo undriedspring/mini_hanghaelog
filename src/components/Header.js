@@ -9,7 +9,6 @@ import '../index.css'
 
 const Header = (props) => {
   const a = localStorage.getItem('id')
-
   const nickname = localStorage.getItem('nickname')
 
   const user_info = useSelector((state) => state.user.user)

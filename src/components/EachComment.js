@@ -28,15 +28,14 @@ const EachComment = (props) => {
           </Grid>
         </Grid>
         <Grid margin="20px">
-          {/* 공백포함 180자 */}
-          {post_list.map((p, idx) => {
+          {/* {comment_list.map((p, idx) => {
             // 옵셔널 체이닝: 유저가 null 일때를 위하여
-            if (p.postId === comments.post.userId) {
+            if (p.postId === props.post.Id) {
               return <Text key={p.postId} {...p} is_me />
             } else {
               return <Text key={p.postId} {...p} />
             }
-          })}
+          })} */}
         </Grid>
         <Grid is_flex width="auto" margin="30px">
           {/* <button
@@ -47,19 +46,18 @@ const EachComment = (props) => {
           >
             수정
           </button> */}
-          {/* {props.is_me && ( */}
-          <button
-            className="CommentDeleteButton"
-            _onClick={() => {
-              dispatch(commentActions.deleteComment({}))
-            }}
-          >
-            삭제
-          </button>
-          {/* )} */}
+          {props.is_me && (
+            <button
+              className="CommentDeleteButton"
+              _onClick={() => {
+                dispatch(commentActions.deleteComment({}))
+              }}
+            >
+              삭제
+            </button>
+          )}
         </Grid>
       </Grid>
-      {/* 댓글 */}
     </React.Fragment>
   )
 }
@@ -73,22 +71,3 @@ const Container = styled.div`
 `
 
 export default EachComment
-
-const CommentItem = (props) => {
-  const { comment, commentsId, userId, postId } = props
-  return (
-    <Grid is_flex border=".5px solid" margin="0 0 5px 0">
-      <Grid is_flex padding="15px">
-        <Image shape="circle" size="30"></Image>
-        <Grid margin="0px 5px">
-          <Text color="#333333" width="auto" bold>
-            {userId}
-          </Text>
-        </Grid>
-      </Grid>
-      <Grid>
-        <Text>{comment}</Text>
-      </Grid>
-    </Grid>
-  )
-}

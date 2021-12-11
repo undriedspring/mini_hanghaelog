@@ -27,7 +27,7 @@ const Image = (props) => {
 
 Image.defaultProps = {
   shpae: 'circle',
-  src: 'https://cdn-icons-png.flaticon.com/512/1864/1864514.png',
+  src: 'https://kimkong2.s3.ap-northeast-2.amazonaws.com/ff.png',
   size: 45,
   alt: 'My Image',
   width: 'false',
@@ -50,6 +50,7 @@ const ImageCircle = styled.div`
   border-radius: var(--size);
   background-image: url('${(props) => props.src}');
   background-size: cover;
+  border: 0.5px solid lightslategray;
   background-position: center;
   margin: 5px;
 `
