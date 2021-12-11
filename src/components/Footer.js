@@ -29,13 +29,13 @@ const Footer = (props) => {
       src: 'https://kimkong2.s3.ap-northeast-2.amazonaws.com/avatar-8hCSfYIK6RvpToNgMJNB-Gexsm2gfIWciOSX1CLFB-yFpcQh7UcvdChVN8WvIW-xvQ1RrDVAEmBqo3T79RY-3Gg4mhaXMTgvjYYAfDpi-MHNdhjFVLOGVF3pTfLqP.png',
       nickname: '213am',
       blog: 'https://velog.io/@undriedspring',
-      github: 'https://velog.io/@undriedspring',
+      github: 'https://github.com/undriedspring',
     },
     {
       src: 'https://kimkong2.s3.ap-northeast-2.amazonaws.com/avatar-C0ykfrlDx7AkQsLyLcNS-EDEmBTn7nj52wSnvBAmp-bjYIM3RJKVm2mwEI3BrQ-uHozYGHbW35roEHKzF98-WaMM8u1pW2GyKfBCGCZp-CgjGnJ2FTTfWiE3tf7Uj-WW1GTt4cFIfI7aG4zd1o-7EyjSDVlNscTAlYLSHV1.png',
       nickname: 'jann_2',
       blog: 'https://jann2codingdiary.tistory.com/manage/posts/',
-      github: 'https://jann2codingdiary.tistory.com/manage/posts/',
+      github: 'https://github.com/jawoon816',
     },
     {
       src: 'https://kimkong2.s3.ap-northeast-2.amazonaws.com/avatar-KqTqvfFl86GbTsCRv5AY-PRoVp9KM6WZwvLkGEO8V-I7vkRzijl8vBGm5LRwQT-cCWIF8nGqKTfCCY0iXWl-py34w1ylAbJPYocLYKkq-IXv6QOFQKcNdxBtiXAXI-0hw2J9tExTUUG8aNnNvz-4YbAAJpkVityygIfsOkk.png',
