@@ -20,6 +20,7 @@ import 'moment/locale/ko'
 import moment from 'moment'
 
 const PostLists = (props) => {
+  const dispatch = useDispatch()
   console.log(props.imgUrl)
   console.log(typeof props)
   console.log(props.updatedAt)

@@ -67,13 +67,26 @@ const Postbox = styled.div`
   background-color: #fff;
   overflow-y: scroll;
 
-  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    //스크롤바 전체
+    width: 9px;
+    height: 10px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    //스크롤 막대
+    background: #a496c7;
+    border-radius: 6px;
+  }
+
+  /* -ms-overflow-style: none;
   scrollbar-width: none;
 
   &::-webkit-scrollbar {
     display: none;
     width: 0 !important;
-  }
+  } */
 `
 
 export default Main

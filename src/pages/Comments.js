@@ -35,7 +35,6 @@ const Comments = (props) => {
     }
   }, [])
 
-  console.log(_post_list)
   console.log(comment_list)
   const onChange = (e) => {
     setComment(e.target.value)
@@ -46,6 +45,7 @@ const Comments = (props) => {
       comment: comment,
     }
     dispatch(commentActions.addCommentDB(post_id, comments))
+    setComment('')
   }
 
   if (!comment_list[post_id] || !post_id || !post) {
