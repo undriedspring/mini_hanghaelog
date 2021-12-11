@@ -36,9 +36,6 @@ const PostLists = (props) => {
     }
   })
 
-  console.log(props.id)
-  console.log(props.updated)
-
   const deletePost = () => {
     if (window.confirm('게시글을 삭제하시겠습니까?')) {
       return dispatch(postActions.deletePostDB(props.id))
@@ -119,12 +116,13 @@ const PostLists = (props) => {
                     onClick={() => {
                       history.push(`/posts/${props.id}/comments`)
                     }}
+                    props
                   ></ChatBubbleOutlineIcon>
                 </IconButton>
               </Grid>
               <Grid is_flex>
                 <Text margin="0px" size="13px">
-                  댓글 10개
+                  {props.numOfComments} 개
                 </Text>
               </Grid>
             </Grid>

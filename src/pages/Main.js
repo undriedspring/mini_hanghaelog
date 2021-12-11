@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Grid } from '../elements'
+
 import Footer from '../components/Footer'
 import PostLists from '../components/PostLists'
 import QuickMenu from '../components/QuickMenu'
@@ -13,13 +14,14 @@ const Main = (props) => {
 
   const post_list = useSelector((state) => state.post.list)
   const user_id = Number(localStorage.getItem('id'))
-  console.log(post_list)
+  const user_nickname = localStorage.getItem('nickname')
 
   React.useEffect(() => {
     if (post_list.length === 0) {
       dispatch(postActions.getPostDB())
     }
   }, [])
+
   return (
     <React.Fragment>
       <Container>
@@ -42,7 +44,7 @@ const Main = (props) => {
               )
             }
           })}
-          <QuickMenu></QuickMenu>
+          {user_nickname ? <QuickMenu></QuickMenu> : null}
         </Postbox>
       </Container>
     </React.Fragment>
