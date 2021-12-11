@@ -12,6 +12,11 @@
   width: 100%;
 }
 
+.commentLine:focus {
+  outline: none;
+  border-bottom: 3px solid #a496c7;
+}
+
 .profileImage {
   border: 0.5px solid lightslategray;
   border-radius: 50px;
