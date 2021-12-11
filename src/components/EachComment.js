@@ -42,7 +42,12 @@ const EachComment = (props) => {
         <Grid margin="20px">
           <Text>{props.comment}</Text>
         </Grid>
-        <Text>{day}</Text>
+        <Grid>
+          <Text size="13px" align="right">
+            {day}
+          </Text>
+        </Grid>
+
         <Grid is_flex width="auto" margin="30px">
           {/* <button
             className="CommentEditButton"

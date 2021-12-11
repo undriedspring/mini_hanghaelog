@@ -75,7 +75,14 @@ const logOutDB = () => {
     localStorage.removeItem('id')
     localStorage.removeItem('nickname')
     dispatch(logOut())
-    history.replace('/login')
+    // .then(() => {
+    history.replace('/')
+    // })
+    // .catch((err) => {
+    //   console.log(err)
+    // })
+
+    // window.location.reload()
   }
 }
 

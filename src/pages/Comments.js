@@ -44,6 +44,7 @@ const Comments = (props) => {
       comment: comment,
     }
     dispatch(commentActions.addCommentDB(post_id, comments))
+    setComment('')
   }
 
   if (!comment_list[post_id] || !post_id || !post) {
