@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Grid } from '../elements'
+
 import Footer from '../components/Footer'
 import PostLists from '../components/PostLists'
 import QuickMenu from '../components/QuickMenu'
@@ -16,6 +17,7 @@ const Main = (props) => {
   const user_id = Number(localStorage.getItem('id'))
 
   console.log(post_list)
+
 
   React.useEffect(() => {
     if (post_list.length === 0) {
