@@ -18,6 +18,7 @@ const Comments = (props) => {
   const postId = props.match.params.id
 
   console.log(_post_list)
+  console.log(comment_list)
   const onChange = (e) => {
     const commentCurrent = e.target.value
     setComment(commentCurrent)

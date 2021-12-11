@@ -9,7 +9,7 @@ import { actionCreators as imageActions } from '../redux/modules/image'
 import { now } from 'moment'
 
 const PostWrite = (props) => {
-  const defaultImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCQrU2ehVPXr5xwc4CBn-uOUjT3dAPOSZSQ&usqp=CAU'
+  const defaultImage = 'https://kimkong2.s3.ap-northeast-2.amazonaws.com/%EA%B7%B8%EB%A3%B9+2.png'
 
   const dispatch = useDispatch()
   const { history } = props
@@ -194,7 +194,7 @@ const Wrap = styled.div`
   min-width: 600px;
   max-height: 600px;
   min-height: 400px;
-  margin: 150px auto 0 auto;
+  margin: 50px auto 0 auto;
   border: 2px solid #a496c7;
 `
 
