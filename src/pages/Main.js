@@ -58,7 +58,6 @@ const Container = styled.div`
   height: calc(100vh - 60px);
   margin: 0 auto;
   overflow-y: hidden;
-
   display: flex;
 `
 const Postbox = styled.div`
